@@ -1,0 +1,113 @@
+%%% From template
+
+\renewcommand{\nomname}{LIST OF ABBREVIATIONS}
+
+% Stats table label
+\newcommand{\statslabel}[2]{\multirowcell{#1}[-1.6mm][c]{#2}}
+
+% Below heading rule.
+\newcommand{\otoprule}{\midrule[\heavyrulewidth]}
+
+\renewcommand{\contentsname}{TABLE OF CONTENTS}
+\renewcommand{\listfigurename}{LIST OF FIGURES}
+\renewcommand{\listtablename}{LIST OF TABLES}
+\renewcommand{\bibname}{ \texorpdfstring{{References\vspace{10mm}}}{References}   }
+%
+\renewcommand{\chaptermark}[1]{%
+  \markboth{\MakeUppercase{%
+      \chaptername}\ \thechapter.%
+    \ #1}{}}
+
+%%% From Accretion Shock Paper
+%------------------------------------------------------------------------------%
+% Results
+\newcommand{\PeriodRatioGRoverNRxiA}{1.19}
+\newcommand{\PeriodRatioGRoverNRxiB}{1.15}
+\newcommand{\PeriodRatioGRoverNRxiC}{1.22}
+\newcommand{\PeriodRatioGRoverNRxiD}{1.29}
+\newcommand{\GrowthRateRatioGRoverNRxiA}{0.96}
+\newcommand{\GrowthRateRatioGRoverNRxiB}{0.79}
+\newcommand{\GrowthRateRatioGRoverNRxiC}{0.68}
+\newcommand{\GrowthRateRatioGRoverNRxiD}{0.47}
+\newcommand{\RelDiffAAxiA}{0.29}
+\newcommand{\RelDiffAAxiB}{0.14}
+\newcommand{\RelDiffAAxiC}{0.05}
+\newcommand{\RelDiffAAxiD}{0.17}
+\newcommand{\RelDiffACxiA}{0.21}
+\newcommand{\RelDiffACxiB}{0.22}
+\newcommand{\RelDiffACxiC}{0.10}
+\newcommand{\RelDiffACxiD}{0.12}
+
+% Math
+\newcommand{\p}{\partial}
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\td}[2]{\frac{d#1}{d#2}}
+\newcommand{\T}{^{\top}}
+
+% Aliases
+\newcommand{\arl}{\mathrm{areal}}
+\newcommand{\iso}{\mathrm{iso}}
+\newcommand{\wt}{\widetilde}
+\newcommand{\etac}{\eta_{\mathrm{c}}}
+\newcommand{\rpns}{R_{\textsc{pns}}}
+\newcommand{\rsh}{R_{\mathrm{sh}}}
+\newcommand{\rac}{R_{\mathrm{ac}}}
+\newcommand{\rsc}{R_{\mathrm{Sc}}}
+\newcommand{\gammabar}{\overline{\gamma}}
+\newcommand{\myeqref}[1]{Eq.~(\ref{#1})}
+\newcommand{\thornado}{\texttt{thornado}}
+\newcommand{\amrex}{\texttt{AMReX}}
+\newcommand{\eos}{EoS}
+\newcommand{\cfc}{CFC}
+\newcommand{\degrees}{^{\circ{}}}
+\newcommand{\msun}{M_{\odot}}
+\newcommand{\mdot}{\dot{M}}
+\newcommand{\gr}{\textsc{gr}}
+\newcommand{\nr}{\textsc{nr}}
+\newcommand{\tauad}{\tau_{\mathrm{ad}}}
+\newcommand{\tauac}{\tau_{\mathrm{ac}}}
+\newcommand{\tac}{T_{\mathrm{ac}}}
+\newcommand{\taa}{T_{\mathrm{aa}}}
+\newcommand{\mpns}{M_{\textsc{pns}}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\mc}{\mathcal}
+\newcommand{\bb}{\mathbb}
+\newcommand{\citeme}{\red{(CITE ME)}}
+\newcommand{\appref}[1]{Appendix~\ref{#1}}
+\newcommand{\figref}[1]{Figure~\ref{#1}}
+\newcommand{\tabref}[1]{Table~\ref{#1}}
+\newcommand{\secref}[1]{Section~\ref{#1}}
+\renewcommand{\th}{-th}
+\newcommand{\nModels}{\repl{5}{7}}
+\newcommand{\scipy}{\texttt{scipy}}
+\newcommand{\curvefit}{\texttt{curve\_fit}}
+
+% Units
+\newcommand{\erg}{\mathrm{erg}}
+\newcommand{\g}{\mathrm{g}}
+\newcommand{\cm}{\mathrm{cm}}
+\newcommand{\km}{\mathrm{km}}
+\newcommand{\ms}{\mathrm{ms}}
+\newcommand{\s}{\mathrm{s}}
+\newcommand{\Hz}{\mathrm{Hz}}
+\newcommand{\rad}{\mathrm{rad}}
+
+% Colors
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\magenta}[1]{\textcolor{magenta}{#1}}
+\newcommand{\cyan}[1]{\textcolor{cyan}{#1}}
+\newcommand{\teal}[1]{\textcolor{teal}{#1}}
+\newcommand{\orange}[1]{\textcolor{orange}{#1}}
+
+% Editing
+\newcommand{\new}[1]{\red{#1}}
+%\newcommand{\repl}[2]{\st{#1}\red{#2}} % comment this out and the next commend in to remove highlighting
+\newcommand{\repl}[2]{\st{}#2}
+\newcommand{\sd}[1]{\texttt{\red{(SD: #1)}}}
+\newcommand{\ee}[1]{\texttt{\blue{(EE: #1)}}}
+\newcommand{\am}[1]{\texttt{\magenta{(AM: #1)}}}
+\newcommand{\jlb}[1]{\texttt{\cyan{(JLB: #1)}}}
+\newcommand{\jmb}[1]{\texttt{\teal{(JMB: #1)}}}
+\newcommand{\khb}[1]{\texttt{\orange{(KHB: #1)}}}
+\newcommand{\KHB}[1]{\texttt{\orange{(KHB: #1)}}}

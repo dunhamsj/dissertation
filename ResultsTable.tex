@@ -1,0 +1,50 @@
+\begin{table}[b]
+  \scriptsize
+  \renewcommand{\tabcolsep}{0.09cm}
+  \centering
+%  \captionof{table}{Results}
+  \begin{tabularx}{0.7\textwidth}{cccccc} \\
+    \toprule \\
+    Model                                          &
+    $T\pm\Delta T\,\left[\ms\right]$               &
+    $\omega\pm\Delta\omega\,\left[\ms^{-1}\right]$ &
+    $\omega\,T$                                    &
+    $\taa\,\left[\ms\right]$                       &
+    $\tac\,\left[\ms\right]$                       \\ \\
+    \midrule \\
+    \texttt{NR\_M1.4\_Rpns070\_Rs1.50e2} & 25.5566 $\pm$ 21.1850 & 0.0631 $\pm$ 0.0011 & 1.6123 & 20.9559 & 36.6791 \\
+    \texttt{GR\_M1.4\_Rpns070\_Rs1.50e2} & 30.3854 $\pm$ 21.5598 & 0.0603 $\pm$ 0.0009 & 1.8313 & 22.6462 & 37.4293 \\
+    \texttt{NR\_M1.4\_Rpns040\_Rs1.20e2} & 24.6398 $\pm$ 15.6904 & 0.0733 $\pm$ 0.0011 & 1.8054 & 20.8348 & 26.2646 \\
+    \texttt{GR\_M1.4\_Rpns040\_Rs1.20e2} & 27.2758 $\pm$ 16.6796 & 0.0578 $\pm$ 0.0011 & 1.5758 & 23.6236 & 26.9372 \\
+    \texttt{NR\_M1.4\_Rpns040\_Rs1.50e2} & 37.3656 $\pm$ 23.4864 & 0.0409 $\pm$ 0.0005 & 1.5291 & 34.3279 & 36.6791 \\
+    \texttt{GR\_M1.4\_Rpns040\_Rs1.50e2} & 42.9166 $\pm$ 22.4149 & 0.0360 $\pm$ 0.0004 & 1.5461 & 38.6747 & 37.4293 \\
+    \texttt{NR\_M1.4\_Rpns040\_Rs1.75e2} & 51.5463 $\pm$ 29.2280 & 0.0300 $\pm$ 0.0003 & 1.5468 & 47.7212 & 46.0841 \\
+    \texttt{GR\_M1.4\_Rpns040\_Rs1.75e2} & 58.6525 $\pm$ 28.1381 & 0.0265 $\pm$ 0.0003 & 1.5540 & 53.5372 & 46.8924 \\
+    \texttt{NR\_M1.8\_Rpns020\_Rs7.00e1} & 9.8537 $\pm$ 5.1860 & 0.1524 $\pm$ 0.0039 & 1.5016 & 9.2361 & 10.3138 \\
+    \texttt{GR\_M1.8\_Rpns020\_Rs7.00e1} & 12.0565 $\pm$ 4.6944 & 0.1031 $\pm$ 0.0022 & 1.2429 & 12.6159 & 10.9053 \\
+    \texttt{NR\_M2.8\_Rpns020\_Rs6.00e1} & 6.1939 $\pm$ 3.7227 & 0.2910 $\pm$ 0.0085 & 1.8027 & 5.2343 & 6.5656 \\
+    \texttt{GR\_M2.8\_Rpns020\_Rs6.00e1} & 7.5296 $\pm$ 2.5224 & 0.1365 $\pm$ 0.0042 & 1.0282 & 8.6607 & 7.2635 \\
+    \texttt{NR\_M2.8\_Rpns020\_Rs7.00e1} & 7.9137 $\pm$ 4.2711 & 0.1897 $\pm$ 0.0054 & 1.5014 & 7.4177 & 8.2693 \\
+    \texttt{GR\_M2.8\_Rpns020\_Rs7.00e1} & 10.2013 $\pm$ 3.0563 & 0.0954 $\pm$ 0.0026 & 0.9735 & 12.1099 & 9.0178 \\
+    \bottomrule \\
+  \end{tabularx}
+  %\caption*{
+  \caption{
+Oscillation periods, growth rates, and their uncertainties for all
+fourteen models having the same accretion rate of $0.3\,\msun\,\s^{-1}$.
+\repl{The first six are the low-compactness models; the last four
+are the high-compactness models.}{}
+The uncertainties for the growth rates are defined as the square roots of the
+diagonal entries of the covariance matrix corresponding to the growth rate.
+The uncertainies for the oscillation period are defined as the full-width
+half-maximum values of the Fourier amplitudes (see \figref{fig.fft}).
+The fourth column shows the product of the best-fit growth rate multiplied
+by the best-fit oscillation period.
+The fifth column shows the estimate for the period assuming an
+advective-acoustic origin of the SASI (\eqref{eq.MullerEst}),
+and the sixth column shows the estimate for the period assuming
+a purely acoustic origin of the SASI (\eqref{eq.Tac}), where we use
+$\rac=0.85\,\rsh$, the midpoint
+of the shell in which we compute the power (see \secref{sec.results}).}
+  \label{tab.results}
+\end{table}
