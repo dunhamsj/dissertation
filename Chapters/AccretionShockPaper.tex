@@ -7,27 +7,24 @@ reproduced with the permission of the publisher and my co-authors
 Eirik Endeve, Anthony Mezzacappa, John M. Blondin, Jesse Buffaloe, and Kelly
 Holley-Bockelmann.
 
-%-----------------------------------------------------------------------------%
+%------------------------------------------------------------------------------%
 \section{Abstract}
-We present numerical results from a parameter study of the
-standing accretion shock instability (SASI),
-investigating the impact of general relativity (GR) on the dynamics.
-Using GR hydrodynamics \repl{and}{with GR} gravity, and non-relativistic (NR)
-hydrodynamics \repl{and}{with Newtonian} gravity,
+We present numerical results from a parameter study of the standing accretion
+shock instability (SASI), investigating the impact of general relativity (GR)
+on the dynamics. Using GR hydrodynamics with GR gravity,
+and non-relativistic (NR) hydrodynamics with Newtonian gravity,
 in an idealized model setting, we vary the initial radius of the shock and,
-by varying its mass and radius in concert,
-the proto-neutron star (PNS) compactness.
-We investigate \repl{two regimes}{four compactnesses} expected in a
-post-bounce core-collapse supernova
-(CCSN)\repl{: one meant to resemble a relatively low-compactness configuration
-and one meant to resemble a relatively high-compactness configuration.}{.}
+by varying its mass and radius in concert, the proto-neutron star (PNS)
+compactness.
+We investigate four compactnesses expected in a post-bounce
+core-collapse supernova (CCSN).
 We find that GR leads to a longer SASI oscillation period,
 with ratios between the GR and NR cases as large as \PeriodRatioGRoverNRxiD{}
-for the \repl{high}{highest}-compactness suite.
+for the highest-compactness suite.
 We also find that GR leads to a slower SASI growth rate,
 with ratios between the GR and NR cases as low as \GrowthRateRatioGRoverNRxiD{}
-for the \repl{high}{highest}-compactness suite. We discuss implications of our
-results for CCSN simulations.
+for the highest-compactness suite. We discuss implications of our results for
+CCSN simulations.
 
 %------------------------------------------------------------------------------%
 \section{Introduction}
@@ -97,7 +94,7 @@ convection-dominated and SASI-dominated scenarios may lie at the extremes of
 what is possible, it is not necessary for one or the other instability to be
 dominant to play an important role -- specifically, for the more complex cases
 where neither dominates,
-it would be \repl{impossible}{very difficult}
+it would be very difficult
 to determine precisely the relative
 contribution from these two instabilities.
 
@@ -107,7 +104,7 @@ vortical waves generated at the shock advect to the surface of the PNS,
 which in turn generate acoustic waves that propagate back to the
 shock and further perturb it
 \citep{fsj2006,fgs2007,yy2007,l2007,l2008,f2009,gf2012}.
-This perturbation generates more\repl{}{, stronger,} vortical waves,
+This perturbation generates more, stronger, vortical waves,
 which advect to
 the PNS surface, thus creating a feedback loop that drives the instability.
 An alternative explanation for the SASI is the
@@ -154,7 +151,7 @@ dad2023},
 and the effects of rotation
 \citep{yy2005,yf2008,wft2023,bfg2023}.
 Some of these studies included sophisticated microphysics, such as
-realistic equations of state (\eos s)\repl{,}{} and neutrino transport;
+realistic equations of state (\eos s) and neutrino transport;
 however, with the exception of \citet{kkt2017},
 none of these studies solved the general relativistic hydrodynamics (GRHD)
 equations, instead solving their non-relativistic (NRHD) counterparts,
@@ -182,10 +179,9 @@ Motivated in part by \citet{dem2020} and \citet{kc2022},
 we expect SASI simulations to behave differently depending
 on whether or not the treatment of the hydrodynamics and gravity
 are general relativistic.
-\repl{}{Indeed, \citet{dem2020} presented GR steady-state solutions and
-presented preliminary results
-\repl{}{from GR SASI simulations}, but did not compare results from NR and GR
-simulations.}
+Indeed, \citet{dem2020} presented GR steady-state solutions and
+presented preliminary results from GR SASI simulations,
+but did not compare results from NR and GR simulations.
 Specifically, we expect both advective and acoustic modes to be
 influenced by the different post-shock structure in the GR case
 relative to the NR case.
@@ -197,27 +193,21 @@ of the SASI?}
 To begin to address this, we
 present the first comparison of the SASI in both a non-relativistic
 and a general relativistic framework, using an idealized model
-\repl{under two sets of conditions:
-one set is mildly relativistic and is designed to mirror
-low-compactness conditions after bounce in a CCSN,
-and the other set is strongly
-relativistic and is designed to mirror high-compactness conditions.}
-{with four compactnesses, meant to span the range of conditions
-expected in CCSN simulations.}
+with four compactnesses, meant to span the range of conditions
+expected in CCSN simulations.
 We focus our attention on the linear regime and characterize the SASI by its
 growth rate and oscillation period, as was done in \citet{bm2006}.
 To capture both the linear regime of the SASI and its transition to the
 nonlinear regime,
-we perform our assessment via \repl{two suites of}{seven} axisymmetric numerical
-simulations\repl{, differentiated by their compactness,}{}
-using GRHD and GR gravity, with the PNS represented by a point mass
+we perform our assessment via seven axisymmetric numerical
+simulations using GRHD and GR gravity, with the PNS represented by a point mass
 and gravity encoded in a Schwarzchild spacetime metric.
 To better assess the impact of GR, we also perform simulations
 using the same parameter sets but
 with NRHD and Newtonian gravity, again with the PNS represented by a point
 mass, but in this case gravity is encoded in the Newtonian potential.
-\repl{}{We will often use ``NR" to refer to the case of Newtonian gravity
-and NRHD.}
+We will often use ``NR" to refer to the case of Newtonian gravity
+and NRHD.
 
 We use a system of units in which $c=G=1$ and also make use of the Einstein
 summation convention, with Greek indices running from 0 to 3 and Latin indices
@@ -297,7 +287,6 @@ three-metric is
     \sqrt{\gamma}=\psi^{6}\,\sqrt{\gammabar}=\psi^{6}\,r^{2}\,\sin\theta.
 \end{equation}
 
-\repl{}{
 Our choice of isotropic coordinates is consistent with our implementation of general
 relativistic hydrodynamics in the CFC approximation.
 Our comparison of the Newtonian and general relativistic results is conducted
@@ -305,7 +294,6 @@ Our comparison of the Newtonian and general relativistic results is conducted
 (In practice, the hydrodynamics equations in the Newtonian limit in the isotropic gauge
 are identical {\em in form} to the standard Newtonian hydrodynamics equations,
 and we were able to run our NR simulations with our Newtonian hydrodynamics code.)
-}
 
 \subsection{Relativistic Hydrodynamics}
 
@@ -396,24 +384,22 @@ through the first law of thermodynamics for an isentropic fluid.
 
 \subsection{Non-Relativistic Hydrodynamics}
 
-Under the 3+1 formalism of GR \repl{}{and the CFC},
+Under the 3+1 formalism of GR and the CFC,
 the effect of gravity is encoded in the metric via the lapse function,
 the conformal factor, and the shift vector, whereas with
-\repl{NR}{Newtonian gravity},
+Newtonian gravity,
 the metric is that of flat space and the effect of gravity
-is encoded in the Newtonian gravitational potential,$\Phi$\repl{.}{,
+is encoded in the Newtonian gravitational potential, $\Phi$,
 \begin{equation}
   \Phi\left(r\right):=-\frac{M}{r}.
 \end{equation}
-}
 Of course, the NRHD equations can be recovered from the GRHD equations
 by taking appropriate limits; i.e.,
 $v^{i}v_{i}\ll1$, $p,e\ll\rho$,
 and $\Phi\ll1$, and setting $\alpha\approx\alpha_{\nr}:=1+\Phi$
-\repl{.}{and $\psi=1-\Phi/2$.
-}
+and $\psi=1-\Phi/2$.
 
-In the case of \repl{NR}{Newtonian gravity and NRHD}, we solve\begin{equation}
+In the case of Newtonian gravity and NRHD, we solve\begin{equation}
   \p_{t}\,\bs{U}
   +\frac{1}{\sqrt{\gammabar}}\,
   \p_{i}\left(\sqrt{\gammabar}\,\bs{F}^{i}\right)=\bs{S},
@@ -562,23 +548,19 @@ in agreement with \myeqref{eq.BernoulliNR}.
 
 \subsection{Comparison of NR and GR Steady-State Solutions}
 
-For the \repl{low-compactness case}{two lower-compactness cases
-(see \myeqref{eq.compactness})}
+For the two lower-compactness cases (see \myeqref{eq.compactness})
 \citep[e.g., see][]{bmh2013,mjm2015,brv2020},
 \figref{fig.compSS_loXi} shows steady-state accretion shock solutions
-as functions of coordinate distance $r$\repl{,
-with $\mpns=1.4\,\msun$ (where $\msun$ is the mass of our Sun),
-$\mdot=0.3\,\msun\,\s^{-1}$,
-and $\rsh/\km\in\left\{120,150,175\right\}$}{}.
-\repl{}{(Note that in \figref{fig.compSS_loXi} and \figref{fig.compSS_hiXi} below,
+as functions of coordinate distance $r$.
+(Note that in \figref{fig.compSS_loXi} and \figref{fig.compSS_hiXi} below,
 for additional information, the steady-state solutions are plotted from the shock all
 the way down to $r=3$~km.
 For our numerical simulations, the inner boundary is placed at
-$\rpns\in\{20,40\}$~km, which then defines the compactness of our models.)}
+$\rpns\in\{20,40\}$~km, which then defines the compactness of our models.)
 
 In general, the magnitudes of the density, velocity,
 and pressure just below the shock decrease as the shock radius increases
-\citep[\repl{see, e.g.,}{e.g., see} Eqs. (1-3) in][]{bmd2003}.
+\citep[e.g., see Eqs. (1-3) in][]{bmd2003}.
 From the top-right panel of \figref{fig.compSS_loXi},
 it can be seen that the velocities in the GR and NR cases agree
 well near the shock and deviate from each other for smaller radii,
@@ -622,12 +604,10 @@ to their values at the shock.}
   \label{fig.compSS_loXi}
 \end{figure}
 
-For the \repl{high-compactness case}{two higher-compactness cases}
+For the two higher-compactness cases
 \citep[e.g., see][]{lmt2001,wtj2020},
 \figref{fig.compSS_hiXi} shows steady-state accretion shock solutions
-as functions of coordinate distance $r$\repl{,
-with $\mpns=2.8\,\msun$, $\mdot=0.3\,\msun\,\s^{-1}$,
-and $\rsh/\km\in\left\{60,70\right\}$}{}.
+as functions of coordinate distance $r$.
 The profiles show the same trends as those in \figref{fig.compSS_loXi},
 although in this case the trends are more pronounced.
 One notable difference is that the location of the largest
@@ -645,12 +625,10 @@ Post-shock, steady-state solutions for GR (solid) and NR (dashed)
 equations as functions of coordinate distance $r\in\left[3\,\km,\rsh\right]$
 for three models having the same
 accretion rate of 0.3$\,\msun/\s$,
-\repl{the same PNS mass of $2.8\,\msun$, and shock radii
-60 km (blue) and 70 km (orange)}
-{one having a PNS mass of $1.8\,\msun$ and a shock radius of 70 km (blue),
+one having a PNS mass of $1.8\,\msun$ and a shock radius of 70 km (blue),
 and the other two having PNS mass $2.8\,\msun$
-and shock radii 60 km (orange) and 70 km (green)}.
-For \repl{this PNS mass}{the $2.8\,\msun$ PNS models},
+and shock radii 60 km (orange) and 70 km (green).
+For the $2.8\,\msun$ PNS models,
 the Schwarzchild radius is $\sim$2.1 km.
 Quantities defined just ahead of the shock are denoted with a subscript ``1".
 The top-left panel shows the comoving baryon mass density
@@ -707,7 +685,7 @@ We also compare our results with an estimate based on the assumption that
 the SASI is a purely acoustic phenomenon.
 We define a time, $\tac$, as the time taken by an
 acoustic perturbation
-to circumnavigate the \repl{PNS}{post-shock cavity}
+to circumnavigate the post-shock cavity
 at a characteristic radius $\rac$,
 assuming $v^{\theta}\ll c_{s}\,\sqrt{\gamma^{22}}$,
 \begin{equation}
@@ -724,14 +702,12 @@ where
   -v^{\theta}\,v^{\theta}\left(1-c_{s}^{2}\right)\right]}\right\}
   \stackrel{\nr}{=}v^{\theta}+c_{s}/r
 \end{equation}
-is the acoustic wave-speed in the $\theta$-dimension \citep{rz2013}
-\repl{,}{and}
+is the acoustic wave-speed in the $\theta$-dimension \citep{rz2013} and
 $h_{\theta}$ is the scale factor in the $\theta$-dimension.
-\repl{}{The expression for $\tac$ is inspired by the Lamb frequency,
+The expression for $\tac$ is inspired by the Lamb frequency,
 which relates the frequency of an acoustic wave to the radius at which it turns
 around \citep{hkt2004}.
-We delay the specification of
-$\rac$ until \secref{sec.results}.}
+We delay the specification of $\rac$ until \secref{sec.results}.
 
 In \figref{fig.wavespeeds}, we plot
 $\lambda^{r,     \gr}_{+}/\lambda^{r,     \nr}_{+}$,
@@ -745,8 +721,7 @@ as functions of $\eta$, defined as
 for all of our models.
 In all cases, the signal-speeds are slower in the GR case.
 This difference is accentuated in the
-\repl{high-compactness suite}{higher-compactness models} and for smaller
-radii.
+higher-compactness models and for smaller radii.
 \begin{figure}[htb!]
   \centering
   \includegraphics[width=0.8\textwidth]%
@@ -759,8 +734,8 @@ ratio of angular GR acoustic signal-speed to angular NR acoustic signal-speed
 ratio of radial GR advective signal-speed to radial NR advective signal-speed
 (dotted),
 plotted as functions of $\eta$ for all models.
-\repl{Low}{Lower}-compactness models are shown in the top panel
-and \repl{high}{higher}-compactness models
+Lower-compactness models are shown in the top panel
+and higher-compactness models
 are shown in the bottom panel.
 All signal-speeds have been multiplied with the appropriate scale factors.}
   \label{fig.wavespeeds}
@@ -792,11 +767,10 @@ an open-source code under development,
 aiming to simulate CCSNe.
 \thornado{} uses high-order discontinuous Galerkin (DG) methods
 to discretize space and strong-stability-preserving Runge--Kutta
-\repl{}{(SSP-RK)} methods
-to evolve in time.
+(SSP-RK) methods to evolve in time.
 For details on the implementation in the non-relativistic case,
-see \citet{ebd2019} and \citet{pbe2021}\repl{.
-In}{; for} the relativistic case, see \citet{dem2020} and
+see \citet{ebd2019} and \citet{pbe2021};
+for the relativistic case, see \citet{dem2020} and
 Dunham et al. (2024) (in prep.).
 All of our simulations use the HLL Riemann solver \citep{hll1983},
 a quadratic polynomial representation (per dimension) of the
@@ -879,11 +853,7 @@ define as \citep{oo2011},
   \xi:=\frac{M/\msun}{\rpns/\left(20\,\km\right)}.
   \label{eq.compactness}
 \end{equation}
-\repl{One suite, which we refer to as ``low-compactness", has $\xi=0.7$;
-the other suite, which we refer to as ``high-compactness", has $\xi=2.8$.
-We vary $\mpns$ and $\rpns$ in such a way as to ensure these two values
-of compactness.}{}
-\input{ModelParametersTable.tex}
+\input{Tables/ModelParametersTable.tex}
 In our model naming convention,
 we first list whether the model used GR or NR along with the dimensionality
 (1D or 2D),
@@ -917,7 +887,7 @@ the latter of which follows from our assumption of $\rho\propto r^{-3}$,
 and the assumption of a small velocity at the PNS surface.
 
 For the
-\repl{low-compactness conditions}{$\xi\in\left\{0.4,0.7\right\}$ models}
+$\xi\in\left\{0.4,0.7\right\}$ models
 we enforce a radial resolution of
 0.5 km per element for all runs, which we found necessary for
 the shock in an unperturbed model to not deviate by more than 1\%
@@ -932,12 +902,12 @@ steady-state is not maintained if the radial resolution is too coarse;
 e.g., greater than about 1 km.
 
 For the
-\repl{high-compactness conditions}{$\xi\in\left\{1.8,2.8\right\}$ models}
+$\xi\in\left\{1.8,2.8\right\}$ models
 we enforce a radial resolution of
 0.25 km per element for all runs
 in order to maintain the same radial resolution of the pressure scale height,
 $p\left|dp/dr\right|^{-1}$,
-as in the \repl{low-compactness}{$\xi\in\left\{0.4,0.7\right\}$} models,
+as in the $\xi\in\left\{0.4,0.7\right\}$ models,
 while also ensuring that the shock does not deviate from its initial
 location by more than 1\%.
 This can be seen in the bottom panel of \figref{fig.resReq},
@@ -951,11 +921,8 @@ but for model \texttt{GR1D\_M2.8\_Rpns020\_Rsh6.00e1}.
   \caption{%
 Relative deviation of the shock radius from its initial location versus
 $t/\tauad$ for different radial resolutions $dr$
-for
-\repl{the low-compactness}{}
-model \texttt{GR1D\_M1.4\_Rpns040\_Rsh1.20e2} (top panel)
-and \repl{the high-compactness}{} model
-\texttt{GR1D\_M2.8\_Rpns020\_Rsh6.00e1} (bottom panel).}
+for model \texttt{GR1D\_M1.4\_Rpns040\_Rsh1.20e2} (top panel)
+and model \texttt{GR1D\_M2.8\_Rpns020\_Rsh6.00e1} (bottom panel).}
   \label{fig.resReq}
 \end{figure}
 
@@ -988,14 +955,12 @@ We verify that the system has achieved a steady-state
 by plotting, in \figref{fig.relax}, the maximum,
 at each snapshot, of the absolute value of the normalized
 time derivative of the mass density
-versus $t/\tauad$ for \repl{low-compactness}{} model
-\texttt{GR1D\_M1.4\_Rpns040\_Rsh1.20e2}
+versus $t/\tauad$ for model \texttt{GR1D\_M1.4\_Rpns040\_Rsh1.20e2}
 (top panel)
-and \repl{high-compactness}{} model \texttt{GR1D\_M2.8\_Rpns020\_Rsh6.00e1}
+and model \texttt{GR1D\_M2.8\_Rpns020\_Rsh6.00e1}
 (bottom panel); other models exhibit similar behavior.
-\repl{}{For example, in the top panel,}
-it can be seen that the \repl{low-compactness}{}
-model settles down after approximately
+For example, in the top panel,
+it can be seen that the model settles down after approximately
 35 advection times,
 followed by two slight increases near 45 and 50 advection times,
 then settles down until we end the simulation after 100 advection times.
@@ -1007,10 +972,9 @@ when the shock crosses an element boundary.
   {fig.Relaxation.pdf}
   \caption{Maximum, at each snapshot, of the absolute value of
 the normalized time derivative
-of the mass density versus $t/\tauad$ for \repl{low-compactness}{} model
+of the mass density versus $t/\tauad$ for model
 \texttt{GR1D\_M1.4\_Rpns040\_Rsh1.20e2} (top panel)
-and \repl{high-compactness}{} model
-\texttt{GR1D\_M2.8\_Rpns020\_Rsh6.00e1} (bottom panel).}
+and model \texttt{GR1D\_M2.8\_Rpns020\_Rsh6.00e1} (bottom panel).}
   \label{fig.relax}
 \end{figure}
 The relaxed 1D data is mapped to 2D, a
@@ -1165,24 +1129,19 @@ the $\ell=1$ mode.)
 \subsection{Overall Trends}
 \label{sec.models}
 
-Here we discuss trends that appear across \repl{both the low-compactness models
-and the high-compactness}{our} models.
+Here we discuss trends that appear across our models.
 We summarize our results in \tabref{tab.results},
 which lists the model, the best-fit oscillation period and uncertainty,
 the best-fit growth rate and uncertainty,
 the product of the best-fit growth rate and best-fit oscillation period,
-the period assuming an advective-acoustic mechanism\repl{}{, $\taa$}
+the period assuming an advective-acoustic mechanism, $\taa$
 (estimated using \myeqref{eq.MullerEst}),
-and the period assuming a purely acoustic mechanism\repl{}{, $\tac$}
+and the period assuming a purely acoustic mechanism, $\tac$
 (estimated using \myeqref{eq.Tac}).
-\repl{}{When using \myeqref{eq.Tac}, we choose the characteristic radius $\rac$
+When using \myeqref{eq.Tac}, we choose the characteristic radius $\rac$
 to be $0.85\,\rsh$, which is the midpoint of the shell in which we compute
-the power.}
-\repl{Due to data uncertainties, and the similar values provided by the two estimates,
-we are unable to discern whether the SASI is governed by an
-advective-acoustic mechanism or by a purely acoustic mechanism using these
-simple estimates.}{}
-\input{ResultsTable.tex}
+the power.
+\input{Tables/ResultsTable.tex}
 
 As a first general trend, we see that, for a given PNS radius,
 the oscillation period increases as the shock radius increases,
@@ -1204,7 +1163,7 @@ First we discuss how the oscillation period varies with
 PNS compactness and shock radius.
 In \figref{fig.fft}, we plot the
 amplitudes of the Fourier transform of \myeqref{eq.F12}, $\wt{F}^{r}_{\theta}$,
-versus $\wt{T}$ for \repl{all}{four} models,
+versus $\wt{T}$ for four models,
 where $\wt{T}$ is defined as the inverse of the
 frequency determined by the FFT.
 No windowing was applied when computing the FFT of the signal.
@@ -1236,11 +1195,7 @@ Amplitudes of Fourier transforms of \myeqref{eq.F12},
 normalized by their largest values,
 as functions of $\wt{T}$ in $\ms$,
 where $\wt{T}$ is the inverse of the frequency returned by the FFT.
-\repl{From left to right, columns correspond to models with increasing
-shock radii
-and rows corresponds to low-compactness (top) and high-compactness (bottom)
-models.}{The compactness of each model is shown in the bottom of the
-respective panels.}
+The compactness of each model is shown in the bottom of the respective panels.
 NR results are shown in blue and GR results are shown in orange.}
   \label{fig.fft}
 \end{figure}
@@ -1259,55 +1214,30 @@ when GR is used, regardless of whether the SASI is governed by an
 advective-acoustic or a purely acoustic cycle.
 
 In \figref{fig.PC}, we plot the
-\repl{estimates for the period provided by
-Eqs. (27) and (30) along with the period}{SASI period},
-\repl{ and its uncertainty}{, as}
-provided by the Fourier analysis,
-versus initial shock radius for all \repl{the}{of our} models.
+SASI period, as provided by the Fourier analysis,
+versus initial shock radius for all of our models.
 \begin{figure}[htb!]
   \centering
   \includegraphics[width=0.8\textwidth]%
   {fig.OscillationPeriodComparison.pdf}
   \caption{
-SASI oscillation period \repl{and uncertainty}{} in $\ms$ as a function of
-\repl{}{(dimensionless)} PNS \repl{mass}{compactness} and
+SASI oscillation period in $\ms$ as a function of
+PNS compactness (dimensionless) and
 shock radius in $\km$, as determined by the FFT (see text for details).
-NR results are shown in \repl{blue}{open squares}
-and GR results are shown in \repl{orange}{solid squares,
-with different colors corresponding to different compactnesses}.
-\repl{Crosses correspond to estimates of the period assuming the SASI is governed
-by an advective-acoustic mechanism}{} (\myeqref{eq.MullerEst})
-\repl{using the GR data and the GR part of}{} \myeqref{eq.MullerEst}
-\repl{(orange)
-and using the NR data and the NR part of}{} \myeqref{eq.MullerEst}\repl{ (blue).
-Filled circles correspond to estimates of the period assuming the SASI
-is governed by a purely acoustic mechanism}{} (\myeqref{eq.Tac}).}
+NR results are shown in open squares
+and GR results are shown in solid squares,
+with different colors corresponding to different compactnesses.}
   \label{fig.PC}
 \end{figure}
-The NR and GR models\repl{, along with their associated estimates,}{}
-follow the same general trends.
-\repl{For the low-compactness models,
-we find that the ratio between
-$T_{\gr}$ and $T_{\nr}$ is as large as \PeriodRatioGRoverNRxiB,
-the relative difference between $T_{\gr}$ and the advective-acoustic
-estimate, Eq.~(27), is smaller than \RelDiffAAxiB,
-and the relative difference between $T_{\gr}$ and the purely acoustic
-estimate, Eq.~(30), is smaller than \RelDiffACxiB.
-For the high-compactness models,
-we find that the ratio between
-$T_{\gr}$ and $T_{\nr}$ is as large as \PeriodRatioGRoverNRxiD,
-the relative difference between $T_{\gr}$ and the advective-acoustic
-estimate, Eq.~(27), is smaller than \RelDiffAAxiD,
-and the relative difference between $T_{\gr}$ and the purely acoustic
-estimate, Eq.~(30), is smaller than \RelDiffACxiD.}{
+The NR and GR models follow the same general trends.
 For $\xi=0.4,0.7,1.8$, and $2.8$,
 we find that the ratio $T_{\gr}/T_{\nr}$ is
 \PeriodRatioGRoverNRxiA,
 $\leq\PeriodRatioGRoverNRxiB$,
 \PeriodRatioGRoverNRxiC,
-and $\leq\PeriodRatioGRoverNRxiD$, respectively.}
+and $\leq\PeriodRatioGRoverNRxiD$, respectively.
 
-\repl{}{For the $\xi=0.4,0.7,1.8$, and $2.8$ models,
+For the $\xi=0.4,0.7,1.8$, and $2.8$ models,
 the relative differences between $T_{\gr}$ and the advective-acoustic
 estimate, \myeqref{eq.MullerEst}, are
 \RelDiffACxiA,
@@ -1320,7 +1250,7 @@ estimate, \myeqref{eq.Tac}, are
 \RelDiffAAxiA,
 $<\RelDiffAAxiB$,
 \RelDiffAAxiC,
-and $<\RelDiffAAxiD$, respectively.}
+and $<\RelDiffAAxiD$, respectively.
 
 \subsubsection{Growth Rate}
 
@@ -1328,8 +1258,8 @@ Next we discuss how the growth rate varies with PNS compactness
 and shock radius.
 In \figref{fig.H1}, we plot the power in the first Legendre mode, $H_{1}$,
 during the linear regime,
-as a function of time in milliseconds for \repl{all our models}
-{the same models as in \figref{fig.fft}}.
+as a function of time in milliseconds for
+the same models as in \figref{fig.fft}.
 \begin{figure}[htb!]
   \centering
   \begin{minipage}{\textwidth}
@@ -1352,11 +1282,7 @@ as a function of time in milliseconds for \repl{all our models}
   \end{minipage}
   \caption{
 $H_{1}$ in cgs units versus $t$ in $\ms$.
-The layout of the panels is the same as in \figref{fig.fft}\repl{:
-From left to right, columns correspond to models with increasing
-shock radii
-and rows corresponds to low-compactness (top) and high-compactness (bottom)
-models.}.
+The layout of the panels is the same as in \figref{fig.fft}.
 NR results are shown in blue and GR results are shown in orange.
 Note that the horizontal axis limits are different
 in each panel.}
@@ -1364,30 +1290,27 @@ in each panel.}
 \end{figure}
 For all models displayed here, the shock deviates from spherical symmetry by
 less than 10\%,
-\repl{and we consider this sufficient}{which we consider sufficient} for
+which we consider sufficient for
 characterizing the evolution as
 being in the linear regime.
 
 We see a clear trend in the growth rate: the GR models display a slower SASI
 growth rate when compared to their NR counterparts.
-In \figref{fig.H1}, it can be seen that\repl{, even for the
-low-compactness models,
-GR has a non-negligible effect on the growth rate}{
-the growth rate for the $\xi=0.4$ model is practically unaffected by GR,
-while all the larger compactness models show non-negligible effects of GR.}
+In \figref{fig.H1}, it can be seen that the growth rate for the $\xi=0.4$
+model is practically unaffected by GR,
+while all the larger compactness models show non-negligible effects of GR.
 This effect is a function of shock radius,
 with a smaller shock radius leading to a larger difference
 in the NR and GR growth rates.
 This effect is drastically enhanced when
-\repl{going from the low-compactness models
-to the high-compactness models}{looking at the $\xi=2.8$ models}.
-In \repl{the high-compactness}{these} models,
+looking at the $\xi=2.8$ models.
+In these models,
 the power in the $\ell=1$ mode is some five
 orders of magnitude lower in the GR case
-by the end of the simulation (see \figref{fig.H1})
-\repl{.}{, which is the result of a factor of two difference
+by the end of the simulation (see \figref{fig.H1}),
+which is the result of a factor of two difference
 in the growth rate along with exponential growth for approximately
-ten SASI cycles.}
+ten SASI cycles.
 The effects of GR can also be seen in \figref{fig.GRC},
 which plots the growth rate for all models as a function of $\rsh$.
 \begin{figure}[htb!]
@@ -1395,11 +1318,11 @@ which plots the growth rate for all models as a function of $\rsh$.
   \includegraphics[width=0.8\textwidth]%
   {fig.GrowthRateComparison.pdf}
   \caption{
-SASI growth rate and uncertainty in $\ms^{-1}$
+SASI growth rate in $\ms^{-1}$
 as a function of shock radius in $\km$,
 as determined by the fit to \myeqref{eq.H1Fit} (see text for details).
-NR results are shown in \repl{blue}{open squares}
-and GR results are shown in \repl{orange}{solid squares}.}
+NR results are shown in open squares
+and GR results are shown in solid squares.}
   \label{fig.GRC}
 \end{figure}
 Again, in all cases, the growth rate is slower for the GR models and
@@ -1407,13 +1330,15 @@ the difference between GR and NR growth rates increases with
 decreasing shock radius and increasing PNS mass -- i.e., under more relativistic
 conditions -- the ratio becoming as small as \GrowthRateRatioGRoverNRxiD.
 
-In \figref{fig.H1t}, we \repl{again}{} plot $H_{1}$\repl{,
-but this time as a function of $t/T$.}
-{as a function of $t$ for all models (left panels)
+In \figref{fig.H1t}, we plot $H_{1}$
+as a function of $t$ for all models (left panels)
 and as a function of $t/T$ for all models (right panels).
-Note that for an exponentially growing $\ell=1$ mode, $H_{1}\propto\exp(\omega t)$; the gain in one cycle is $|\mathcal{Q}|=\exp(\omega T)$ \citep[e.g., see][]{janka2017}.
-Here, we simply refer to $\omega T=\ln|\mathcal{Q}|$ as the SASI efficiency.}
-(When interpreting \repl{this figure}{the right panels},
+Note that for an exponentially growing $\ell=1$ mode,
+$H_{1}\propto\exp(\omega t)$;
+the gain in one cycle is $|\mathcal{Q}|=\exp(\omega T)$
+\citep[e.g., see][]{janka2017}.
+Here, we simply refer to $\omega T=\ln|\mathcal{Q}|$ as the SASI efficiency.
+(When interpreting the right panels,
 note that $T$ is different for each model.)
 \begin{figure}[htb!]
   \centering
@@ -1430,45 +1355,40 @@ note that $T$ is different for each model.)
   \end{minipage}
   \caption{
 $H_{1}$ in cgs units versus
-\repl{$t/T$. The}{$t/\ms$ (left) and versus $t/T$ (right).
-In each four-panel figure, the}
+$t/\ms$ (left) and versus $t/T$ (right).
+In each four-panel figure, the
 top-left panel shows the
-\repl{low-compactness}{$\xi\in\left\{0.4,0.7\right\}$}, NR models;
+$\xi\in\left\{0.4,0.7\right\}$, NR models;
 the top-right panel shows the
-\repl{low-compactness}{$\xi\in\left\{0.4,0.7\right\}$}, GR models;
+$\xi\in\left\{0.4,0.7\right\}$, GR models;
 the bottom-left panel shows the
-\repl{high-compactness}{$\xi\in\left\{1.8,2.8\right\}$}, NR models;
+$\xi\in\left\{1.8,2.8\right\}$, NR models;
 and the bottom-right panel shows the
-\repl{high-compactness}{$\xi\in\left\{1.8,2.8\right\}$}, GR models.}
+$\xi\in\left\{1.8,2.8\right\}$, GR models.}
   \label{fig.H1t}
 \end{figure}
-\repl{This figure demonstrates}
-{These figures demonstrate} that the \repl{growth rate
-per oscillation period, $\omega\,T$,}{SASI cycle efficiency}
+These figures demonstrate that the SASI cycle efficiency
 is approximately constant for a given physical model (NR or GR) and compactness.
-\repl{}{This can be seen by, for example, first looking at the top-left panel of the left
+This can be seen by, for example, first looking at the top-left panel of the left
 figure in \figref{fig.H1t} and noting that the curves all grow
 at different rates and then comparing this to the top-left panel of the right
 figure, where the curves are brought much closer together when plotted against $t/T$.
-}
-Further, all the \repl{low-compactness models (both NR and GR)
-and the NR high-compactness}
-{NR models and the $\xi\in\left\{0.4,0.7\right\}$ GR} models reach
-about the same total power of $\sim$10$^{25}$\repl{}{-$10^{26}$}
+Further, all the NR models and the $\xi\in\left\{0.4,0.7\right\}$ GR models
+reach about the same total power of $\sim$10$^{25}$-$10^{26}$
 after ten oscillations,
-while the \repl{high-compactness}{$\xi\in\left\{1.8,2.8\right\}$}
+while the $\xi\in\left\{1.8,2.8\right\}$
 GR models reach a maximum of $\sim$10$^{23}$,
 demonstrating that GR modifies both the oscillation period and the growth rate,
 but modifies them in such a way as to keep
-\repl{$\omega\,T$}{the SASI efficiency} roughly constant for
+the SASI efficiency roughly constant for
 each of these groupings of models.
 
-\repl{}{The SASI efficiency is further illustrated in
+The SASI efficiency is further illustrated in
 \figref{fig.efficiency}, which plots the efficiency for all of our models.
 It can be seen that the SASI efficiency of the NR models takes on values between 1.5 and 1.8,
 regardless of compactness.
 The GR models follow the same trend for lower compactnesses, but as the
-compactness increases the SASI efficiency drops.}
+compactness increases the SASI efficiency drops.
 \begin{figure}[htb!]
   \centering
    \includegraphics[width=0.8\textwidth]%
@@ -1502,37 +1422,20 @@ From the fits, we computed the growth rates and their uncertainties,
 and using the FFT,
 we computed the oscillation periods and their uncertainties.
 
-\repl{For the low-compactness ($\xi=0.7$) models,
-we found that the period of the SASI in the GR case is
-larger than that of the SASI in the NR case, with a ratio
-between the two as large as $\sim$\PeriodRatioGRoverNRxiB.
-For the high-compactness ($\xi=2.8$) models,
-we found that the period of the SASI in the GR case is
-larger than that of the SASI in the NR case, with a ratio
-between the two as large as $\sim$\PeriodRatioGRoverNRxiD,
-a significantly larger amount.
-}{For all models, we found that the period of the SASI in the GR case is longer
+For all models, we found that the period of the SASI in the GR case is longer
 than that of the SASI in the NR case.
 For the $\xi=0.4,0.7,1.8$, and $2.8$ models,
 we find ratios, $T_{\gr}/T_{\nr}$, of
 \PeriodRatioGRoverNRxiA,
 $\leq\PeriodRatioGRoverNRxiB$,
 \PeriodRatioGRoverNRxiC,
-and $\leq\PeriodRatioGRoverNRxiD$, respectively.}
+and $\leq\PeriodRatioGRoverNRxiD$, respectively.
 We explained these differences as resulting from differences in the post-shock
 flow structure for the GR and NR setups.
-\repl{Our numerically-determined oscillation periods
-are consistent with
-simple estimates assuming
-both advective-acoustic and purely
-acoustic mechanisms,
-however, due to uncertainties in numerically-determined
-oscillation periods,
-we cannot discern between the two with our data.}{}
 For all models, we found that the
 growth rate is slower when GR is used,
 and significantly slower for the
-\repl{high-compactness}{$\xi=1.8$ and $\xi=2.8$} models,
+$\xi=1.8$ and $\xi=2.8$ models,
 with the ratio between the GR and NR cases, $\omega_{\gr}/\omega_{\nr}$, as low as
 \GrowthRateRatioGRoverNRxiD.
 We found that both the growth rate and the oscillation period are practically
@@ -1540,21 +1443,19 @@ independent of the accretion rate for the range of parameter space we
 considered.
 
 The connection between our results and the results from realistic
-\repl{core-collapse supernova (CCSN)}{CCSN}
-simulations can be made by considering the trends \emph{across all of the
+CCSN simulations can be made by considering the trends \emph{across all of the
 models considered here}.
 First, our results suggest that CCSN simulations based on Newtonian
 hydrodynamics and Newtonian gravity may fail to predict correctly the growth
 rate of the SASI and its period of oscillation as conditions below the shock
-become increasingly relativistic\repl{}{; i.e., increased PNS compactness
-and decreased shock radius}.
+become increasingly relativistic; i.e., increased PNS compactness
+and decreased shock radius.
 Under such conditions, the growth rate in the Newtonian case may be
 overestimated by a factor of two, or more, relative to the GR
 case.
 Additionally, the period may be underestimated by about 20\%.
 Second, as the conditions we considered became increasingly relativistic,
-the SASI growth rate continued to increase (\figref{fig.GRC}) and its period
-continued to decrease (\figref{fig.PC}).
+the SASI growth rate continued to increase (\figref{fig.GRC}) and its period continued to decrease (\figref{fig.PC}).
 Thus, our studies provide theoretical support for the conclusions reached in
 the study of the SASI development in higher-mass progenitors
 \citep[see, e.g.,][]{hmw2013,mat2022}, where the time scales for the development
@@ -1595,18 +1496,15 @@ as we have done here, and as must be done in future CCSN models.
 %------------------------------------------------------------------------------%
 \section{Data Availability}
 
-\repl{The data underlying this paper will be shared on reasonable request to the
-corresponding author.}{
 The data underlying the figures and the code to reproduce the figures
 are available on Zenodo under an open-source
-Creative Commons Attribution license
-%\dataset[here]{https://doi.org/10.5281/zenodo.10420763}.
-}
+Creative Commons Attribution license here:
+\url{https://doi.org/10.5281/zenodo.10420763}.
 
-\repl{}{All simulations presented here have been performed
+All simulations presented here have been performed
 on the \texttt{MeshRefinement\_DG} branch of a
 fork\footnote{https://github.com/dunhamsj/amrex} of version 21.09 of
-\amrex{} \citep{amrex}.}
+\amrex{} \citep{amrex}.
 %------------------------------------------------------------------------------%
 
 %------------------------------------------------------------------------------%
@@ -1621,6 +1519,25 @@ of Science and the National Nuclear Security Administration.
 This work was conducted in part using
 the resources of the Advanced Computing Center for Research and Education at
 Vanderbilt University, Nashville, TN.
-
 %------------------------------------------------------------------------------%
 
+\section{Software}
+\href{https://github.com/endeve/thornado}{thornado}
+\citep{pbe2021},
+\href{https://amrex-codes.github.io/}{AMReX}
+\citep{z2019},
+\href{https://matplotlib.org/}{Matplotlib}
+\citep{h2007},
+\href{http://www.numpy.org/}{NumPy}
+\citep{hmv2020},
+\href{http://www.scipy.org/}{SciPy}
+\citep{vgo2020},
+\href{https://yt-project.org/}{yt}
+\citep{tso2011}
+
+\bibliography{bibfile}{}
+\bibliographystyle{aasjournal}
+
+\end{document}
+
+%------------------------------------------------------------------------------%
