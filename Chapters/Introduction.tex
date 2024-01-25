@@ -847,13 +847,13 @@ Our choice of parameters is motivated by the physical scale of CCSNe;
 the ranges of our parameter space are informed
 by models from \citet{lmt2001,bmh2013,mjm2015,brv2020,wtj2020},
 and can be found in \tabref{tab.modelParameters}.
-\input{Tables/ModelParametersTable.tex}
 We also classify our simulations by their compactness, $\xi$, which we
 define as \citep{oo2011},
 \begin{equation}
   \xi:=\frac{M/\msun}{\rpns/\left(20\,\km\right)}.
   \label{eq.compactness}
 \end{equation}
+\input{Tables/ModelParametersTable.tex}
 In our model naming convention,
 we first list whether the model used GR or NR along with the dimensionality
 (1D or 2D),
@@ -1110,7 +1110,7 @@ We integrate the lateral flux in the radial direction,
   \label{eq.F12}
 \end{equation}
 from $r_{a}$ to $r_{b}$ (defined as in the computation of the $H_{\ell}$),
-integrate the result over\\
+integrate the result over
 $\bb{S}^{2}:=\left\{\left(\theta,\varphi\right)\in\bb{R}^{2}
 \big|\theta\in\left[0,\pi\right],\varphi\in\left[0,2\pi\right)\right\}$,
 and then take the Fourier transform of that result
@@ -1534,5 +1534,8 @@ Vanderbilt University, Nashville, TN.
 \citep{vgo2020},
 \href{https://yt-project.org/}{yt}
 \citep{tso2011}
+
+\bibliography{bibfile}{}
+\bibliographystyle{aasjournal}
 
 %------------------------------------------------------------------------------%

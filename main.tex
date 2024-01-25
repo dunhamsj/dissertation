@@ -26,7 +26,7 @@
 % is suppressed for the title page
 \pagenumbering{alph}
 
-\input{Chapters/Title}
+\input{FrontMatter/Title}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \doublespacing
@@ -34,9 +34,9 @@
 
 % These 3 Chapters are optional
 \singlespacing
-\input{Chapters/Copyright}
-\input{Chapters/Dedication}
-\input{Chapters/Acknowledgments}
+\input{FrontMatter/Copyright}
+\input{FrontMatter/Dedication}
+\input{FrontMatter/Acknowledgments}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \singlespacing
@@ -59,13 +59,16 @@
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
-\input{Chapters/AccretionShockPaper}
 \input{Chapters/Chapter1}
 \input{Chapters/Chapter2}
 \input{Chapters/Chapter3}
+\input{Chapters/AccretionShockPaper}
 
 \singlespacing
-\bibliographystyle{apalike}
-\bibliography{bibfile}
+%\bibliographystyle{apalike}
+%\bibliography{bibfile}
+\bibliography{bibfile}{}
+\bibliographystyle{aasjournal}
+
 
 \end{document}

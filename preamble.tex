@@ -14,11 +14,11 @@ Figure\hfill Page\endgraf} \addtocontents{lot}{\vspace{0.2in}
 % If you need more, you can find a list of Latex packages
 % here: https://www.ctan.org/pkg/
 
-\usepackage{textcomp}
+%\usepackage{textcomp}
 \usepackage{array}
 \usepackage{listings}
 \usepackage{setspace}
-\usepackage{mathptmx}
+%\usepackage{mathptmx}
 \usepackage[table, svgnames]{xcolor}
 \usepackage{colortbl}
 \usepackage{graphicx}
@@ -89,6 +89,10 @@ Figure\hfill Page\endgraf} \addtocontents{lot}{\vspace{0.2in}
 % Prevents the splitting of long footnotes across multiple pages.
 % Use with caution.
 \interfootnotelinepenalty=10000
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\newcommand\Fontvi{\fontsize{9}{9.2}\selectfont}
 
 %% From Accretion Shock paper
 %------------------------------------------------------------------------------%
