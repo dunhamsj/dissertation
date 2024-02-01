@@ -90,8 +90,6 @@ and cause the PNS to collapse
 to a black hole \citep{bw1985}.
 (This does happen under certain conditions, but they are not discussed here.)
 
-\sd{LEFT OFF HERE}
-
 It was discovered numerically that while the shock is stable to
 perturbations in 1D models, it is unstable to non-radial perturbations
 in 2D models \citep{bmd2003}.
@@ -115,8 +113,8 @@ from small-scale eddies to large-scale eddies \citep{yem2017}.
 Therefore, to truly study turbulence in CCSNe we need 3D simulations,
 with no assumptions of symmetry.
 
-Although fusion stops once it reaches iron, CCSNe produce elements of much
-higher atomic mass number, $A$.
+Although exoergic fusion stops at iron,
+CCSNe produce elements of much higher atomic mass number, $A$.
 In fact, CCSNe are responsible for most of the elements in the Universe with
 $16\lesssim A\lesssim90$ \citep{bw2017}.
 Two products in particular, $^{56}$Ni and $^{57}$Ni, are critical for SN light
@@ -156,62 +154,6 @@ These weakly interacting particles are some of the most elusive particles known.
 Their practically infinitesimal cross-section makes them extremely difficult
 to detect.
 A CCSN is one of the few phenomena that produces a sufficient amount of
-neutrinos that we can detect them on Earth.
-
-Modeling CCSNe is no trivial task.
-There are, broadly speaking, three branches of physics at play:
-gravity, neutrino transport, and hydrodynamics.
-As mentioned earlier, the SASI is a purely hydrodynamic instability and so
-I will focus on the hydrodynamics component.
-One aspect of hydrodynamics that makes numerical methods challenging is the
-possibility of discontinuities in the flow---shocks.
-These pose a problem because the equations that govern hydrodynamics are
-partial differential equations, and therefore are not well-defined in the
-vicinity of shocks.
-There has been much work in this field, and we are able to take advantage of
-some of this work.
-By casting the hydrodynamics equations in conservative form we can identify
-the equations as a hyperbolic conservation law, and can make use of the
-extensive literature on this subject (see, e.g., \citet{l2002}).
-
-We are developing a new code to simulate CCSNe,
-the \textbf{t}oolkit for \textbf{h}igh-\textbf{or}der
-\textbf{n}eutrino-r\textbf{ad}iation hydr\textbf{o}dynamics, \thornado.
-For the hydrodynamics we employ a discontinuous Galerkin spatial discretization
-\citep{cs1998} and an explicit strong-stability-preserving Runge-Kutta temporal
-discretization.
-The discontinuous Galerkin (DG) method is ideal for hydrodynamics because of,
-among other aspects, its locality (communication with nearest neighbors only,
-independent of the desired order of accuracy),
-which makes it adept at handling shocks as well as parallelizability.
-The code has been tested against several challenging test-problems,
-including problems with smooth solutions, such as a Kelvin-Helmholtz
-instability problem, and problems with strong shocks in multiple dimensions,
-such as 2D Riemann problems.
-The SASI problem is physically-motivated but can be treated with
-pure hydrodynamics, i.e. not making use of the gravity solver or the
-neutrino transport solver,
-making it an excellent test problem to probe the robustness of \thornado.
-The SASI problem has been tested with \thornado\ in two spatial dimensions
-with non-relativistic hydrodynamics.
-This work will extend that to three spatial dimensions and GR hydrodynamics.
-An additional complexity that arises with numerically modeling hydrodynamics
-is that the time-step is often very short as a result of the CFL condition.
-In order to complete a simulation on a reasonable timescale a
-hydrodynamics code benefits greatly from parallelizability.
-
-We have coupled \thornado\ to
-\amrex\footnote{https://amrex-codes.github.io/amrex/},
-a block-structured AMR code being developed primarily out of
-Lawrence-Berkeley National Laboratory.
-In addition to AMR, \amrex\ has parallel capabilities, and it is these
-capabilities of which we make use in this work.
-The non-relativistic hydrodynamics component of \thornado\ has been
-incorporated with \amrex, and can successfully run within the
-\amrex\ framework and benefit from the parallel capabilities.
-This will serve as a guide for the implementation of the
-relativistic hydrodynamics as well as, eventually, the neutrino transport.
-\thornado\ can not yet interface with the AMR features of \amrex.
-That will be future work.
+neutrinos to be detectable on Earth.
 
 %------------------------------------------------------------------------------%
