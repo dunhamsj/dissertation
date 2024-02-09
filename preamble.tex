@@ -63,6 +63,13 @@ Figure\hfill Page\endgraf} \addtocontents{lot}{\vspace{0.2in}
 \setcounter{secnumdepth}{7}
 \setcounter{tocdepth}{7}
 
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows}
+\tikzstyle{box} = [ rectangle, rounded corners, minimum width = 10em, %
+                    minimum height = 3em,text centered, draw = black, %
+                    fill = blue!20 ]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
 \usepackage{hyperref}
 \hypersetup{
   pdftitle={A LaTeX Format for Theses and Dissertations},
@@ -100,6 +107,18 @@ Figure\hfill Page\endgraf} \addtocontents{lot}{\vspace{0.2in}
 
 %\usepackage{amsmath}
 \usepackage{aasmacros} % For journal symbols
-%\graphicspath{{Figures/}}
 \usepackage{duckuments} % For the ducks
 \usepackage{soul} % To strike out multiple lines
+
+%% From methods paper
+% Define \bigtimes, taken from
+% https://tex.stackexchange.com/questions/202527/writing-x-as-a-symbol-with-limits
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+      <5> <6> <7> <8> <9> <10>
+      <10.95> <12> <14.4> <17.28> <20.74> <24.88>
+      mathx10
+      }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareFontSubstitution{U}{mathx}{m}{n}
+\DeclareMathSymbol{\bigtimes}{1}{mathx}{"91}

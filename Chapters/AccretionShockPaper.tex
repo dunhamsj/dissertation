@@ -238,7 +238,7 @@ to take the form
 \begin{equation}
   \gamma_{ij}
   =\psi^{4}\,\gammabar_{ij},
-  \label{eq.gammaij}
+  \label{eq.AP.gammaij}
 \end{equation}
 where $\psi\left(x\right)$ is the conformal factor
 and the $\gammabar_{ij}$ are the components of a time-independent,
@@ -249,7 +249,7 @@ the flat-space metric is
 \begin{equation}
   \gammabar_{ij}\left(r,\theta\right)
   :=\mathrm{diag}\left(1,r^{2},r^{2}\,\sin^{2}\theta\right),
-  \label{eq.gammabarij}
+  \label{eq.AP.gammabarij}
 \end{equation}
 and the lapse function, conformal factor, and shift vector
 take the form given in \citet{bs2010},
@@ -257,7 +257,7 @@ take the form given in \citet{bs2010},
   \alpha   \left(t,r,\theta,\varphi\right)&=\alpha   \left(r\right)
     &&:=\frac{1-\rsc/r}{1+\rsc/r},\\
   \psi     \left(t,r,\theta,\varphi\right)&=\psi     \left(r\right)
-    &&:=1+\rsc/r,\label{eq.psi}\\
+    &&:=1+\rsc/r,\label{eq.AP.psi}\\
   \beta^{i}\left(t,r,\theta,\varphi\right)&=\beta^{i}\left(r\right)
     &&:=0,
 \end{alignat}
@@ -268,7 +268,7 @@ The line element under a 3+1 decomposition in
 isotropic coordinates takes the form
 \begin{equation}
   ds^{2}=-\alpha^{2}\,dt^{2}+\gamma_{ij}\,dx^{i}\,dx^{j}.
-  \label{eq.ds2}
+  \label{eq.AP.ds2}
 \end{equation}
 We note here that the {\sl proper} radius, $\mc{R}\left(r\right)$,
 corresponding to the {\sl coordinate} radius, $r>\rsc$, is defined by
@@ -277,10 +277,10 @@ corresponding to the {\sl coordinate} radius, $r>\rsc$, is defined by
   :=\int\limits_{\rsc}^{r}\sqrt{\gamma_{11}}\,
   dr'
   =r-\rsc^{2}/r+2\,\rsc\,\log\left(r/\rsc\right)\geq r,
-  \label{eq.properDistance}
+  \label{eq.AP.properDistance}
 \end{equation}
-where we used Eqs. (\ref{eq.gammaij}-\ref{eq.gammabarij})
-with $\psi$ given by \myeqref{eq.psi}.
+where we used Eqs. (\ref{eq.AP.gammaij}-\ref{eq.AP.gammabarij})
+with $\psi$ given by \myeqref{eq.AP.psi}.
 Under the \cfc{}, the square root of the determinant of the spatial
 three-metric is
 \begin{equation}
@@ -303,7 +303,7 @@ in the Valencia formulation
 \citep{bfi1997,rz2013}, in which they take the form of a
 system of hyperbolic conservation laws with sources. Under our assumption of
 a stationary spacetime, the equations can be written as
-\begin{equation}\label{eq.cLaws}
+\begin{equation}\label{eq.AP.cLaws}
   \p_{t}\,\bs{U}
   +\frac{1}{\sqrt{\gamma}}\,
   \p_{i}\left(\alpha\,\sqrt{\gamma}\,\bs{F}^{i}\right)=\alpha\,\bs{S},
@@ -365,21 +365,21 @@ We close the hydrodynamics equations
 with an ideal \eos,
 \begin{equation}
   p\left(e\right)=\left(\Gamma-1\right)e,
-  \label{eq.idealEOS}
+  \label{eq.AP.idealEOS}
 \end{equation}
 where $\Gamma\in\left(1,2\right]$ is the ratio of specific heats.
 For this study, we set $\Gamma=4/3$.
 We further assume the \eos{} is that of a polytrope; i.e.,
 \begin{equation}
   p\left(\rho\right)=K\,\rho^{\Gamma},
-  \label{eq.polytrope}
+  \label{eq.AP.polytrope}
 \end{equation}
 where $K>0$ is the polytropic constant,
 whose logarithm can be considered a proxy for the entropy, $S$;
 i.e., $S\propto\log\left(p/\rho^{\Gamma}\right)$.
 The constant $K$ takes different values on either side of a
 shock, in accordance with physically admissible solutions.
-\myeqref{eq.polytrope} is consistent with \myeqref{eq.idealEOS}
+\myeqref{eq.AP.polytrope} is consistent with \myeqref{eq.AP.idealEOS}
 through the first law of thermodynamics for an isentropic fluid.
 
 \subsection{Non-Relativistic Hydrodynamics}
@@ -403,7 +403,7 @@ In the case of Newtonian gravity and NRHD, we solve\begin{equation}
   \p_{t}\,\bs{U}
   +\frac{1}{\sqrt{\gammabar}}\,
   \p_{i}\left(\sqrt{\gammabar}\,\bs{F}^{i}\right)=\bs{S},
-  \label{eq.cLawsNR}
+  \label{eq.AP.cLawsNR}
 \end{equation}
 where
 \begin{equation}
@@ -449,7 +449,7 @@ is due only to the point source PNS,
 \label{ss.ssas}
 
 We take initial conditions for our simulations from steady-state
-solutions to \myeqref{eq.cLaws} (GR) and \myeqref{eq.cLawsNR} (NR).
+solutions to \myeqref{eq.AP.cLaws} (GR) and \myeqref{eq.AP.cLawsNR} (NR).
 To determine the steady-state solutions,
 we assume the fluid distribution is spherically symmetric and time-independent.
 Following \citet{bmd2003},
@@ -474,7 +474,7 @@ Focusing on the equation for $D$, we find
   \label{IC.eq1}
 \end{equation}
 Manipulation of the equations for $D$ and $\tau$
-in \myeqref{eq.cLaws} yields the relativistic Bernoulli equation,
+in \myeqref{eq.AP.cLaws} yields the relativistic Bernoulli equation,
 \begin{equation}
   \alpha\,h\,W=\mc{B},
   \label{IC.eq2}
@@ -487,7 +487,7 @@ $\left(e+p\right)/\rho\ll1$,
 so that $h_{\infty}=1$ and $\mc{B}_{\infty}=1$.
 Since $\mc{B}$ is a constant, $\mc{B}=1$ everywhere.
 
-Given $K$, Eqs. (\ref{eq.polytrope}), (\ref{IC.eq1}),
+Given $K$, Eqs. (\ref{eq.AP.polytrope}), (\ref{IC.eq1}),
 and (\ref{IC.eq2}) (with $\mc{B}=1$)
 form a system of three equations in the three unknowns,
 $\rho$, $v$, and $p$.
@@ -507,7 +507,7 @@ we apply the relativistic Rankine--Hugoniot jump conditions
 to obtain $\rho$, $v$, and $p$ just below the shock.
 Once the state of the fluid just below the shock is found,
 the polytropic constant for the post-shock fluid is computed
-with \myeqref{eq.polytrope}
+with \myeqref{eq.AP.polytrope}
 and the same system of equations is solved for
 the state of the fluid everywhere below the shock.
 
@@ -530,25 +530,25 @@ From these, and making the same assumptions as in the relativistic case,
 we arrive at a system of two equations for the three unknowns,
 $\rho$, $v\equiv v^{r}$, and $p$,
 \begin{align}
-  4\pi\,r^{2}\,\rho\,v&=-\dot{M},\label{eq.MassConservationNR}\\
+  4\pi\,r^{2}\,\rho\,v&=-\dot{M},\label{eq.AP.MassConservationNR}\\
   \frac{1}{2}\,v^{2}+h_{\nr}+\Phi&=\mc{B}_{\nr},
-  \label{eq.BernoulliNR}
+  \label{eq.AP.BernoulliNR}
 \end{align}
 with $h_{\nr}=h-1=\left(e+p\right)/\rho$
 the non-relativistic specific enthalpy and $\mc{B}_{\nr}$
 the non-relativistic Bernoulli constant.
 Following \citet{bmd2003}, we set $\mc{B}_{\nr}=0$.
-As in the GR case, we close this system with \myeqref{eq.polytrope}.
+As in the GR case, we close this system with \myeqref{eq.AP.polytrope}.
 
 In the non-relativistic limit,
 $\alpha\approx1+\Phi$ and $W\approx1+\frac{1}{2}\,v^{i}\,v_{i}$;
 substituting these into \myeqref{IC.eq2} yields, to leading order,
 $1+\mc{B}_{\nr}$,
-in agreement with \myeqref{eq.BernoulliNR}.
+in agreement with \myeqref{eq.AP.BernoulliNR}.
 
 \subsection{Comparison of NR and GR Steady-State Solutions}
 
-For the two lower-compactness cases (see \myeqref{eq.compactness})
+For the two lower-compactness cases (see \myeqref{eq.AP.compactness})
 \citep[e.g., see][]{bmh2013,mjm2015,brv2020},
 \figref{fig.compSS_loXi} shows steady-state accretion shock solutions
 as functions of coordinate distance $r$.
@@ -663,19 +663,19 @@ counterparts,
   T_{\mathrm{aa}}\approx\tauad+\tauac
   =\int\limits_{\rsh}^{\rpns}\frac{\sqrt{\gamma_{11}}\,dr}{\lambda^{r}_{0}}
   +\int\limits_{\rpns}^{\rsh}\frac{\sqrt{\gamma_{11}}\,dr}{\lambda^{r}_{+}},
-  \label{eq.MullerEst}
+  \label{eq.AP.MullerEst}
 \end{equation}
 where $\lambda^{r}_{0}$ and $\lambda^{r}_{+}$ are the radial signal-speeds of
 matter and acoustic waves, respectively.
 Using our metric, the signal-speeds are \citep{rz2013}
 \begin{alignat}{2}
-  \lambda^{r}_{0}&=\alpha\,v^{r}&&\stackrel{\nr}{=}v^{r},\label{eq.lambda0}\\
+  \lambda^{r}_{0}&=\alpha\,v^{r}&&\stackrel{\nr}{=}v^{r},\label{eq.AP.lambda0}\\
   \lambda^{r}_{+}&=\frac{\alpha}{1-v^{i}v_{i}\,c_{s}^{2}}
   \left\{v^{r}\left(1-c_{s}^{2}\right)
   +c_{s}\sqrt{\left(1-v^{i}v_{i}\right)
   \left[\gamma^{11}\left(1-v^{i}v_{i}\,c_{s}^{2}\right)
   -v^{r}\,v^{r}\left(1-c_{s}^{2}\right)\right]}\right\}
-  &&\stackrel{\nr}{=}v^{r}+c_{s},\label{eq.lambda+}
+  &&\stackrel{\nr}{=}v^{r}+c_{s},\label{eq.AP.lambda+}
 \end{alignat}
 where $c_{s}$ is the sound-speed
 and where the second equality in each expression is the non-relativistic limit.
@@ -691,7 +691,7 @@ assuming $v^{\theta}\ll c_{s}\,\sqrt{\gamma^{22}}$,
 \begin{equation}
   \tac
   :=2\pi\,\rac/\left(h_{\theta}\,\lambda_{+}^{\theta}\right),
-  \label{eq.Tac}
+  \label{eq.AP.Tac}
 \end{equation}
 where
 \begin{equation}
@@ -716,7 +716,7 @@ $\lambda^{r,     \gr}_{0}/\lambda^{r,     \nr}_{0}$
 as functions of $\eta$, defined as
 \begin{equation}
   \eta\left(r\right):=\left(r-\rpns\right)/\left(\rsh-\rpns\right),
-  \label{eq.eta}
+  \label{eq.AP.eta}
 \end{equation}
 for all of our models.
 In all cases, the signal-speeds are slower in the GR case.
@@ -755,7 +755,7 @@ We emphasize that our goal is to characterize the SASI in terms of its period
 and growth rate, and to compare their GR and NR values.
 Determining its physical origin, whether it be advective-acoustic or purely
 acoustic, is beyond the scope of this study.
-The rough estimates provided by \myeqref{eq.MullerEst} and \myeqref{eq.Tac} are
+The rough estimates provided by \myeqref{eq.AP.MullerEst} and \myeqref{eq.AP.Tac} are
 merely intended as points of reference for our numerically determined values.
 
 %-----------------------------------------------------------------------------%
@@ -852,7 +852,7 @@ We also classify our simulations by their compactness, $\xi$, which we
 define as \citep{oo2011},
 \begin{equation}
   \xi:=\frac{M/\msun}{\rpns/\left(20\,\km\right)}.
-  \label{eq.compactness}
+  \label{eq.AP.compactness}
 \end{equation}
 In our model naming convention,
 we first list whether the model used GR or NR along with the dimensionality
@@ -883,7 +883,7 @@ For the inner-boundary conditions in the non-relativistic case, we
 assume $\rho\left(r\right)\propto r^{-3}$ and
 $E\left(r\right)\propto r^{-4}$,
 the latter of which follows from our assumption of $\rho\propto r^{-3}$,
-\myeqref{eq.idealEOS}, \myeqref{eq.polytrope}, the assumption of $\Gamma=4/3$,
+\myeqref{eq.AP.idealEOS}, \myeqref{eq.AP.polytrope}, the assumption of $\Gamma=4/3$,
 and the assumption of a small velocity at the PNS surface.
 
 For the
@@ -940,10 +940,10 @@ Our simulations
 are initialized with the steady-state solutions discussed in \secref{ss.ssas},
 and we take extra care to minimize initial transients.
 The initial conditions we obtain
-come from solving Eqs. (\ref{eq.polytrope}), (\ref{IC.eq1}), and
+come from solving Eqs. (\ref{eq.AP.polytrope}), (\ref{IC.eq1}), and
 (\ref{IC.eq2}) in the GR case,
-and Eqs. (\ref{eq.polytrope}), (\ref{eq.MassConservationNR}), and
-(\ref{eq.BernoulliNR}) in the NR case, which are
+and Eqs. (\ref{eq.AP.polytrope}), (\ref{eq.AP.MassConservationNR}), and
+(\ref{eq.AP.BernoulliNR}) in the NR case, which are
 not exact solutions of our discretized equations,
 so transients will be present when simulations are initialized with these
 solutions.
@@ -1000,7 +1000,7 @@ scale-independent manner as
   \exp\left(\frac{-\left(\eta-\etac\right)^{2}}{2\,\sigma^{2}}\right)\,
   \cos\theta,
 \end{equation}
-with $\eta$ defined in \myeqref{eq.eta},
+with $\eta$ defined in \myeqref{eq.AP.eta},
 and where $\etac=0.75$ and $\sigma=0.05$.
 The perturbation is not allowed to extend into the pre-shock flow.
 We opted to perturb the post-shock flow as opposed to
@@ -1085,7 +1085,7 @@ we begin by fitting the simulation data to the function \citep{bm2006}
   F_{1}\left(t\right)
   =F\,e^{2\,\omega\,t}\,
   \sin^{2}\left(\frac{2\pi}{T}\,t+\delta\right),
-  \label{eq.H1Fit}
+  \label{eq.AP.H1Fit}
 \end{equation}
 where $\omega$ is the growth rate of the SASI, $T$ is the
 oscillation period of the SASI,
@@ -1099,7 +1099,7 @@ entries of the covariance matrix; we use this to define the uncertainty
 in the growth rate.
 The temporal extent over which we perform the fit is defined to begin
 after one SASI oscillation and to end after seven SASI oscillations,
-where, for simplicity, we use \myeqref{eq.MullerEst} to define the period of one
+where, for simplicity, we use \myeqref{eq.AP.MullerEst} to define the period of one
 SASI oscillation.
 
 The period we report is obtained by performing a Fourier analysis:
@@ -1107,7 +1107,7 @@ We integrate the lateral flux in the radial direction,
 \begin{equation}
   F^{r}_{\theta}=\sqrt{\gamma}\,\rho\,v^{r}\,v_{\theta}\times\alpha\,h\,W^{2}
   \stackrel{\nr}{=}\sqrt{\gammabar}\,\rho\,v^{r}\,v_{\theta},
-  \label{eq.F12}
+  \label{eq.AP.F12}
 \end{equation}
 from $r_{a}$ to $r_{b}$ (defined as in the computation of the $H_{\ell}$),
 integrate the result over\\
@@ -1135,10 +1135,10 @@ which lists the model, the best-fit oscillation period and uncertainty,
 the best-fit growth rate and uncertainty,
 the product of the best-fit growth rate and best-fit oscillation period,
 the period assuming an advective-acoustic mechanism, $\taa$
-(estimated using \myeqref{eq.MullerEst}),
+(estimated using \myeqref{eq.AP.MullerEst}),
 and the period assuming a purely acoustic mechanism, $\tac$
-(estimated using \myeqref{eq.Tac}).
-When using \myeqref{eq.Tac}, we choose the characteristic radius $\rac$
+(estimated using \myeqref{eq.AP.Tac}).
+When using \myeqref{eq.AP.Tac}, we choose the characteristic radius $\rac$
 to be $0.85\,\rsh$, which is the midpoint of the shell in which we compute
 the power.
 \input{Tables/ResultsTable.tex}
@@ -1162,7 +1162,7 @@ Next we discuss the impact of GR on the oscillation period and the growth rate.
 First we discuss how the oscillation period varies with
 PNS compactness and shock radius.
 In \figref{fig.fft}, we plot the
-amplitudes of the Fourier transform of \myeqref{eq.F12}, $\wt{F}^{r}_{\theta}$,
+amplitudes of the Fourier transform of \myeqref{eq.AP.F12}, $\wt{F}^{r}_{\theta}$,
 versus $\wt{T}$ for four models,
 where $\wt{T}$ is defined as the inverse of the
 frequency determined by the FFT.
@@ -1191,7 +1191,7 @@ No windowing was applied when computing the FFT of the signal.
     \end{minipage}
   \end{minipage}
   \caption{
-Amplitudes of Fourier transforms of \myeqref{eq.F12},
+Amplitudes of Fourier transforms of \myeqref{eq.AP.F12},
 normalized by their largest values,
 as functions of $\wt{T}$ in $\ms$,
 where $\wt{T}$ is the inverse of the frequency returned by the FFT.
@@ -1239,14 +1239,14 @@ and $\leq\PeriodRatioGRoverNRxiD$, respectively.
 
 For the $\xi=0.4,0.7,1.8$, and $2.8$ models,
 the relative differences between $T_{\gr}$ and the advective-acoustic
-estimate, \myeqref{eq.MullerEst}, are
+estimate, \myeqref{eq.AP.MullerEst}, are
 \RelDiffACxiA,
 $<\RelDiffACxiB$,
 \RelDiffACxiC,
 and $<\RelDiffACxiD$, respectively.
 For those same models,
 the relative differences between $T_{\gr}$ and the purely acoustic
-estimate, \myeqref{eq.Tac}, are
+estimate, \myeqref{eq.AP.Tac}, are
 \RelDiffAAxiA,
 $<\RelDiffAAxiB$,
 \RelDiffAAxiC,
@@ -1320,7 +1320,7 @@ which plots the growth rate for all models as a function of $\rsh$.
   \caption{
 SASI growth rate in $\ms^{-1}$
 as a function of shock radius in $\km$,
-as determined by the fit to \myeqref{eq.H1Fit} (see text for details).
+as determined by the fit to \myeqref{eq.AP.H1Fit} (see text for details).
 NR results are shown in open squares
 and GR results are shown in solid squares.}
   \label{fig.GRC}
@@ -1417,7 +1417,7 @@ and once  with GRHD and GR gravity.
 We set up our simulations to excite a clean $\ell=1$ Legendre mode,
 computed the power of the  SASI in that mode within a thin shell just below
 the shock, and, following \citet{bm2006}, fit the resulting signal to
-\myeqref{eq.H1Fit}.
+\myeqref{eq.AP.H1Fit}.
 From the fits, we computed the growth rates and their uncertainties,
 and using the FFT,
 we computed the oscillation periods and their uncertainties.
@@ -1525,7 +1525,7 @@ Vanderbilt University, Nashville, TN.
 \href{https://github.com/endeve/thornado}{thornado}
 \citep{pbe2021},
 \href{https://amrex-codes.github.io/}{AMReX}
-\citep{z2019},
+\citep{zab2019},
 \href{https://matplotlib.org/}{Matplotlib}
 \citep{h2007},
 \href{http://www.numpy.org/}{NumPy}

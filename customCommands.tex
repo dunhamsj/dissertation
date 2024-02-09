@@ -38,11 +38,23 @@
 \newcommand{\RelDiffACxiC}{0.10}
 \newcommand{\RelDiffACxiD}{0.12}
 
+% Production Codes
+\newcommand{\flashx}{\textsc{\texttt{Flash-X}}}
+\newcommand{\cocov}{\textsc{CoCoNuT-VERTEX}}
+\newcommand{\zelmani}{\textsc{\texttt{Zelmani}}}
+\newcommand{\fornax}{\textsc{Fornax}}
+\newcommand{\nadafld}{NADA-FLD}
+\newcommand{\chimera}{\textsc{Chimera}}
+\newcommand{\gmunu}{\texttt{Gmunu}}
+\newcommand{\tenet}{\textsc{tenet}}
+\newcommand{\spectre}{SpECTRE}
+
 % Math
 \newcommand{\p}{\partial}
 \newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
 \newcommand{\td}[2]{\frac{d#1}{d#2}}
 \newcommand{\T}{^{\top}}
+\newcommand{\mystackrel}[2]{\stackrel{\scriptstyle#1}{\scriptstyle#2}}
 
 % Aliases
 \newcommand{\arl}{\mathrm{areal}}
@@ -60,7 +72,6 @@
 \newcommand{\eos}{EoS}
 \newcommand{\cfc}{CFC}
 \newcommand{\degrees}{^{\circ{}}}
-\newcommand{\msun}{M_{\odot}}
 \newcommand{\mdot}{\dot{M}}
 \newcommand{\gr}{\textsc{gr}}
 \newcommand{\nr}{\textsc{nr}}
@@ -72,7 +83,6 @@
 \newcommand{\bs}[1]{\boldsymbol{#1}}
 \newcommand{\mc}{\mathcal}
 \newcommand{\bb}{\mathbb}
-\newcommand{\citeme}{\red{(CITE ME)}}
 \newcommand{\appref}[1]{Appendix~\ref{#1}}
 \newcommand{\figref}[1]{Figure~\ref{#1}}
 \newcommand{\tabref}[1]{Table~\ref{#1}}
@@ -82,14 +92,33 @@
 \newcommand{\scipy}{\texttt{scipy}}
 \newcommand{\curvefit}{\texttt{curve\_fit}}
 
+\newcommand{\repl}[2]{{}\textbf{#2}}
+\newcommand{\Dbar}{\bar{D}}
+\newcommand{\Deltabar}{\bar{\Delta}}
+\newcommand{\weaklib}{\texttt{weaklib}}
+\newcommand{\poseidon}{\texttt{Poseidon}}
+\newcommand{\xcfc}{xCFC}
+\newcommand{\bc}[1]{\bs{\mc{#1}}}
+\newcommand{\wh}{\widehat}
+\newcommand{\myol}{\overline}
+\newcommand{\bj}{\left(\bs{j}\right)}
+\newcommand{\Vshear}{V_{\mathrm{shear}}}
+\newcommand{\myne}{n_{\mathrm{e}}}
+\newcommand{\myNe}{N_{\mathrm{e}}}
+\newcommand{\NK}{N_{K}}
+\newcommand{\NSSPRK}{N_{\textsc{ssprk}}}
+
 % Units
+\newcommand{\msun}{M_{\odot}}
 \newcommand{\erg}{\mathrm{erg}}
-\newcommand{\J}{\mathrm{J}}
 \newcommand{\g}{\mathrm{g}}
 \newcommand{\cm}{\mathrm{cm}}
 \newcommand{\km}{\mathrm{km}}
-\newcommand{\ms}{\mathrm{ms}}
 \newcommand{\s}{\mathrm{s}}
+\newcommand{\kb}{k_{\textsc{B}}}
+\newcommand{\K}{\mathrm{K}}
+\newcommand{\J}{\mathrm{J}}
+\newcommand{\ms}{\mathrm{ms}}
 \newcommand{\Hz}{\mathrm{Hz}}
 \newcommand{\rad}{\mathrm{rad}}
 
@@ -100,15 +129,14 @@
 \newcommand{\cyan}[1]{\textcolor{cyan}{#1}}
 \newcommand{\teal}[1]{\textcolor{teal}{#1}}
 \newcommand{\orange}[1]{\textcolor{orange}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
 
 % Editing
-\newcommand{\new}[1]{\red{#1}}
-%\newcommand{\repl}[2]{\st{#1}\red{#2}} % comment this out and the next commend in to remove highlighting
-\newcommand{\repl}[2]{\st{}#2}
+\newcommand{\citeme}{\red{(CITE ME)}}
 \newcommand{\sd}[1]{\texttt{\red{(SD: #1)}}}
-\newcommand{\ee}[1]{\texttt{\blue{(EE: #1)}}}
-\newcommand{\am}[1]{\texttt{\magenta{(AM: #1)}}}
-\newcommand{\jlb}[1]{\texttt{\cyan{(JLB: #1)}}}
-\newcommand{\jmb}[1]{\texttt{\teal{(JMB: #1)}}}
+\newcommand{\ee}[1]{\texttt{\blue{(SD: #1)}}}
 \newcommand{\khb}[1]{\texttt{\orange{(KHB: #1)}}}
 \newcommand{\KHB}[1]{\texttt{\orange{(KHB: #1)}}}
+\newcommand{\am}[1]{\texttt{\cyan{(AM: #1)}}}
+\newcommand{\bg}[1]{\texttt{\teal{(BG #1)}}}
+\newcommand{\su}[1]{\texttt{\green{(SU #1)}}}
