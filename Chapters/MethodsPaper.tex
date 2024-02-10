@@ -1,4 +1,5 @@
-\chapter{Introduction}
+\chapter{Methods Paper}
+\label{ch.mp}
 
 This chapter is adapted from
 a paper in progress that is currently titled
@@ -167,8 +168,6 @@ shm2021,
 mat2022,% IDSA
 vms2022%% FMT
 }.%
-\footnote{\ee{Only cite self-consistent models?}}
-\ee{Revisit this list to see if it needs updating.}
 Although several 3D simulations have been performed, they all make
 approximations.
 One approximation is the degree to which they include GR.
@@ -301,9 +300,6 @@ progenitor with AMR,
 demonstrating the efficacy of the coupling of
 \thornado\ to \poseidon\ and \amrex\ in dynamic spacetimes.
 
-\ee{Include a paragraph on the outline of the paper?}
-\sd{I don't like these, but I'll defer to the group}
-
 %------------------------------------------------------------------------------%
 \section{Physical Model}
 
@@ -419,9 +415,6 @@ coupled, nonlinear, elliptic partial differential equations \citep{ccd2009},
   \end{align}
 \end{subequations}
 where $X^{i}$ is the $i$-th component of an auxiliary vector field,
-\ee{remove equation with $\approx$?}
-\sd{The $\approx$ equation puts the "x" in "\xcfc", so I think it is worth
-keeping}
 $\hat{A}^{ij}=\psi^{10}\,K^{ij}
 =\left(LX\right)^{ij}+\hat{A}^{ij}_{\mathrm{TT}}\approx
 \left(LX\right)^{ij}:=\Dbar^{i}\,X^{j}+\Dbar^{j}\,X^{i}
@@ -465,12 +458,7 @@ defined as
 with $\rho$ and $\myne$, respectively, the baryon mass density
 and electron number density, both as measured by a comoving observer
 (i.e., an observer comoving with the fluid),
-$u^{\nu}$ the $\nu$-th component of the four-velocity of the fluid
-\ee{the repeated reference to `$\mu$-th component...' is clunky.
-It is common to refer to, e.g., $u^{\mu}$ as a four-vector.}
-\sd{I agree that the wording is a little clunky, but I think the
-precision/accuracy is worth the clunkiness}%
-,
+$u^{\nu}$ the $\nu$-th component of the four-velocity of the fluid,
 and $T^{\mu\nu}$ the $\mu\nu$-th component of the
 stress-energy tensor of the fluid (assumed to be non-viscous),
 defined as
@@ -1113,8 +1101,7 @@ the step.}
       \draw [arrow] (step5) -- (step6);
     \end{tikzpicture}
   \caption{Flowchart showing the sequence of events for a
-  sample application driver. \sd{Where to place this in the paper?
-  Do we even want this?}}
+  sample application driver.}
   \label{fig.Driver}
 \end{figure}
 %------------------------------------------------------------------------------%
@@ -1744,10 +1731,6 @@ degrees of freedom per MPI process, we use that value for our single-process
 weak-scaling reference.
 Our results are shown in \figref{fig.WS}.
 We see reasonable weak-scaling out to 32 MPI processes.
-\ee{Were these results all obtained on the same hardware?
-More details on the hardware should be given for all scaling results.}
-\sd{I'm going to re-do both scaling studies on Summit
-because I'll be able to use a lot more cores}
 \begin{figure}[htb!]
   \centering
   \includegraphics[width=0.8\textwidth]{fig.WeakScaling.pdf}
@@ -2069,91 +2052,6 @@ corresponding author.
 \href{https://yt-project.org/}{yt}
 \citep{tso2011}
 
-\appendix
+\input{Appendices/VectorComponents}
 
 %------------------------------------------------------------------------------%
-\section{Vector Components}
-
-A generic four-vector, $u$, can be expanded in any coordinate basis
-(e.g., the 3+1 coordinate basis),
-$\left\{\p/\p x^{\mu}\right\}$, as
-\begin{equation}
-  u=u_{\left(x\right)}^{\mu}\,\pd{}{x^{\mu}},
-\end{equation}
-where $\p/\p x^{\mu}$ is the $\mu$-th basis vector
-and $u_{\left(x\right)}^{\mu}$ is the $\mu$-th component of $u$ in
-that basis.
-In general, these basis vectors are not orthonormal;
-i.e., $g\left(\p/\p x^{\mu},\p/\p x^{\nu}\right)
-=:g^{\left(x\right)}_{\mu\nu}\neq\eta_{\mu\nu}$,
-where, here, $g$ is the $\left(0,2\right)$ metric tensor.
-We can also expand $u$ in an orthonormal basis, $\left\{e_{\mu}\right\}$,
-\begin{equation}
-  u=u^{\mu}\,e_{\mu},
-\end{equation}
-where the $e_{\mu}$ are defined such that
-$g\left(e_{\mu},e_{\nu}\right)=\eta_{\mu\nu}$.
-If $e_{0}$ is a four-velocity then this basis can be associated
-with an observer, and $\left\{e_{\mu}\right\}$ can properly
-be called a frame of reference.
-In particular, if $e_{0}\equiv n$ (see \secref{ss.3+1}) then this frame defines
-an Eulerian observer, and $\left\{e_{\mu}\right\}$ is the frame of
-reference of an Eulerian observer.
-
-As an example of immediate relevance,
-the four-velocity of the fluid as measured by an Eulerian observer
-in the 3+1 basis (in which the 0-th component is zero) is
-\begin{equation}
-  v=v_{\left(x\right)}^{\mu}\,\pd{}{x^{\mu}}
-  =v_{\left(x\right)}^{i}\,\pd{}{x^{i}}.
-\end{equation}
-The $v_{\left(x\right)}^{i}$
-are what we initialize in our test problems and applications.
-In spherical-polar coordinates, this vector takes the form
-\begin{equation}
-  v=v_{\left(x\right)}^{r}\,\pd{}{r}
-  +v_{\left(x\right)}^{\theta}\,\pd{}{\theta}
-  +v_{\left(x\right)}^{\varphi}\,\pd{}{\varphi}.
-\end{equation}
-This should be contrasted with the perhaps more familiar form,
-\begin{equation}
-  v=v^{i}\,e_{i}
-  =v^{r}\,e_{r}+v^{\theta}\,e_{\theta}
-  +v^{\varphi}\,e_{\varphi},
-\end{equation}
-where
-\begin{equation}
-  e_{i}:=\left|\left|\pd{}{x^{i}}\right|\right|^{-1}\,
-  \pd{}{x^{i}}\hspace{1em}\left(\mathrm{no\ sum\ over\ }i\right),
-\end{equation}
-with
-\begin{equation}
-  \left|\left|\pd{}{x^{i}}\right|\right|
-  :=\left|g\left(\pd{}{x^{i}},
-  \pd{}{x^{i}}\right)\right|^{1/2}
-  =\left|g^{\left(x\right)}_{ii}\right|^{1/2}=h^{\left(x\right)}_{i},
-\end{equation}
-and where $h^{\left(x\right)}_{i}$ is the $i$-th scale factor in the
-coordinate system $\left\{\p/\p x^{\mu}\right\}$.
-From this, we see that the components of $v$ in the 3+1 basis,
-$v_{\left(x\right)}^{i}$,
-are related to the components of $v$ in the basis of the Eulerian
-observer, $v^{i}$, as
-\begin{equation}
-  v^{i}
-  =h^{\left(x\right)}_{i}\,v_{\left(x\right)}^{i}
-  \ \left(\mathrm{no\ sum\ over\ }i\right).
-\end{equation}
-
-Also, note that the $v_{\left(x\right)}^{i}$ are different from
-the coordinate velocities,
-which are instead defined as (dropping the $\left(x\right)$ subscript)
-\begin{equation}
-  \dot{x}^{i}:=\td{x^{i}}{t}
-  =\td{\tau}{t}\,\td{x^{i}}{\tau}
-  =\frac{u^{i}}{u^{0}}
-  =\frac{W}{u^{0}}\left(v^{i}+n^{i}\right)
-  =\alpha\left(v^{i}+n^{i}\right)
-  =\alpha\,v^{i}-\beta^{i}.
-\end{equation}
-

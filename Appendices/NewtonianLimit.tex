@@ -1,0 +1,386 @@
+%------------------------------------------------------------------------------%
+\newcommand{\normv}{\left|\left|\myol{v}\right|\right|}
+\newcommand{\TF}{T_{\mathrm{F}}}
+\newcommand{\LF}{L_{\mathrm{F}}}
+\newcommand{\LG}{L_{\mathrm{G}}}
+\newcommand{\hNR}{h_{\mathrm{NR}}}
+\section{Newtonian/Non-Relativistic Limit in a Schwarzchild Spacetime
+with Isotropic Coordinates}
+
+\subsection{Preliminaries}
+
+Under a 3+1 decomposition with a conformally-flat spatial three-metric,
+the lapse function and conformal factor of the Schwarzchild spacetime expressed
+in isotropic coordinates are given by \citep{bs2010}
+\begin{equation}
+  \alpha\left(r\right)
+  :=\left(1-\frac{M}{2\,r}\right)
+    \left(1+\frac{M}{2\,r}\right)^{-1}
+  =\left(1+\frac{1}{2}\,\Phi\left(r\right)\right)
+   \left(1-\frac{1}{2}\,\Phi\left(r\right)\right)^{-1}
+\end{equation}
+and
+\begin{equation}
+  \psi\left(r\right)
+  :=1+\frac{M}{2\,r}
+  =1-\frac{1}{2}\,\Phi\left(r\right),
+  \label{eq.cf}
+\end{equation}
+where
+\begin{equation}
+  \Phi\left(r\right)
+  :=-\frac{M}{r}
+\end{equation}
+is the Newtonian gravitational potential.\vspace{1em}
+
+The Newtonian limit is defined as the limit where $\Phi\ll1$.
+In this limit, the lapse function reduces to
+\begin{equation}
+  \alpha\approx1+\Phi,
+\end{equation}
+while the conformal factor remains
+\begin{equation}
+  \psi=1-\frac{1}{2}\,\Phi.
+\end{equation}
+
+\subsection{General Results}
+
+The 3+1 hydrodynamics equations with a stationary spacetime can be written as
+\citep{rz2013}
+\begin{equation}
+  \p_{t}\,\bs{U}
+  +\frac{1}{\sqrt{\gamma}}\,
+  \p_{i}\left(\alpha\,\sqrt{\gamma}\,\bs{F}^{i}\left(\bs{U}\right)\right)
+  =\bs{S}\left(\bs{U}\right).
+\end{equation}
+First, we focus on the flux term:
+\begin{align}
+  &\frac{1}{\sqrt{\gamma}}\,
+  \p_{i}\left(\alpha\,\sqrt{\gamma}\,\bs{F}^{i}\left(\bs{U}\right)\right) \\
+  &=\frac{1}{\psi^{6}\,\sqrt{\gammabar}}\,
+  \p_{i}\left(\alpha\,\sqrt{\gamma}\,\bs{F}^{i}\left(\bs{U}\right)\right) \\
+  &\approx\frac{1+3\,\Phi}{\sqrt{\gammabar}}\,
+  \p_{i}\left(\alpha\,\sqrt{\gamma}\,\bs{F}^{i}\left(\bs{U}\right)\right) \\
+  &\approx\frac{1}{\sqrt{\gammabar}}\,
+  \p_{i}\left(\alpha\,\sqrt{\gamma}\,\bs{F}^{i}\left(\bs{U}\right)\right) \\
+  &\approx\frac{1}{\sqrt{\gammabar}}\,
+  \p_{i}\left(\left(1+\Phi\right)\left(1-3\,\Phi\right)\,\sqrt{\gammabar}\,
+  \bs{F}^{i}\left(\bs{U}\right)\right) \\
+  &=\frac{1}{\sqrt{\gammabar}}\,
+  \p_{i}\left(\left(1-2\,\Phi-3\,\Phi^{2}\right)\sqrt{\gammabar}\,
+  \bs{F}^{i}\left(\bs{U}\right)\right) \\
+  &=\frac{1}{\sqrt{\gammabar}}\left[
+  \p_{i}\left(\sqrt{\gammabar}\,
+    \bs{F}^{i}\left(\bs{U}\right)\right)
+  -2\,\p_{i}\left(\Phi\,\sqrt{\gammabar}\,
+    \bs{F}^{i}\left(\bs{U}\right)\right)
+  -3\,\p_{i}\left(\Phi^{2}\,\sqrt{\gammabar}\,
+    \bs{F}^{i}\left(\bs{U}\right)\right)\right] \\
+  &\approx\frac{1}{\sqrt{\gammabar}}\left[
+  \p_{i}\left(\sqrt{\gammabar}\,
+    \bs{F}^{i}\left(\bs{U}\right)\right)
+  -2\,\left(\p_{i}\,\Phi\right)
+  \sqrt{\gammabar}\,\bs{F}^{i}\left(\bs{U}\right)\right] \\
+  &=\frac{1}{\sqrt{\gammabar}}\,
+  \p_{i}\left(\sqrt{\gammabar}\,
+    \bs{F}^{i}\left(\bs{U}\right)\right)
+  -2\,\left(\p_{i}\,\Phi\right)\,
+  \bs{F}^{i}\left(\bs{U}\right).
+\end{align}
+The last term can be dropped by considering length scales.
+We can heuristically write the expression as
+\begin{equation}
+  \frac{\bs{F}^{i}\left(\bs{U}\right)}{\LF}
+  +\frac{\Phi}{\LG}\,\bs{F}^{i}\left(\bs{U}\right)
+  =\frac{\bs{F}^{i}\left(\bs{U}\right)}{\LF}
+  \left(1+\frac{\LF}{\LG}\,\Phi\right),
+\end{equation}
+where $\LF$ and $\LG$ are characteristic length scales, with
+$\LF$ corresponding to a fluid timescale and $\LG$ to
+a gravitational timescale.
+In general, because gravity is a long-range force, we will have
+$\LG\gg\LF$.
+With that, along with $\phi\ll1$, we have
+\begin{equation}
+  \p_{t}\,\bs{U}
+  +\frac{1}{\sqrt{\gammabar}}\,
+  \p_{i}\left(\sqrt{\gammabar}\,\bs{F}^{i}\left(\bs{U}\right)\right)
+  \approx\bs{S}\left(\bs{U}\right).
+\end{equation}
+Since one flat-space metric is as good as any other,
+we assume Cartesian coordinates for the remainder of this derivation.
+
+\subsection{Mass Equation}
+
+For the mass equation, we have
+\begin{equation}
+  \p_{t}\,D+\p_{i}\,F^{i}_{D}\approx0,
+\end{equation}
+where
+\begin{equation}
+  D:=\rho\,W,
+\end{equation}
+\begin{equation}
+  F^{i}_{D}:=\rho\,W\,v^{i},
+\end{equation}
+and where $W$ is the Lorentz factor,
+\begin{equation}
+  W:=\left(1-v^{k}v_{k}\right)^{-1/2}.
+\end{equation}
+The gradient of $W$ is
+\begin{equation}
+  \p_{\mu}\,W
+  =\p_{\mu}\left(1-v^{k}v_{k}\right)^{-1/2}
+  =W^{3}\,v_{k}\,\p_{\mu}\,v^{k},
+\end{equation}
+and the non-relativistic limit of $W$ is
+\begin{equation}
+  W\approx1+\frac{1}{2}\,v^{k}v_{k}\sim1+\normv^{2},
+  \ \normv:=\left|\myol{v}\cdot\myol{v}\right|^{1/2}.
+\end{equation}
+Therefore, as far as scaling arguments go,
+\begin{align}
+  \p_{t}\,W&\sim\frac{\normv^{2}}{\TF}\left(1+\normv^{2}\right) \\
+  \p_{i}\,W&\sim\frac{\normv^{2}}{\LF}\left(1+\normv^{2}\right).
+\end{align}
+
+\subsubsection{Time-Derivative Term}
+First, we focus on the time-derivative term, for which we find
+\begin{align}
+  \p_{t}\left(\rho\,W\right)
+  &=\left(\p_{t}\,\rho\right)W+\rho\,\p_{t}\,W \\
+  &\sim\frac{\rho}{\TF}\left(1+\normv^{2}\right)
+  +\rho\,\frac{\normv^{2}}{\TF}\left(1+\normv^{2}\right) \\
+  &\sim\frac{\rho}{\TF}\left(1+\normv^{2}+\normv^{4}\right) \\
+  &\sim\frac{\rho}{\TF} \\
+  &\approx\p_{t}\,\rho.
+  \label{NL.eq.rhoT}
+\end{align}
+
+\subsubsection{Flux Term}
+Next, we focus on the flux term.
+We note that the derivation would proceed in the same manner as that for
+\eqref{NL.eq.rhoT}, except in this case we have an additional velocity
+and also deal with $\LF$ instead of $\TF$.
+With that, we can immediately write
+\begin{align}
+  \p_{i}\left(\rho\,W\,v^{i}\right)
+  &\sim\frac{\rho\,\normv}{\LF}\approx\p_{i}\left(\rho\,v^{i}\right).
+\end{align}
+With that, we arrive at
+\begin{equation}
+  \p_{i}\left(\rho\,W\,v^{i}\right)
+  \approx\p_{i}\left(\rho\,v^{i}\right).
+\end{equation}
+Combining expressions, we have our desired result,
+\begin{equation}
+  \p_{t}\,\rho+\p_{i}\left(\rho\,v^{i}\right)\approx0.
+\end{equation}
+
+\subsection{Momentum Equation}
+
+For the momentum equation, we have
+\begin{equation}
+  \p_{t}\,S_{j}+\p_{i}\,F^{i}_{S_{j}}=S_{S_{j}},
+\end{equation}
+where
+\begin{equation}
+  S_{j}:=\rho\,h\,W^{2}\,v_{j},
+\end{equation}
+\begin{equation}
+  F^{i}_{S_{j}}
+  :=\rho\,h\,W^{2}\,v^{i}\,v_{j}+p\,\delta^{i}_{~j},
+\end{equation}
+and
+\begin{equation}
+  S_{S_{j}}
+  :=\frac{1}{2}\,\alpha
+  \left(\rho\,h\,W^{2}\,v^{i}\,v^{k}+p\,\gamma^{ik}\right)\,
+  \p_{j}\,\gamma_{ik}-\left(\rho\,h\,W^{2}-p\right)\p_{j}\,\alpha.
+\end{equation}
+Here,
+\begin{equation}
+  h:=1+\frac{e+p}{\rho}=1+\hNR,
+\end{equation}
+where
+\begin{equation}
+  \hNR:=\frac{e+p}{\rho}.
+\end{equation}
+In the non-relativistic limit,
+\begin{equation}
+  \hNR\ll1\implies h\sim1.
+\end{equation}
+
+\subsubsection{Time-Derivative Term}
+Focusing first on the time-derivative term, we have
+\begin{align}
+  \p_{t}\left(\rho\,h\,W^{2}\,v_{j}\right)
+  &=h\,W^{2}\,\p_{t}\left(\rho\,v_{j}\right)
+  +\rho\,v_{j}\,\p_{t}\left(h\,W^{2}\right) \\
+  &=h\,W^{2}\,\p_{t}\left(\rho\,v_{j}\right)
+  +\rho\,v_{j}\left[\left(\p_{t}\,h\right)W^{2}+2\,h\,W\,\p_{t}\,W\right] \\
+  &\sim h\left(1+\normv^{2}\right)\frac{\rho\,\normv}{\TF}
+  +\rho\,\normv\frac{\hNR}{\TF}\left(1+\normv^{2}\right) \notag \\
+  &\hspace{2em}+\rho\,\normv\,h\left(1+\normv^{2}\right)
+  \frac{\normv^{2}}{\TF}\left(1+\normv^{2}\right) \\
+  &\sim\frac{\rho\,\normv}{\TF}\left(1+\normv^{2}\right)
+  \left[h+\hNR+h\,\normv^{2}\left(1+\normv^{2}\right)\right] \\
+  &\sim\frac{\rho\,\normv}{\TF}\left(1+\normv^{2}\right)
+  \left(h+\hNR+h\,\normv^{2}+h\,\normv^{4}\right) \\
+  &\sim\frac{\rho\,\normv}{\TF}\left(1+\normv^{2}\right)
+  \left(1+\hNR+\normv^{2}+\hNR\,\normv^{2}\right. \notag \\
+  &\left.\hspace{12em}+\normv^{4}+\hNR\,\normv^{4}\right) \\
+  &\sim\frac{\rho\,\normv}{\TF} \\
+  &\approx\p_{t}\left(\rho\,v_{j}\right).
+  \label{NL.eq.SjT}
+\end{align}
+
+\subsubsection{Flux Term}
+Next we look at the flux term.
+As it did for the flux term in the mass equation,
+the derivation here will proceed in the same manner as that
+for \eqref{NL.eq.SjT},
+except for an additional velocity and the pressure term.
+With that, we have immediately
+\begin{equation}
+  \p_{i}\left(\rho\,h\,W^{2}\,v^{i}\,v_{j}+p\,\delta^{i}_{~j}\right)
+  \approx\p_{i}\left(\rho\,v^{i}\,v_{j}+p\,\delta^{i}_{~j}\right).
+\end{equation}
+
+\subsubsection{Source Term}
+Finally, we look at the sourcee term.
+We have
+\begin{align}
+  S_{S_{j}}
+  &=\frac{1}{2}\,\alpha
+  \left(\rho\,h\,W^{2}\,v^{i}\,v^{k}+p\,\gamma^{ik}\right)\,
+  \p_{j}\,\gamma_{ik}-\left(\rho\,h\,W^{2}-p\right)\p_{j}\,\alpha \\
+  &\approx\frac{1}{2}\,\alpha
+  \left(\rho\,v^{i}\,v^{k}+p\,\gamma^{ik}\right)\,
+  \p_{j}\,\gamma_{ik}-\rho\,\p_{j}\,\alpha \\
+  &\approx\frac{1}{2}\left(1+\Phi\right)
+  \left(\rho\,v^{i}\,v^{k}+p\,\gamma^{ik}\right)\,
+  \p_{j}\,\gamma_{ik}-\rho\,\p_{j}\left(1+\Phi\right) \\
+  &\approx\frac{1}{2}\,
+  \left(\rho\,v^{i}\,v^{k}+p\,\gamma^{ik}\right)\,
+  \p_{j}\,\gamma_{ik}-\rho\,\p_{j}\,\Phi \\
+  &\approx\frac{1}{2}\,
+  \left(\rho\,v^{i}\,v^{k}
+  +p\left(1+2\,\Phi\right)\gammabar^{ik}\right)\,
+  \p_{j}\left[\left(1-2\,\Phi\right)\gammabar_{ik}\right]
+  -\rho\,\p_{j}\,\Phi \\
+  &\approx\frac{1}{2}\,
+  \left(\rho\,v^{i}\,v^{k}
+  +p\,\gammabar^{ik}\right)\,
+  \p_{j}\left[\left(1-2\,\Phi\right)\gammabar_{ik}\right]
+  -\rho\,\p_{j}\,\Phi \\
+  &\approx\frac{1}{2}\,
+  \left(\rho\,v^{i}\,v^{k}
+  +p\,\gammabar^{ik}\right)
+  \left[\p_{j}\,\gammabar_{ik}
+  -2\,\p_{j}\left(\Phi\,\gammabar_{ik}\right)\right]
+  -\rho\,\p_{j}\,\Phi \\
+  &\approx\frac{1}{2}\,
+  \left(\rho\,v^{i}\,v^{k}
+  +p\,\gammabar^{ik}\right)
+  \left[\p_{j}\,\gammabar_{ik}
+  -2\,\gammabar_{ik}\,\p_{j}\,\Phi
+  -2\,\Phi\,\p_{j}\,\gammabar_{ik}\right]
+  -\rho\,\p_{j}\,\Phi \\
+  &\approx\frac{1}{2}\,
+  \left(\rho\,v^{i}\,v^{k}
+  +p\,\gammabar^{ik}\right)
+  \left[\p_{j}\,\gammabar_{ik}
+  -2\,\gammabar_{ik}\,\p_{j}\,\Phi\right]
+  -\rho\,\p_{j}\,\Phi \\
+  &=\frac{1}{2}\,
+  \left(\rho\,v^{i}\,v^{k}
+  +p\,\gammabar^{ik}\right)
+  \left[\p_{j}-2\,\p_{j}\,\Phi\right]\gammabar_{ik}
+  -\rho\,\p_{j}\,\Phi.
+\end{align}
+Focusing on the operator in square brackets, we have
+\begin{equation}
+  \frac{1}{\LG}+\frac{\Phi}{\LG}
+  =\frac{1}{\LG}\left(1+\Phi\right)
+  \approx\frac{1}{\LG}.
+\end{equation}
+With that, we have our result,
+\begin{equation}
+  \p_{t}\left(\rho\,v_{j}\right)
+  +\p_{i}\left(\rho\,v^{i}\,v_{j}+p\,\delta^{i}_{~j}\right)
+  \approx\frac{1}{2}\left(\rho\,v^{i}\,v^{k}+p\,\gammabar^{ik}\right)
+  \p_{j}\,\gammabar_{ik}-\rho\,\p_{j}\,\Phi.
+\end{equation}
+
+\subsection{Energy Equation}
+
+The energy equation is
+\begin{equation}
+  \p_{t}\,\tau+\p_{i}\,F^{i}_{\tau}=S_{\tau},
+\end{equation}
+where
+\begin{equation}
+  \tau:=\rho\,h\,W^{2}-p-\rho\,W,
+\end{equation}
+\begin{equation}
+  F^{i}_{\tau}:=\rho\,h\,W^{2}\,v^{i}-\rho\,W\,v^{i},
+\end{equation}
+and
+\begin{equation}
+  S_{\tau}:=-\rho\,h\,W^{2}\,v^{j}\,\p_{j}\,\alpha.
+\end{equation}
+
+\subsubsection{Time-Derivative Term}
+
+We have
+\begin{align}
+  \tau&=\rho\,h\,W^{2}-p-\rho\,W \\
+  &\approx\rho\left(1+\hNR\right)\left(1+v^{k}v_{k}\right)
+  -p-\rho\left(1+\frac{1}{2}\,v^{k}v_{k}\right) \\
+  &\approx\rho\left(1+\hNR+v^{k}v_{k}\right)
+  -p-\rho-\frac{1}{2}\,\rho\,v^{k}v_{k} \\
+  &=e+\frac{1}{2}\,\rho\,v^{k}v_{k},
+\end{align}
+leading to
+\begin{equation}
+  \p_{t}\,\tau\approx\p_{t}\left(e+\frac{1}{2}\,\rho\,v^{k}v_{k}\right).
+\end{equation}
+
+\subsubsection{Flux Term}
+
+For the flux term,
+\begin{align}
+  F^{i}_{\tau}&=\rho\,h\,W^{2}\,v^{i}-\rho\,W\,v^{i} \\
+  &=\rho\,h\,W^{2}\,v^{i}-\rho\,W\,v^{i}+p\,v^{i}-p\,v^{i} \\
+  &=\left(\rho\,h\,W^{2}-p-\rho\,W\right)v^{i}+p\,v^{i} \\
+  &=\tau\,v^{i}+p\,v^{i}
+\end{align}
+The same derivation as for the time-derivative term leads to
+\begin{equation}
+  \p_{i}\,F^{i}_{\tau}
+  \approx\p_{i}\left[\left(e+\frac{1}{2}\,\rho\,v^{k}v_{k}+p\right)v^{i}\right].
+\end{equation}
+
+\subsubsection{Source Term}
+
+For the source term,
+\begin{align}
+  S_{\tau}&=-\rho\,h\,W^{2}\,v^{j}\,\p_{j}\,\alpha \\
+  &\approx-\rho\,h\,W^{2}\,v^{j}\,\p_{j}\left(1+\Phi\right) \\
+  &=-\rho\,h\,W^{2}\,v^{j}\,\p_{j}\,\Phi \\
+  &\approx-rho\,v^{j}\,\p_{j}\,\Phi.
+\end{align}
+Putting things together,
+\begin{equation}
+  \p_{t}\left(e+\frac{1}{2}\,\rho\,v^{k}v_{k}\right)
+  +\p_{i}\left[\left(e+\frac{1}{2}\,\rho\,v^{k}v_{k}+p\right)v^{i}\right]
+  \approx-\rho\,v^{j}\,\p_{j}\,\Phi.
+\end{equation}
+
+%------------------------------------------------------------------------------%
+\let\normv\undefined
+\let\TF\undefined
+\let\LF\undefined
+\let\LG\undefined
+\let\hNR\undefined
