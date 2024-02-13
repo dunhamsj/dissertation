@@ -48,7 +48,10 @@ It is intuitive that the shock wave simply propagates outward, disrupting
 the star.
 Unfortunately, as often happens, reality is not so simple.
 
-As the shock propagates, it loses energy to the newly-created and liberated
+Because of the numerous offerrings of CCSNe, efforts to model them have been
+ongoing since the 1960s.
+In early models, as the shock propagates,
+it was seen to energy to the newly-created and liberated
 electron-type neutrinos as well as to the dissociation of the
 infalling material through which it passes,
 so much so that the shock stalls around 200 km from the center
@@ -117,9 +120,8 @@ in 2D models \citep{bmd2003}.
 This purely hydrodynamical instability has since become known as the
 standing accretion shock instability (SASI) and it very likely plays an
 important role in the explosion mechanism for more massive progenitors.
-This discovery also strongly implies that CCSN explosions are
-inherently multi-dimensional.
-
+The SASI, along with neutrino-driven convection, strongly implies that
+CCSNe are inherently multi-dimensional.
 One effect of the SASI is turbulence generated below the shock,
 which, in addition to neutrino-driven convection,
 can increase the amount of time that a fluid particle spends
@@ -130,64 +132,100 @@ turbulence and convection were absent.
 This extra heating can help revive the shock.
 Additionally, the induced Reynolds stresses can provide additional
 pressure support against the shock \citep[e.g., see][]{mm2018}.
-Three-dimensional (3D) models are necessary for several reasons,
+
+While 1D and 2D models are very useful,
+three-dimensional (3D) models are necessary for several reasons,
 one of which is that turbulence is non-existent in 1D and in 2D it
 exhibits an inverse energy-cascade, where energy is artificially transmitted
 from small scales to large scales \citep{k1967}.
 Therefore, to truly study turbulence in CCSNe we need 3D simulations,
 with no assumptions of symmetry.
+3D CCSN simulations are computationally expensive,
+taking weeks to months to complete
+on leadership-class supercomputers; it is therefore
+necessary to develop codes that are efficient and can scale well on
+multiple CPU cores as well as on GPUs.
+Several production codes are currently used to simulate CCSNe, including
+\flashx\ \citep{for2000},
+\cocov\ \citep{mjd2010},
+\zelmani\ \citep{oao2012},
+the code described in \citet{ktk2016},
+\fornax\ \citep{sdb2019},
+\nadafld\ \citep{rjj2019},
+\chimera\ \citep{bbh2020},
+and \gmunu\ \citep{cht2023}.
+All of these codes use some combination of high-order finite-difference
+and/or finite-volume methods.
+Finite-volume methods \citep[e.g., see][]{l2002} evolve the cell average
+of a particular element and use data from neighbor cells to reconstruct
+a high-order polynomial representation of the solution within that element.
+This allows for high-order accuracy, albeit at the cost of a wider stencil.
+This is one motivation for using discontinuous Galerkin (DG) methods
+(see Chapter~\ref{ch.mp} for details on the DG method):
+DG methods achieve high-order accuracy on a compact (nearest-neighbors only)
+stencil.
+This make them appealing for executing massively parallel simulations on
+supercomputing clusters.
 
-Although exoergic fusion stops at iron,
-CCSNe produce elements of much higher atomic mass number, $A$.
-In fact, CCSNe are responsible for most of the elements in the Universe with
-$16\lesssim A\lesssim90$ \citep{bw2017}.
-Two products in particular, $^{56}$Ni and $^{57}$Ni, are critical for SN light
-curves (their half-lives correlate well with the decline of the light curve),
-and the amounts of these elements depend on the explosion mechanism.
-The explosion energy is sufficient to expel the matter away from the star
-and throughout the galaxy, enriching the interstellar medium with heavy
-elements.
-The distribution of metals in galaxies has implications for galactic
-evolution, so an understanding of how the heavy elements are distributed,
-and especially how much of each element is distributed,
-is crucial for galaxy evolution models.
+CCSNe span orders of magnitude in space.
+Because of this, it is necessary for 3D simulations to run with a computational
+mesh that is adaptive in the sense that it will adjust itself such that
+computational resources are concentrated in regions where they are really needed.
+This so-called adaptive mesh refinement (AMR) can be implemented in different
+ways.
+One way is so-called ``patch-based" AMR, where chunks of the mesh, spanning
+several elements in each dimension, are refined.
+This is the method used by \amrex, a software framework designed to give
+application codes the ability to run with AMR.
+Much of my dissertation work has focused on coupling \thornado\ to \amrex\ in
+order to give \thornado\ AMR capabilities (see Chapter~\ref{ch.mp} for details).
 
-One of the elements produced and distributed is carbon,
-the element on which life as we know it is based.
-Therefore, there is additionally
-a metaphysical reason to understand CCSNe:
-In some sense, it is to them that we literally owe our entire existence!
-
-The most obvious products of CCSNe are the copious amount of photons
-released in the explosion process.
-However, preceding the fireworks is something arguably much more interesting
-and magnificent---the gravitational waves emitted from the asymmetry of the
-mass-energy distribution.
-These waves will be more like bursts, lasting less than one second,
-but will be in the LIGO band and should be detectable by aLIGO
-out to several kpc \citep{aaa2016}.
-From full simulations of CCSNe, we obtain the components of the stress-energy
-tensor, from which we can compute the mass-quadrupole moment,
-which can tell us the waveforms of the gravitational waves emitted.
-
-Another product of CCSNe is the plethora of neutrinos released.
-As mentioned earlier, about 99\% of the energy in a CCSN
-(amounting to approximately $0.15\,\msun\,c^{2}$) is carried away by neutrinos.
-These weakly interacting particles are some of the most elusive particles known.
-Their practically infinitesimal cross-section makes them extremely difficult
-to detect.
-A CCSN is one of the few phenomena that produces a sufficient amount of
-neutrinos to be detectable on Earth.
-
-The characteristic masses of CCSN progenitors is such that general relativity
+The characteristic masses of CCSN progenitors are such that general relativity
 (GR) is important \citep[e.g., see][]{lmt2001}.
-Despite this, most codes currently in use for CCSN simulations
-approximate GR to some degree (see Chapter~\ref{ch.mp} for details).
-We show the importance of GR in the SASI (see Chapter~\ref{ch.sasi}).
+Although early 1D simulations included full GR
+\citep[e.g.,][]{mw1966}, modern multi-dimensional simulations approximate
+GR to some degree.
+Specifically, \zelmani, the code described in
+\citet{ktk2016}, and \nadafld\ use free evolution models;
+\cocov\ and \gmunu\ use \xcfc;
+and \fornax, \chimera, and \flashx\ use the effective potential.
+The impact of GR has been investigated in 1D \citep{bdm2001,lmm2012}
+and 2D \citep{mjm2012,oc2018}.
+In 1D, \citet{bdm2001} have shown that GR leads to a more compact PNS than is
+obtained with Newtonian gravity, which leads to less extended neutrinospheres
+and harder neutrino spectra.
+Because most neutrino-matter cross-sections relevant to CCSNe are proportional to
+the square of the rms neutrino energy, harder neutrino spectra lead to more
+energy being deposited into the post-shock fluid.
+In 2D, \citet{mjm2012} showed that the treatment of gravity
+can be the difference between a failed and a successful explosion;
+specifically, in some cases, the oft-used
+``effective potential" approach \citep{mdj2006} leads to a dud, whereas
+the more sophisticated (and more complicated to implement) \xcfc\ approach
+leads to an explosion.
+Additionally, a recent paper investigated the role of GR on the SASI
+using \thornado\ \citep{dem2023} (in press).
+They concluded that GR may have a significant impact on the SASI by drastically
+lowering the rate at which the instability grows.
+For these reasons, we advocate the field move to performing simulations
+in full GR.
+
+Contributions I have made to the field include investigating the role of GR
+in the SASI (see Chapter~\ref{ch.sasi}) and developing the first DG solver
+for the GR hydrodynamics equations under the xCFC
+for application to CCSNe (see Chapter~\ref{ch.mp}).
+
+The immediate outlook for this work is that, once the neutrino transport
+has been incorporated, \thornado\ will be able to perform CCSN simulations
+using DG methods.
+It will be the first code to do so.
+A slightly further outlook is that \thornado\ has the potential to perform
+simulations of the post-merger phase of binary neutron star mergers
+using spectral methods for the neutrino transport.
 
 This document is laid out such that Chapter~\ref{ch.sasi} is an adaptation
 of an accepted article on the effects of GR on the SASI,
-Chapter~\ref{ch.mp} is an adaptation of an article in prep. on our
+Chapter~\ref{ch.mp} is an adaptation of an article in preparation on our
 numerical methods for GR hydrodynamics,
 and we close with a conclusion.
 
