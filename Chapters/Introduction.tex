@@ -48,9 +48,10 @@ It is intuitive that the shock wave simply propagates outward, disrupting
 the star.
 Unfortunately, as often happens, reality is not so simple.
 
-Because of the numerous offerrings of CCSNe, efforts to model them have been
+Because of the numerous offerings of CCSNe, efforts to model them have been
 ongoing since the 1960s.
-In early models, as the shock propagates,
+In early numerical simulations (which were all one-dimensional (1D)),
+as the shock propagates,
 it was seen to energy to the newly-created and liberated
 electron-type neutrinos as well as to the dissociation of the
 infalling material through which it passes,
@@ -62,7 +63,7 @@ enough to overcome the strong force and the neutron degeneracy pressure
 and cause the PNS to collapse
 to a black hole \citep{bw1985}.
 (This does happen under certain conditions, but they are not discussed here.)
-Even as technology improved and one-dimensional (1D)
+Even as technology improved and 1D
 models became more sophisticated, they still did not explode
 \citep[e.g., see][]{%
 cj1960,
@@ -145,6 +146,9 @@ taking weeks to months to complete
 on leadership-class supercomputers; it is therefore
 necessary to develop codes that are efficient and can scale well on
 multiple CPU cores as well as on GPUs.
+This last point is important because for the foreseeable future, all
+large supercomputers will be built for the purpose of utilizing
+multiple GPUs.
 Several production codes are currently used to simulate CCSNe, including
 \flashx\ \citep{for2000},
 \cocov\ \citep{mjd2010},
@@ -167,13 +171,13 @@ stencil.
 This make them appealing for executing massively parallel simulations on
 supercomputing clusters.
 
-CCSNe span orders of magnitude in space.
+CCSNe span several orders of magnitude in space.
 Because of this, it is necessary for 3D simulations to run with a computational
 mesh that is adaptive in the sense that it will adjust itself such that
-computational resources are concentrated in regions where they are really needed.
+computational resources are concentrated in regions where they are most needed.
 This so-called adaptive mesh refinement (AMR) can be implemented in different
 ways.
-One way is so-called ``patch-based" AMR, where chunks of the mesh, spanning
+One way is known as ``patch-based" AMR, where chunks of the mesh, spanning
 several elements in each dimension, are refined.
 This is the method used by \amrex, a software framework designed to give
 application codes the ability to run with AMR.
@@ -210,10 +214,16 @@ lowering the rate at which the instability grows.
 For these reasons, we advocate the field move to performing simulations
 in full GR.
 
-Contributions I have made to the field include investigating the role of GR
-in the SASI (see Chapter~\ref{ch.sasi}) and developing the first DG solver
-for the GR hydrodynamics equations under the xCFC
+Contributions I have made to the field of CCSN simulations
+include investigating the role of GR
+on the SASI (see Chapter~\ref{ch.sasi}) and developing the first DG solver
+for the GR hydrodynamics (GRHD) equations under the xCFC
 for application to CCSNe (see Chapter~\ref{ch.mp}).
+Contributions to \thornado\ include adding a solver for the GRHD equations,
+coupling \thornado\ to \amrex, both for AMR and for the ability to run
+in parallel on multiple processors,
+and porting native \thornado\ (i.e., \thornado\ without \amrex)
+to run on GPUs.
 
 The immediate outlook for this work is that, once the neutrino transport
 has been incorporated, \thornado\ will be able to perform CCSN simulations
@@ -226,7 +236,7 @@ using spectral methods for the neutrino transport.
 This document is laid out such that Chapter~\ref{ch.sasi} is an adaptation
 of an accepted article on the effects of GR on the SASI,
 Chapter~\ref{ch.mp} is an adaptation of an article in preparation on our
-numerical methods for GR hydrodynamics,
+numerical methods for GRHD,
 and we close with a conclusion.
 
 %------------------------------------------------------------------------------%
