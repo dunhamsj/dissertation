@@ -1,15 +1,16 @@
-\chapter{Summary/Conclusion/Future Work}
+\chapter{Summary/Conclusion/Future Work\ee{Summary, Conclusions, and Outlook?}}
 
 We have shown, via detailed numerical simulations, that GR may play an
-important role in the SASI, and that for simulation codes to
+important role in \ee{our further understanding of} the SASI, and that for simulation codes to
 accurately predict observables, they should use GR gravity and GR hydrodynamics.
 In particular, in order to correctly capture the growth rate of the
-instability, GR must be used.
+instability, GR must be used.  
 This is important for the creation of templates for gravitational waves
 and may also be important for CCSNe with more massive progenitors.
+\ee{What are the limitations of your work, and what should be done next?  You are now the expert and should provide your perspective on this.}
 
 We have detailed our implementation of the DG method to solve the GRHD
-system of equations.
+system of equations.\ee{It is not just the GRHD system, but the ``Euler--Einstein'' system.}
 This includes how we mitigate spurious oscillations,
 enforce physical bounds, and update the solution in time.
 Additionally, we discussed how we coupled \thornado\ to \poseidon,
@@ -18,14 +19,15 @@ We have also detailed our coupling to \amrex, including how we interpolate
 fluid fields across different levels of refinement in a conservative manner
 and how we achieve conservation across coarse-to-fine interfaces.
 
-We have verified and validated our implementation by performing several
+We have verified and validated \ee{verification and validation has a specific meaning: one V (I forget which one) is about making sure you solve the proposed model correctly, the other V is making sure your model is the correct one for the system you want to study.} our implementation by performing several
 simulations of test-problems as well as by simulating the adiabatic collapse,
 bounce, and
 post-bounce evolution of a 15 Solar mass progenitor in parallel, with AMR.
-We have shown that DG methods are appropriate for this application,
+We have shown that DG methods are appropriate for this application \ee{how?},
 and future work involves coupling the existing framework to the DG, GR
 neutrino transport module and performing full, three-dimensional
 CCSN simulations.
+\ee{What other challenges remain?  How do you propose to deal with CFL condition in 2D/3D when using spherical-polar coordinates? Discuss some computational challenges associated with neutrino transport; e.g., more degrees of freedom, local physics that can lead to load imbalance.}
 
 Future work also includes finishing the methods paper (Chapter~\ref{ch.mp}),
 which will involve
@@ -34,6 +36,7 @@ We will compute the power in the $\ell=1$ mode for simulations performed
 with and without AMR and examine the results.
 Future work will also involve comparing the AMR adiabatic collapse simulations
 to determine what resolution is sufficient to maintain stability of the PNS.
+\ee{This is ``future work'' for finishing your thesis.  You should provide some perspectives on the science that can be done with the tool you have built.  Your committee will likely want to hear about that.}
 
 Beyond finishing the methods paper, future work involves porting the
 \thornado-\amrex\ coupling to GPUs,

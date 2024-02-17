@@ -25,14 +25,14 @@ the Einstein Telescope \citep{mvb2020} and Cosmic Explorer \citep{eaa2021}.
 
 In order to understand and appreciate the products of CCSNe, we need to
 understand how they operate.
-The following paragraph is a paraphrase from the review article \citet{m2005}.
+The following paragraph is a paraphrase from the review article by \citet{m2005}.
 The basic picture is that when a massive star
 (ZAMS mass $M\gtrsim8\,\msun$, with $\msun$ the mass of the Sun)
 runs out of fuel, gravity overcomes pressure
 and the star begins to collapse.
 As the iron-core collapses, it can be thought of as being composed of
 two pieces: a subsonically
-collapsing ``inner-core" and a supersonically collapsing ``outer-core".
+collapsing ``inner-core'' and a supersonically collapsing ``outer-core''.
 The collapse of the inner-core is eventually stopped because the nuclei are
 forced into such close proximity with each other that they undergo a
 phase transition from individual nuclei to bulk nuclear matter
@@ -56,7 +56,7 @@ it was seen to energy to the newly-created and liberated
 electron-type neutrinos as well as to the dissociation of the
 infalling material through which it passes,
 so much so that the shock stalls around 200 km from the center
-(e.g., see \citet{hm1981}).
+(e.g., see \citet{hm1981})\ee{$\leftarrow$ this sentence needs edit: "it was seen to energy\ldots"}.
 It is clear that the shock is revived, because if it weren't then matter
 would continue to accrete onto the star, eventually making the core massive
 enough to overcome the strong force and the neutron degeneracy pressure
@@ -131,7 +131,8 @@ net heating due to neutrinos \citep{co2015}.
 Since the fluid spends more time in this region it can be heated more than if
 turbulence and convection were absent.
 This extra heating can help revive the shock.
-Additionally, the induced Reynolds stresses can provide additional
+\ee{The continued accretion, which sustains the neutrino luminosity while the explosion develops is also important.}
+Additionally, the induced Reynolds stresses by turbulent flows can provide additional
 pressure support against the shock \citep[e.g., see][]{mm2018}.
 
 While 1D and 2D models are very useful,
@@ -149,8 +150,9 @@ multiple CPU cores as well as on GPUs.
 This last point is important because for the foreseeable future, all
 large supercomputers will be built for the purpose of utilizing
 multiple GPUs.
+\ee{Need to discuss the major physics components that are coupled together to model CCSNe.}
 Several production codes are currently used to simulate CCSNe, including
-\flashx\ \citep{for2000},
+\flashx\ \citep{for2000},\ee{also cite Dubey et al.~(2022) for \flashx}
 \cocov\ \citep{mjd2010},
 \zelmani\ \citep{oao2012},
 the code described in \citet{ktk2016},
@@ -170,16 +172,17 @@ DG methods achieve high-order accuracy on a compact (nearest-neighbors only)
 stencil.
 This make them appealing for executing massively parallel simulations on
 supercomputing clusters.
+\ee{It can be argued that DG methods are favored for modeling neutrino transport, and to avoid complications when coupling hydro and neutrino transport, this motivates the development of DG methods for hydro.  DG methods are also able to capture shocks, which makes them preferred over continuous finite-element methods (often used in CFD applications).}
 
-CCSNe span several orders of magnitude in space.
+CCSN dynamics occur on different length scales that span several orders of magnitude.  \ee{Provide an example, e.g., gravitational collapse.}
 Because of this, it is necessary for 3D simulations to run with a computational
 mesh that is adaptive in the sense that it will adjust itself such that
 computational resources are concentrated in regions where they are most needed.
 This so-called adaptive mesh refinement (AMR) can be implemented in different
 ways.
-One way is known as ``patch-based" AMR, where chunks of the mesh, spanning
+One way is known as ``patch-based'' AMR \ee{``block-structured''?}, where chunks of the mesh, spanning
 several elements in each dimension, are refined.
-This is the method used by \amrex, a software framework designed to give
+This is the method used by \amrex\citeme, a software framework designed to give
 application codes the ability to run with AMR.
 Much of my dissertation work has focused on coupling \thornado\ to \amrex\ in
 order to give \thornado\ AMR capabilities (see Chapter~\ref{ch.mp} for details).
@@ -192,7 +195,8 @@ GR to some degree.
 Specifically, \zelmani, the code described in
 \citet{ktk2016}, and \nadafld\ use free evolution models;
 \cocov\ and \gmunu\ use \xcfc;
-and \fornax, \chimera, and \flashx\ use the effective potential.
+and \fornax, \chimera, and \flashx\ use the effective potential\citeme.
+\ee{Give a brief explanation of the effective potential approach.}
 The impact of GR has been investigated in 1D \citep{bdm2001,lmm2012}
 and 2D \citep{mjm2012,oc2018}.
 In 1D, \citet{bdm2001} have shown that GR leads to a more compact PNS than is
@@ -204,9 +208,10 @@ energy being deposited into the post-shock fluid.
 In 2D, \citet{mjm2012} showed that the treatment of gravity
 can be the difference between a failed and a successful explosion;
 specifically, in some cases, the oft-used
-``effective potential" approach \citep{mdj2006} leads to a dud, whereas
+``effective potential'' approach \citep{mdj2006} leads to a dud, whereas
 the more sophisticated (and more complicated to implement) \xcfc\ approach
-leads to an explosion.
+leads to an explosion.  
+\ee{Offer some criticism of the effective-potential approach(?): It is ad-hoc, and not based on a self-consistent theory of gravity}
 Additionally, a recent paper investigated the role of GR on the SASI
 using \thornado\ \citep{dem2023} (in press).
 They concluded that GR may have a significant impact on the SASI by drastically
@@ -223,20 +228,22 @@ Contributions to \thornado\ include adding a solver for the GRHD equations,
 coupling \thornado\ to \amrex, both for AMR and for the ability to run
 in parallel on multiple processors,
 and porting native \thornado\ (i.e., \thornado\ without \amrex)
-to run on GPUs.
+to run on GPUs.  \ee{And the coupling of the hydro solver to \poseidon, to enable, for the first time (?), general relativistic simulations of gravitational collapse with DG/CG methods, AMR, and tabulated nuclear EoS.}
 
+\ee{As a consequence of this, we are now in the position to realize general relativistic neutrino hydrodynamics.}
 The immediate outlook for this work is that, once the neutrino transport
 has been incorporated, \thornado\ will be able to perform CCSN simulations
-using DG methods.
+using DG methods \ee{with AMR}.
 It will be the first code to do so.
 A slightly further outlook is that \thornado\ has the potential to perform
 simulations of the post-merger phase of binary neutron star mergers
-using spectral methods for the neutrino transport.
+using spectral methods \ee{spectral methods?} for the neutrino transport.
+\ee{Add some discussion of possible scientific investigations that can be performed with such a tool.  This will speak to possible impacts of your thesis work.}
 
-This document is laid out such that Chapter~\ref{ch.sasi} is an adaptation
-of an accepted article on the effects of GR on the SASI,
-Chapter~\ref{ch.mp} is an adaptation of an article in preparation on our
-numerical methods for GRHD,
-and we close with a conclusion.
+This document \ee{thesis?} is structured as follows: Chapter~\ref{ch.sasi} is an adaptation
+of an accepted article \ee{accepted where?!} on the effects of GR on the SASI,
+Chapter~\ref{ch.mp} is an adaptation of an article in preparation \ee{for which journal?} on our
+numerical methods for GRHD in \thornado,
+and we close with conclusions in Chapter~\ref{}.
 
 %------------------------------------------------------------------------------%
