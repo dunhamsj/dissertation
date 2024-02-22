@@ -1,0 +1,77 @@
+\documentclass[10pt]{article}
+\usepackage[lmargin=1in,rmargin=1in]{geometry}
+\usepackage{setspace}
+
+\newcommand{\thornado}{\texttt{thornado}}
+
+\newcommand\Fontvi{\fontsize{9}{9.2}\selectfont}
+
+\begin{document}
+
+\pagenumbering{gobble}
+
+\begin{flushright}
+\underline{ASTROPHYSICS}
+\end{flushright}\vspace{1em}
+
+\flushleft
+
+\begin{center}
+\thornado-Hydro, xCFC: A Discontinuous Galerkin Hydrodynamics
+Solver for General Relativistic
+Core-Collapse Supernova Simulations
+\end{center}\vspace{1em}
+
+\begin{center}
+Samuel John Dunham
+\end{center}\vspace{1em}
+
+\centerline{\underline{Dissertation under the direction of
+Professor Kelly Holley--Bockelmann and Professor Eirik Endeve}}
+\vspace{1em}
+
+\begin{doublespace}
+
+Modeling core-collapse supernovae (CCSNe) has been an on-going effort
+since the 1960s.
+Despite advances in physics theory, physics experiments, and technology,
+consistent, multi-dimensional CCSN explosions are still difficult to achieve,
+and a consensus is yet to be reached regarding what physics is required.
+Here, we present the status of a novel simulation code, \thornado,
+which aims to simulate the neutrino-radiation kinetics
+and the stellar hydrodynamics of
+CCSNe using high-order discontinuous Galerkin methods
+under the extended conformally flat condition (xCFC), an approximation to GR.
+Specifically, we show the progress in implementing a
+solver for the general relativistic (GR)
+hydrodynamics equations and we show results from several test problems
+designed to demonstrate the abilities and capabilities of the code.
+This includes evolving a Kelvin--Helmholtz instability problem,
+a multi-dimensional blast wave, and
+the adiabatic collapse, bounce, and post-bounce phases
+of a realistic progenitor.
+These simulations are performed
+in parallel with MPI and with adaptive mesh refinement via a coupling
+to AMReX, a software framework designed for exascale systems.
+This adiabatic collapse test also demonstrates the coupling of \thornado\ to
+Poseidon, a hybrid spectral/finite-element xCFC metric solver
+that is also designed
+with an eye toward simulating CCSNe.
+We also analyze the performance of the solver with both
+strong- and weak-scaling tests.
+As a science application of our code,
+we show results from a study of the effects of GR on the
+standing accretion shock instability, a hydrodynamical instability
+that manifests in, among other scenarios, CCSNe.
+
+\end{doublespace}
+\vspace{3em}
+
+\noindent Approved \rule[-3pt]{3.5in}{.5pt} \hskip 0.1in %
+          Date     \rule[-3pt]{1.5in}{.5pt}
+\hspace*{1.3in} Kelly Holley-Bockelmann, Ph.D. \\[0.1in]
+\noindent Approved \rule[-3pt]{3.5in}{.5pt} \hskip 0.1in %
+          Date     \rule[-3pt]{1.5in}{.5pt}
+\hspace*{1.3in} Eirik Endeve, Ph.D.
+
+\end{document}
