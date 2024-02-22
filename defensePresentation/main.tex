@@ -1,0 +1,434 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------------%
+%	PACKAGES AND THEMES
+%------------------------------------------------------------------------------%
+
+\documentclass{beamer}
+
+\input{preamble.tex}
+\input{customCommands.tex}
+
+% --- TITLE PAGE SLIDE ---
+
+\title[Dissertation Defense]%
+{\thornado-Hydro, xCFC: A Discontinuous Galerkin Hydrodynamics %
+Solver for General Relativistic %
+Core-Collapse Supernova Simulations}
+
+\author{Samuel J. Dunham}
+\date{February 23, 2024}
+
+\begin{document}
+
+\begin{frame}
+
+  \maketitle
+
+  \vspace{-1em}
+
+  \begin{center}
+    Eirik Endeve (co-chair), %
+    Kelly Holley--Bockelmann (co-chair), \\
+    Anthony Mezzacappa, %
+    William Gabella, %
+    Sait Umar
+  \end{center}
+
+\end{frame}
+
+\begin{frame}
+
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.3\textwidth]{fig.thornado_logo.png}
+  \end{figure}
+
+  \begin{center}
+
+    \ul{t}oolkit for
+    \ul{h}igh-\ul{or}der
+    \ul{n}eutrino-r\ul{ad}iation hydr\ul{o}dynamics\\[1em]
+
+  \end{center}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Core-Collapse Supernovae}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.35\textwidth]{fig.CCSN_01.jpeg}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Core-Collapse Supernovae}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.4\textwidth]{fig.CCSN_02.jpeg}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Historical Interlude}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{fig.Newton.jpg}
+  \end{figure}
+https://reasonandreflection.wordpress.com/2014/02/23/the-key-to-physical-attraction-its-called-gravity-and-often-love/
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Historical Interlude}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=\textwidth]{fig.macEvolution.png}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Historical Interlude}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{fig.Einstein.jpg}
+  \end{figure}
+https://courses.lumenlearning.com/suny-osuniversityphysics/chapter/13-8-einsteins-theory-of-gravity/
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Importance of GR}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig.WhyGR.png}
+  \end{figure}
+  \begin{center}(Figure from \citet{lmt2001})\end{center}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Discontinuous Galerkin (DG) Method}
+
+  \Fontvi
+
+  \begin{equation*}
+    u\left(x\right)=1+0.1\,\sin\left(2\pi x\right)
+  \end{equation*}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig.sine.png}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Discontinuous Galerkin (DG) Method}
+
+  \Fontvi
+
+  \begin{equation*}
+    u\left(x\right)=1+0.1\,\sin\left(2\pi x\right)
+  \end{equation*}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig.sineWithLines.png}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Discontinuous Galerkin (DG) Method}
+
+  \Fontvi
+
+  \begin{equation*}
+    u\left(x\right)=1+0.1\,\sin\left(2\pi x\right)
+  \end{equation*}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig.sineWithLines_DG0.png}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Discontinuous Galerkin (DG) Method}
+
+  \Fontvi
+
+  \begin{equation*}
+    u\left(x\right)=1+0.1\,\sin\left(2\pi x\right)
+  \end{equation*}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig.sineWithLines_DG1.png}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Discontinuous Galerkin (DG) Method}
+
+  \Fontvi
+
+  \begin{equation*}
+    u\left(x\right)=1+0.1\,\sin\left(2\pi x\right)
+  \end{equation*}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig.sineWithLines_DG2.png}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Discontinuous Galerkin (DG) Method}
+
+  \Fontvi
+
+  \begin{equation*}
+    u_{h}\left(x,t\right)
+    :=\sum\limits_{i=1}^{N}
+      u_{i}\left(t\right)\,\ell_{i}\left(x\right)
+  \end{equation*}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig.DG_1D.png}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{fig.ConvergenceRates.png}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Standing Accretion Shock Instability}
+
+  Used \thornado{} to investigate the role of GR on the SASI%
+  \footnote{\citet{dem2020,dem2023}}
+
+  \begin{columns}[c]
+
+    \column{.6\textwidth}
+
+      \begin{figure}[htb!]
+        \centering
+        \includegraphics[width=0.9\textwidth]{fig.sasi.png}
+      \end{figure}
+
+    \column{.4\textwidth}
+
+      \begin{figure}[htb!]
+        \centering
+        \includegraphics[width=0.9\textwidth]{fig.sasi_GRvNR.pdf}
+      \end{figure}
+
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Mesh Refinement}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig.MeshRefinement_2D.png}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Kelvin--Helmholtz Instability}
+
+  \begin{center}
+    {\includegraphics[width=0.6\textwidth]{fig.KHI.pdf}}
+  \end{center}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Adiabatic Collapse (AMR, Collapse Phase)}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{fig.collapse.png}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Adiabatic Collapse (AMR, Post-Bounce Phase)}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{fig.postBounce.png}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Bibliography}
+
+  \Fontvi
+  \bibliography{main.bib}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Summary}
+
+  \begin{tabular}{cl}
+    \begin{tabular}{l}
+      \parbox{0.7\linewidth}%
+      {Can run pure hydro problems in GR with AMR}
+    \end{tabular}
+    \begin{tabular}{c}
+      \includegraphics[width=0.15\textwidth]{fig.KHI.pdf}
+    \end{tabular}
+  \end{tabular}
+
+  \begin{tabular}{cl}
+    \begin{tabular}{c}
+      \includegraphics[width=0.2\textwidth]{fig.Collapse.png}
+    \end{tabular}
+    \begin{tabular}{l}
+      \parbox{0.7\linewidth}%
+      {Can run hydro+self-gravity problems in GR with AMR}
+    \end{tabular}
+  \end{tabular}
+
+  \begin{tabular}{cl}
+    \begin{tabular}{l}
+      \parbox{0.7\linewidth}%
+      {Working on coupling GR transport to existing hydro+gravity modules}
+    \end{tabular}
+    \begin{tabular}{c}
+      \includegraphics[width=0.2\textwidth]{fig.PostBounce.png}
+    \end{tabular}
+  \end{tabular}
+
+\end{frame}
+
+\appendix
+
+\begin{frame}
+\frametitle{Slope Limiter}
+
+  \Fontvi
+  \begin{equation*}
+  u_{h}\left(x,t\right)
+  =\sum\limits_{n=1}^{N}
+  C_{n}\left(t\right)\,P_{n}\left(x\right)\implies
+  \tilde{u}_{h}\left(x,t\right)
+  =C_{1}\left(t\right)\,P_{1}\left(x\right)
+  +\tilde{C}_{2}\left(t\right)\,P_{2}\left(x\right)
+  \end{equation*}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{fig.MinMod.jpeg}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{3+1 Decomposition}
+
+  \begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig.1p1.png}
+  \end{figure}
+
+  \vspace{-2em}
+
+  \begin{equation*}
+    ds^{2}
+    =g_{\mu\nu}\,dx^{\mu}\,dx^{\nu}
+    =-\alpha^{2}\,dt^{2}
+     +\gamma_{ij}\left(dx^{i}+\beta^{i}\,dt\right)
+                 \left(dx^{j}+\beta^{j}\,dt\right)
+  \end{equation*}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Conformally-Flat Condition}
+
+  \begin{columns}[c]
+
+    \column{.5\textwidth}
+
+      Developed by \citet{wmm1996}, extended by \citet{ccd2009}
+
+      \begin{align*}
+        \gamma_{ij}\left(x\right)
+        &=\psi^{4}\left(x\right)\,\overline{\gamma}_{ij}\left(x^{i}\right) \\
+        K&=0,\ \p_{t}\,K=0 \\
+        &\hspace{-3em}\mathrm{(Always\ and\ everywhere)}
+      \end{align*}\vspace{1em}
+
+      \begin{itemize}
+        \item Exact in spherical symmetry!
+        \item Hyperbolic $\rightarrow$ Elliptic equations
+        \item Good for long-time simulations
+      \end{itemize}
+
+    \column{.5\textwidth}
+
+      Special case: Schwarzchild spacetime in isotropic coordinates
+      ($G=c=1$)
+
+      \begin{align*}
+        \alpha
+          &=\left(1+\frac{1}{2}\,\Phi\right)
+            \left(1-\frac{1}{2}\,\Phi\right)^{-1} \\
+        \psi
+          &=1-\frac{1}{2}\,\Phi \\
+        \beta^{i}
+          &=0,
+      \end{align*}
+      with
+      \begin{equation*}
+        \Phi\left(r\right):=-\frac{M}{r}
+      \end{equation*}
+
+  \end{columns}
+
+\end{frame}
+
+\end{document}
+%------------------------------------------------------------------------------%
