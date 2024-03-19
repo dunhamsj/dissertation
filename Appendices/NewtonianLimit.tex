@@ -108,7 +108,8 @@ With that, along with $\phi\ll1$, we have
   \approx\bs{S}\left(\bs{U}\right).
 \end{equation}
 Since one flat-space metric is as good as any other,
-we assume Cartesian coordinates for the remainder of this derivation.
+we assume Cartesian coordinates for the remainder of this derivation;
+i.e., $\gammabar_{ij}=\mathrm{diag}\left(1,1,1\right)$ and $\sqrt{\gammabar}=1$.
 
 \subsection{Mass Equation}
 
@@ -136,8 +137,9 @@ The gradient of $W$ is
 and the non-relativistic limit of $W$ is
 \begin{equation}
   W\approx1+\frac{1}{2}\,v^{k}v_{k}\sim1+\normv^{2},
-  \ \normv:=\left|\myol{v}\cdot\myol{v}\right|^{1/2}.
+  \ \normv:=\left|\myol{v}\cdot\myol{v}\right|^{1/2},
 \end{equation}
+where we do not include factors of order unity.
 Therefore, as far as scaling arguments go,
 \begin{align}
   \p_{t}\,W&\sim\frac{\normv^{2}}{\TF}\left(1+\normv^{2}\right) \\
@@ -248,7 +250,7 @@ With that, we have immediately
 \end{equation}
 
 \subsubsection{Source Term}
-Finally, we look at the sourcee term.
+Finally, we look at the source term.
 We have
 \begin{align}
   S_{S_{j}}
@@ -369,7 +371,7 @@ For the source term,
   S_{\tau}&=-\rho\,h\,W^{2}\,v^{j}\,\p_{j}\,\alpha \\
   &\approx-\rho\,h\,W^{2}\,v^{j}\,\p_{j}\left(1+\Phi\right) \\
   &=-\rho\,h\,W^{2}\,v^{j}\,\p_{j}\,\Phi \\
-  &\approx-rho\,v^{j}\,\p_{j}\,\Phi.
+  &\approx-\rho\,v^{j}\,\p_{j}\,\Phi.
 \end{align}
 Putting things together,
 \begin{equation}

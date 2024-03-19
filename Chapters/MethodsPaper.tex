@@ -15,13 +15,12 @@ solver aiming to simulate core-collapse supernovae using discontinuous Galerkin
 (DG) methods.
 In particular, we describe the incorporation of general relativity (GR) under
 the extended conformally-flat condition (\xcfc) into the hydrodynamics solver,
-the coupling of \thornado\ to \poseidon, an \xcfc\ gravity solver,
-and the coupling of \thornado\ to \amrex, a software framework that provides
-tools for adaptive mesh refinement (AMR) and parallel computation via MPI.
+the coupling of \thornado\ to \poseidon, an \xcfc\ gravity solver, and the
+coupling of \thornado\ to \amrex, a software framework that provides tools for
+adaptive mesh refinement (AMR) and parallel computation via MPI.
 We detail our implementation of the DG method to solve the GR hydrodynamics
-equations and describe results from several test problems and also from two
-applications: a two-dimensional GR standing accretion shock instability with
-AMR and the adiabatic collapse, bounce, and post-bounce evolution of a
+equations and describe results from several test problems and also from one
+application: The adiabatic collapse, bounce, and post-bounce evolution of a
 15 Solar mass progenitor with AMR.
 
 %------------------------------------------------------------------------------%
@@ -96,7 +95,7 @@ tks2012,
 mdb2013,
 roa2016,
 gmm2023%
-}
+}.
 Moreover, 2D hydrodynamics simulations revealed that the stalled accretion
 shock is unstable to non-radial perturbations \citep[SASI;][]{bmd2003,bm2006},
 and that this instability has qualitative impacts on the evolution of the
@@ -182,7 +181,7 @@ obtained with Newtonian gravity, which leads to less extended neutrinospheres
 and harder neutrino spectra.
 Because most neutrino-matter cross-sections relevant to CCSNe are proportional to
 the square of the rms neutrino energy, harder neutrino spectra lead to more
-energy being deposited into the post-shock fluid \sd{Is this right? \citeme}.
+energy being deposited into the post-shock fluid.
 In 2D, \citet{mjm2012} showed that the treatment of gravity
 can be the difference between a failed and a successful explosion;
 specifically, in some cases, the oft-used
@@ -190,7 +189,7 @@ specifically, in some cases, the oft-used
 the more sophisticated (and more complicated to implement) \xcfc\ approach
 leads to an explosion.
 Additionally, a recent paper investigated the role of GR on the SASI
-using \thornado\ \citep{dem2023} (in press).
+using \thornado\ \citep{dem2024}.
 They concluded that GR may have a significant impact on the SASI by drastically
 lowering the rate at which the instability grows.
 For these reasons, we advocate the field move to performing simulations
@@ -231,9 +230,7 @@ the code described in \citet{ktk2016},
 \fornax\ \citep{sdb2019},
 \nadafld\ \citep{rjj2019},
 \chimera\ \citep{bbh2020},
-and \gmunu\ \citep{cht2023}
-\sd{GRaM-X?}%
-.
+and \gmunu\ \citep{cht2023}.
 Regarding the approximations to GR, \zelmani, the code described in
 \citet{ktk2016}, and \nadafld\ use free evolution models;
 \cocov\ and \gmunu\ use \xcfc;
@@ -251,8 +248,8 @@ cells, it can cause the code to be less performant on distributed memory systems
 Given that CCSN simulations need to be evolved for long times
 (e.g., $\mc{O}\left(1\,\s\right)$)
 \citeme, we have developed a
-solver for the GR hydrodynamics (GRHD) equations under the 3+1 decomposition of
-spacetime and the \xcfc, an approximation to GR.
+solver for the GR hydrodynamics (GRHD) equations under the 3+1
+decomposition of spacetime and the \xcfc, an approximation to GR.
 The CFC/\xcfc\ approximation is exact in spherical
 symmetry and has been demonstrated to be accurate for slowly-rotating stellar
 cores \citep{dfm2002,mjd2010}.
@@ -310,7 +307,7 @@ with repeated Greek indices running from
 0 to 3 and Latin indices running from 1 to 3.
 We also use the shorthand notation for partial derivatives,
 $\p_{\mu}:=\p/\p x^{\mu}$, where $\p/\p x^{\mu}$
-is the $\mu$-th coordinate-induced basis vector under the 3+1 decomposition
+is the $\mu$\myth\ coordinate-induced basis vector under the 3+1 decomposition
 of spacetime (see \secref{ss.3+1}),
 and we use the metric signature $\left(-,+,+,+\right)$.
 Unless otherwise specified, all tensor components are assumed to be those
@@ -322,18 +319,17 @@ in the coordinate-induced basis.
 We model spacetime as a four-dimensional manifold,
 $\mc{M}\cong\bb{R}\times\Sigma$, where $\mc{M}$ is assumed to be composed
 of a collection of non-intersecting spacelike hypersurfaces, $\Sigma_{t}$,
-which themselves are obtained from a three-dimensional manifold $\Sigma$ via a
-parameter-dependent embedding map,
-$e_{t}$ (i.e., $\Sigma_{t}:=e_{t}\left(\Sigma\right)$),
-where the parameter $t$ is the coordinate time.
+which themselves are obtained from a three-dimensional manifold,
+$\Sigma$, via a parameter-dependent embedding map,
+$e_{t}$, where the parameter $t$ is the coordinate time;
+i.e., $\Sigma_{t}:=e_{t}\left(\Sigma\right)$.
 This so-called 3+1 decomposition of spacetime, with events labeled by
 $x=\left(x^{\mu}\right)=\left(x^{0},x^{i}\right)=\left(t,x^{i}\right)$,
 yields a natural choice of
 basis, namely the coordinate-induced basis:
 $\left\{\p_{\mu}\right\}=\left\{\p_{0},\p_{i}\right\}
 =\left\{\p_{t},\p_{i}\right\}$.
-The squared infinitesimal spacetime interval, $ds^{2}$, in this coordinate
-system, is
+The squared infinitesimal spacetime interval, $ds^{2}$, in this basis, is
 \begin{equation}
   ds^{2}:=g_{\mu\nu}\,dx^{\mu}\,dx^{\nu}=-\alpha^{2}\,dt^{2}
   +\gamma_{ij}\left(dx^{i}+\beta^{i}\,dt\right)
@@ -343,17 +339,17 @@ with $g_{\mu\nu}$ the components
 of the spacetime metric on $\mc{M}$;
 $\alpha$ the lapse function,
 relating how much proper time elapses between two adjacent hypersurfaces;
-$\beta^{i}$ the $i$-th component of the shift vector,
+$\beta^{i}$ the $i$\myth\ component of the shift vector,
 conveying how the spatial coordinates of a
 point $p\in\Sigma$ shift from one hypersurface to the next;
-and $\gamma_{ij}$ the $ij$-th component of
+and $\gamma_{ij}$ the $ij$\myth\ component of
 the spatial three-metric, which specifies the intrinsic geometry of
 $\Sigma_{t}$.
 The determinant of $\gamma_{ij}$ is denoted by $\gamma$; i.e.,
 $\gamma:=\mathrm{det}\left(\gamma_{ij}\right)$.
 
 Under this decomposition, an Eulerian observer is defined to be an
-observer at rest with respect to $\Sigma_{t}$, the $\mu$-th component of their
+observer at rest with respect to $\Sigma_{t}$, the $\mu$\myth\ component of their
 four-velocity being denoted by $n^{\mu}$.
 The four-velocity is, by definition, orthogonal to $\Sigma_{t}$ and satisfies
 the normalization $n^{\mu}n_{\mu}=-1$.
@@ -369,7 +365,8 @@ In addition to the geometry intrinsic to the hypersurfaces, there is a geometry
 associated with how the $\Sigma_{t}$ are embedded in $\mc{M}$.
 This is quantified by the (purely spatial) extrinsic curvature tensor,
 whose components are denoted by $K_{ij}$.
-For more details, see, e.g., \citet{bs2010,g2012,rz2013}.
+For more details on the 3+1 formalism
+see, e.g., \citet{bs2010,g2012,rz2013}.
 
 \subsection{\xcfc\ Equations}
 
@@ -400,21 +397,21 @@ Under the \xcfc, the Einstein field equations become a system of eight
 coupled, nonlinear, elliptic partial differential equations \citep{ccd2009},
 \begin{subequations}
   \begin{align}
-    \Deltabar\,X^{i}+\frac{1}{3}\,\Dbar^{i}\,\Dbar_{j}\,X^{j}
+    \Deltabar\,X^{i}+\frac{1}{3}\,\Dbar^{i}\left(\Dbar_{j}\,X^{j}\right)
     &=8\,\pi\,\gammabar^{ij}\,S^{*}_{j},\label{eq.X}\\
     \Deltabar\,\psi&=-2\,\pi\,\psi^{-1}\left(\tau^{*}+D^{*}\right)
-    -\frac{1}{8}\,\psi^{-7}\,\gammabar_{i\ell}\,\gammabar_{jm}\,
-    \hat{A}^{\ell m}\,\hat{A}^{ij},\label{eq.psi}\\
-    \Deltabar\left(\alpha\,\psi\right)&=2\,\pi\,\alpha\,\psi^{-1}
-    \left(\tau^{*}+D^{*}+2\,P^{*}\right)+\frac{7}{8}\,\alpha\,\psi^{-7}\,
-    \gammabar_{i\ell}\,\gammabar_{jm}\,\hat{A}^{\ell m}\,\hat{A}^{ij},
+    -\frac{1}{8}\,\psi^{-7}\,\hat{A}_{ij}\,\hat{A}^{ij},\label{eq.psi}\\
+    \Deltabar\,\phi&=2\,\pi\,\phi\,\psi^{-2}
+    \left(\tau^{*}+D^{*}+2\,P^{*}\right)+\frac{7}{8}\,\phi\,\psi^{-8}\,
+    \hat{A}_{ij}\,\hat{A}^{ij},
     \label{eq.alphaPsi}\\
     \Deltabar\,\beta^{i}
     +\frac{1}{3}\,\Dbar^{i}\left(\Dbar_{j}\,\beta^{j}\right)&=
     \Dbar_{j}\left(2\,\alpha\,\psi^{-6}\hat{A}^{ij}\right),\label{eq.beta}
   \end{align}
 \end{subequations}
-where $X^{i}$ is the $i$-th component of an auxiliary vector field,
+where $\phi:=\alpha\,\psi$,
+$X^{i}$ is the $i$\myth\ component of an auxiliary vector field,
 $\hat{A}^{ij}=\psi^{10}\,K^{ij}
 =\left(LX\right)^{ij}+\hat{A}^{ij}_{\mathrm{TT}}\approx
 \left(LX\right)^{ij}:=\Dbar^{i}\,X^{j}+\Dbar^{j}\,X^{i}
@@ -426,7 +423,7 @@ is the flat-space Laplacian, with $\Dbar_{k}$ the covariant derivative
 along the basis vector $\p/\p x^{k}$
 compatible with the flat-space metric;
 i.e., $\Dbar_{k}\,\gammabar_{ij}=0$.
-The object $\hat{A}^{ij}_{\mathrm{TT}}$ is the $ij$-th component of the
+The object $\hat{A}^{ij}_{\mathrm{TT}}$ is the $ij$\myth\ component of the
 transverse traceless part of $\hat{A}^{ij}$ and was shown to be much
 smaller than $\hat{A}_{ij}$ for our application,
 and so is safely negligible under conditions
@@ -445,21 +442,21 @@ We solve the hydrodynamics equations,
 \begin{align}
   \nabla_{\nu}\,J^{\nu}&=0,\label{eq.ConsOfMass}\\
   \nabla_{\nu}\,T^{\mu\nu}&=-G^{\mu}\label{eq.ConsOfTmunu},\\
-  \nabla_{\nu}\,J_{e}^{\nu}&=-L\label{eq.ConsOfElectron},
+  \nabla_{\nu}\,\myJe^{\nu}&=-L\label{eq.ConsOfElectron},
 \end{align}
-where $J^{\nu}$ and $J_{e}^{\nu}$ are the $\nu$-th components of, respectively,
+where $J^{\nu}$ and $\myJe^{\nu}$ are the $\nu$\myth\ components of, respectively,
 the baryon mass density current four-vector and
 the electron number density current four-vector,
 defined as
 \begin{align}
   J^{\nu}&:=\rho\,u^{\nu},\\
-  J_{e}^{\nu}&:=\myne\,u^{\nu},
+  \myJe^{\nu}&:=\myne\,u^{\nu},
 \end{align}
 with $\rho$ and $\myne$, respectively, the baryon mass density
 and electron number density, both as measured by a comoving observer
 (i.e., an observer comoving with the fluid),
-$u^{\nu}$ the $\nu$-th component of the four-velocity of the fluid,
-and $T^{\mu\nu}$ the $\mu\nu$-th component of the
+$u^{\nu}$ the $\nu$\myth\ component of the four-velocity of the fluid,
+and $T^{\mu\nu}$ the $\mu\nu$\myth\ component of the
 stress-energy tensor of the fluid (assumed to be non-viscous),
 defined as
 \begin{equation}
@@ -556,14 +553,14 @@ are the evolved quantities, with
   \myNe&:=\myne\,W,
 \end{alignat}
 where $W:=\left(1-v_{i}\,v\,^{i}\right)^{-1/2}$ and $v_{j}=\gamma_{ij}\,v^{i}$
-are, respectively, the Lorentz factor and the $j$-th component of the covariant
+are, respectively, the Lorentz factor and the $j$\myth\ component of the covariant
 three-velocity of the fluid, both as measured by an Eulerian observer.
 The quantity $D$ is the conserved baryon rest mass density,
-$S_{j}$ is the $j$-th component of the Eulerian momentum density,
+$S_{j}$ is the $j$\myth\ component of the Eulerian momentum density,
 $E$ is the Eulerian energy density,
 and $\myNe$ is the conserved electron number density.
 The vector $\bs{F}^{i}\left(\bs{U}\right)$
-is the vector of fluxes in the $i$-th spatial dimension,
+is the vector of fluxes in the $i$\myth\ spatial dimension,
 \begin{equation}
   \bs{F}^{i}\left(\bs{U}\right)
   :=\begin{pmatrix}
@@ -637,9 +634,12 @@ DG methods for hyperbolic conservation laws
 \citep{cs1988,cs1989,cls1989,chs1990,cs1998}.
 More recently, DG methods have been applied in astrophysical scenarios; e.g.,
 \tenet\ \citep{sbc2015}
-for solving the non-relativistic hydrodynamics equations
-and \spectre\ \citep{kff2017}
-for solving the GR magneto-hydrodynamics equations.
+for solving the non-relativistic hydrodynamics equations,
+\spectre\ \citep{kff2017}
+for solving the GR magneto-hydrodynamics equations,
+and \thornado, for solving both the non-relativistic hydrodynamics equations
+\citep{ebd2019,pbe2021} and the equations of two-moment spectral neutrino
+transport \citep{ceh2019,lec2021,leh2023}.
 
 We begin by discussing all aspects of our implementation for the single-level
 case, and then, in \secref{ss.mr}, discuss mesh refinement, along with the
@@ -658,14 +658,14 @@ $\mc{T}=\bigcup\limits_{\bs{K}\in\mc{D}}\bs{K}$, where
 \end{equation}
 with $d$ the number of active spatial dimensions and
 $x^{i}_{\textsc{l}\left(\textsc{h}\right)}$ the lower (higher) boundaries of
-$\bs{K}$ in the $i$-th spatial dimension.
+$\bs{K}$ in the $i$\myth\ spatial dimension.
 Note that to be precise, we should write
 $x^{i,\bs{K}}_{\textsc{l},\left(\textsc{h}\right)}$
 in order to differentiate the end-points of $\bs{K}$ from the end-points
 of any other element.
 However, where no confusion can arise,
 we suppress the extra notation in order to simplify the expressions.
-We also define the area of an interface of $\bs{K}$ in the $i$-th spatial
+We also define the surface element of $\bs{K}$ in the $i$\myth\ spatial
 dimension, $\wt{\bs{K}}^{i}$, as
 \begin{equation}
   \wt{\bs{K}}^{i}
@@ -686,7 +686,7 @@ with
 \end{equation}
 the width of $K^{i}$.
 The coordinate area of an element interface
-in the $i$-th spatial dimension,
+in the $i$\myth\ spatial dimension,
 $\left|\wt{\bs{K}}^{i}\right|$, is defined as
 \begin{equation}
   \left|\wt{\bs{K}}^{i}\right|
@@ -709,18 +709,19 @@ where
   x^{i}_{\textsc{c}}
   :=\frac{1}{2}\left(x^{i}_{\textsc{l}}+x^{i}_{\textsc{h}}\right)
 \end{equation}
-is the center of $K^{i}$.
+is the geometric center of $K^{i}$.
 
 \subsubsection{Quadrature}
 
 We evaluate 1D volume integrals numerically with the $N$-point
-Legendre--Gauss quadrature rule, using points $S_{\textsc{LG}}\left(N\right)$,
+Legendre--Gauss (LG) quadrature rule, using points $S_{\textsc{LG}}\left(N\right)$,
 which integrates polynomials up to degree $2N-1$ exactly.
 We opt for the collocation method \citep{bfg2013},
 in which the grid-points of the
 reference element coincide with the quadrature points;
 this eases the computational workload at the expense of accuracy for
 high-degree polynomials, which we don't consider here.
+
 For example, the integral of a 1D polynomial over the 1D reference element, $I$,
 $P:I\to\bb{R}$, is defined as
 \begin{equation}
@@ -734,7 +735,7 @@ where
   \hspace{1em}\mc{N}:=\left\{1,\cdots,N\right\},
 \end{equation}
 $\eta_{q}\in S_{\textsc{LG}}\left(N\right)$, and
-$w_{q}$ is the $q$-th Legendre--Gauss quadrature weight,
+$w_{q}$ is the $q$\myth\ Legendre--Gauss quadrature weight,
 normalized such that $\sum_{q\in\mc{N}}w_{q}=1$.
 Note that even if the degree of the polynomial is greater than
 $2N-1$ (which arises in cases of non-Cartesian metrics),
@@ -744,16 +745,24 @@ tensor product of the Legendre--Gauss quadrature rule.
 
 \subsubsection{Polynomial Approximation}
 
-For each $\bs{K}\in\mc{T}$, we define an approximation space,
-$\bb{V}^{k}_{h}\left(\bs{K}\right)$,
-composed of the $d$-dimensional tensor product
+We begin by defining, $\forall\bs{K}\in\mc{T}$, the space of functions
+$\bb{Q}^{k}\left(\bs{K}\right)$,
 \begin{equation}
-  \bb{V}^{k}_{h}\left(\bs{K}\right)
+  \bb{Q}^{k}\left(\bs{K}\right)
   :=\bigotimes\limits_{i=1}^{d}\bb{P}^{k}\left(K^{i}\right),
 \end{equation}
 where $\bb{P}^{k}\left(K^{i}\right)$ is
-the space of 1D polynomials of maximal degree $k$ in the $i$-th spatial
+the space of 1D polynomials of maximal degree $k$ in the $i$\myth\ spatial
 dimension with domain $K^{i}$.
+With the $\bb{Q}^{k}\left(\bs{K}\right)$, we define a global space of functions,
+$\bb{V}_{h}$,
+\begin{equation}
+  \bb{V}_{h}:=\left\{\phi_{h}:
+  \phi_{h}\big|_{\bs{K}}\in\bb{Q}^{k}\left(\bs{K}\right),
+  \forall\bs{K}\in\mc{T}\right\}.
+\end{equation}
+The space $\bb{V}_{h}$ is called the approximation space.
+
 We approximate the true (unknown)
 solution, $\bs{U}\left(\bs{x},t\right)$,
 with polynomials $\bs{U}_{h}\in\bb{V}^{k}_{h}\left(\bs{K}\right)$,
@@ -776,7 +785,7 @@ defined as
 where $\bc{N}:=\bigtimes_{i=1}^{d}\mc{N}$
 and $\bs{i}:=\left(i_{1},\cdots,i_{d}\right)$.
 The $\bs{x}_{\bs{i}}$ are the physical locations of the grid-points
-of the $\bs{K}$-th element,
+of the $\bs{K}$\myth\ element,
 which we choose to be the appropriately mapped
 Legendre--Gauss quadrature points, $S_{\textsc{LG}}\left(N\right)$
 (see \myeqref{eq.mapping}).
@@ -827,7 +836,7 @@ $\bs{F}^{i}\left(\bs{U}_{h}\right)$,
 with a numerical flux function,
 $\wh{\bs{F}}^{i}\left(\bs{U}_{h}^{-},\bs{U}_{h}^{+}\right)$,
 where $\bs{U}_{h}^{-(+)}$ represents the solution after being interpolated
-to the element interface in the $i$-th spatial dimension from the element
+to the element interface in the $i$\myth\ spatial dimension from the element
 directly below(above) the interface.
 Doing this yields
 (again, $\forall\bs{K}\in\mc{T}$ and
@@ -869,7 +878,7 @@ conservation across element interfaces.
 We have implemented both the HLL \citep{hll1983}
 and relativistic HLLC \citep{mb2005} numerical flux functions.
 For all tests, we use the HLL numerical flux function,
-which is defined in the $i$-th spatial dimension as
+which is defined in the $i$\myth\ spatial dimension as
 \citep{mb2005}
 \begin{equation}
   \wh{\bs{F}}_{\textsc{HLL}}^{i}\left(\bs{U}_{h}^{-},\bs{U}_{h}^{+}\right)
@@ -941,7 +950,7 @@ For problems with \eos s that do depend on the electron fraction
 (e.g., the adiabatic collapse problem),
 we do not use characteristic limiting.
 
-\subsubsection{Bound-Enforcing Limiter}
+\subsubsection{Bound-enforcing Limiter}
 
 The slope limiter mitigates numerical oscillations, but the slope-limited
 solution can still be unphysical at some grid-points.
@@ -960,7 +969,7 @@ primitive fields also acts as a bound-enforcing limiter
 To evolve \myeqref{eq.weak1} in time, we first evaluate the integrals using the
 Legendre--Gauss quadrature rule, yielding, with
 $\bs{U}^{*}_{\bs{k}}:=\left(\psi_{\bs{k}}\right)^{6}\,\bs{U}_{\bs{k}}$,
-the so-called semi-discrete form,
+the form of the equations we implement in \thornado,
 \begin{align}
 \begin{split}
   &\td{\bs{U}^{*}_{\bs{k}}}{t}
@@ -989,12 +998,12 @@ the so-called semi-discrete form,
 \end{split}
 \label{eq.semiDis}
 \end{align}
-where $w_{k_{i}}$ is the $k_{i}$-th Legendre--Gauss quadrature weight
-in the $i$-th spatial dimension,
+where $w_{k_{i}}$ is the $k_{i}$\myth\ Legendre--Gauss quadrature weight
+in the $i$\myth\ spatial dimension,
 $\sqrt{\gammabar_{\bs{k}}}$ is the flat-space metric determinant
-evaluated at the $\bs{k}$-th grid-point,
+evaluated at the $\bs{k}$\myth\ grid-point,
 and $\widetilde{\bs{k}}_{i}$ is a grid-point on the element interface
-in the $i$-th spatial dimension corresponding to the grid-point $\bs{k}$.
+in the $i$\myth\ spatial dimension corresponding to the grid-point $\bs{k}$.
 
 Because this system of equations is not stiff, we are able to use
 explicit methods for all degrees of freedom over the entire domain, and so we
@@ -1006,7 +1015,7 @@ step as a convex combination of forward-Euler timesteps,
 subject to a CFL-like condition
 \citep{cs2001}.
 Unless stated otherwise, we use $C_{\textsc{CFL}}=0.5$,
-where, for a $k$-th-order accurate method in $d$ spatial dimensions,
+where, for a $k$\myth-order accurate method in $d$ spatial dimensions,
 \begin{equation}
   \Delta t
   =\frac{C_{\textsc{CFL}}}{d\left(2\,k+1\right)}
@@ -1017,7 +1026,7 @@ where, for a $k$-th-order accurate method in $d$ spatial dimensions,
   {\left|\lambda^{i}_{\bs{k}}\right|}\right)_{\bs{K}}\right)\right),
 \end{equation}
 with $\lambda^{i}$ the fastest
-signal-speed in the $i$-th spatial dimension, taken over the entire domain.
+signal-speed in the $i$\myth\ spatial dimension, taken over the entire domain.
 
 We define $u_{h}$ as the collection of all degrees of freedom over the
 entire domain; i.e.,
@@ -1031,7 +1040,6 @@ With this, \myeqref{eq.semiDis} becomes
 where $\mc{L}$ is a nonlinear operator that represents the entire RHS of
 \myeqref{eq.semiDis}, over the entire domain.
 An example of a single stage in the algorithm is detailed in \figref{fig.TS}
-\sd{This is a work-in-progress and I'm open to suggestions}.
 In \figref{fig.TS}, all subroutines operate on the entire grid;
 i.e., they operate on all levels of refinement.
 %------------------------------------------------------------------------------%
@@ -1106,199 +1114,6 @@ the step.}
 \end{figure}
 %------------------------------------------------------------------------------%
 
-%%------------------------------------------------------------------------------%
-%\begin{algorithm}\label{alg.TS}
-%%\setstretch{1.35}
-%\SetAlgoLined
-%\KwResult{Fluid and metric variables at timestep $t^{n+1}$:
-%$u_{h}^{n+1}$, $g_{h}^{n+1}$}
-%Come in with $g^{n}_{h}$ (includes $\psi_{h}^{n}$, $\alpha_{h}^{n}$,
-%$\beta_{h}^{i,n}$, $\gamma^{n}_{h,ij}$,
-%and $K_{h,ij}^{n}$)
-%and $u^{n}_{h}:=\Lambda_{\textsc{bel}}\left(\Lambda_{\textsc{sl}}
-%\left(\left(u^{n}_{h}\right)\right)\right)$
-%
-%\texttt{CALL MultiplyByPsi6}
-%$\left(\intin\ \psi_{h}^{n},
-%       \intin\ u^{n}_{h},
-%       \intout\ \left(u^{n}_{h}\right)^{*}\right)$
-%
-%$du^{*}_{h}\left[1:s\right]=0$
-%
-%$g_{h}=g_{h}^{n}$
-%
-%\For{$iS=1,s$}
-%{
-%  $u^{*}_{h}=\left(u_{h}^{n}\right)^{*}$
-%
-%  \For{$jS=1,iS-1$}
-%  {
-%    \If{$a\left(iS,jS\right)\neq0$}
-%    {
-%      \texttt{CALL AddIncrement}
-%      $\left(\intin\ du^{*}_{h}\left[jS\right],
-%             \intinout\ u^{*}_{h}\right)$
-%    }
-%  }
-%  \If{{\normalfont\texttt{ANY}}$\left(a(:,iS)\neq0\right)$
-%      {\normalfont\texttt{OR}} $w\left(iS\right)\neq0$}
-%  {
-%    \eIf{( $iS \neq 1$ )}
-%    {
-%      \texttt{CALL ComputeMatterSources}
-%      $\left(\intin\ g_{h},
-%             \intin\ u^{*}_{h},
-%             \intout\ E^{*}_{h},
-%             \intout\ S^{*}_{h,i}\right)$
-%
-%      \texttt{CALL ComputeConformalFactor}
-%      $\left(\intin\ E^{*}_{h},
-%             \intin\ S^{*}_{h,i},
-%             \intout\ \psi_{h},
-%             \intinout\ g_{h}\right)$
-%
-%      \texttt{CALL DivideByPsi6}
-%      $\left(\intin\ \psi_{h},
-%             \intin\ \left(u^{n}_{h}\right)^{*},
-%             \intout\ u^{n}_{h}\right)$
-%
-%      \texttt{CALL ApplySlopeLimiter}
-%      $\left(\intin\ g_{h},
-%             \intin\ u_{h},
-%             \intout\ \Lambda_{\textsc{sl}}\left(u_{h}\right)\right)$
-%
-%      \texttt{CALL ApplyBoundEnforcingLimiter}
-%      $\left(\intin\ g_{h},
-%             \intin \Lambda_{\textsc{sl}}\left(u_{h}\right),
-%             \intout\ \Lambda_{\textsc{bel}}\left(\Lambda_{\textsc{sl}}
-%                      \left(u_{h}\right)\right)\right)$
-%
-%      $\tilde{u}_{h}=\Lambda_{\textsc{bel}}\left(\Lambda_{\textsc{sl}}
-%         \left(u_{h}\right)\right)$
-%
-%      \texttt{CALL MultiplyByPsi6}
-%      $\left(\intin\ \psi_{h},
-%             \intin\ \tilde{u}_{h},
-%             \intout \tilde{u}^{*}_{h}\right)$
-%
-%      \texttt{CALL ComputePressureTensorTrace}
-%      $\left(\intin\ g_{h},
-%             \intin\ \tilde{u}^{*}_{h},
-%             \intout\ P^{*}_{h}\right)$
-%
-%      \texttt{CALL ComputeLapseAndShift}
-%      $\left(\intin\ g_{h},
-%             \intin\ P^{*}_{h},
-%             \intout\ \alpha_{h},
-%             \intout\ \beta_{h}^{i}\right)$
-%    } % iS \neq 1
-%    {
-%      $\psi_{h}=\psi_{h}^{n}$
-%
-%      $g_{h}=g_{h}^{n}$
-%
-%      $\tilde{u}^{*}_{h}=u^{*}_{h}$
-%    } % iS = 1
-%
-%    \texttt{CALL DivideByPsi6}
-%    $\left(\intin\ \psi_{h},
-%           \intin\ \tilde{u}^{*}_{h},
-%           \intout\ \tilde{u}_{h}\right)$
-%
-%    \texttt{CALL ComputeIncrement\_Fluid}
-%    $\left(\intin\ g_{h},
-%           \intin\ \tilde{u}_{h},
-%           \intout\ du^{*}_{h}\left[iS\right]\right)$
-%
-%    \texttt{CALL DivideByPsi6}
-%    $\left(\intin\ \psi_{h},
-%           \intin\ du^{*}_{h}\left[iS\right],
-%           \intout\ du_{h}\left[iS\right]\right)$
-%
-%    \texttt{CALL ApplyFluxCorrections}
-%    $\left(\intinout du_{h}\left[iS\right]\right)$
-%
-%    \texttt{CALL MultiplyByPsi6}
-%    $\left(\intin\ \psi_{h},
-%           \intin\ du_{h}\left[iS\right],
-%           \intout\ du^{*}_{h}\left[iS\right]\right)$
-%  }  % \If{{\normalfont\texttt{ANY}}$\left(a(:,iS)\neq0\right)$
-%     % {\normalfont\texttt{OR}} $w\left(iS\right)\neq0$}
-%
-%} % \For{$iS=1,s$}
-%\For{$iS=1,s$}
-%{
-%  \If{$w\left(iS\right)\neq0$}
-%  {
-%    \texttt{CALL AddIncrement\_Fluid}
-%    $\left(\intin\ du^{*}_{h}\left[iS\right],
-%           \intinout\ \left(u_{h}^{n}\right)^{*}\right)$
-%  }
-%}
-%
-%$\left(u_{h}^{n+1}\right)^{*}=\left(u_{h}^{n}\right)^{*}$
-%
-%\texttt{CALL ComputeMatterSources}
-%$\left(\intin\ g_{h},
-%       \intin\ \left(u_{h}^{n+1}\right)^{*},
-%       \intout\ E^{*}_{h},
-%       \intout\ S^{*}_{h,i}\right)$
-%
-%\texttt{CALL ComputeConformalFactor}
-%$\left(\intin\ E^{*}_{h},
-%       \intin\ S^{*}_{h,i},
-%       \intout\ \psi^{n+1}_{h},
-%       \intinout\ g_{h}\right)$
-%
-%\texttt{CALL DivideByPsi6}
-%$\left(\intin\ \psi^{n+1}_{h},
-%       \intin\ \left(u^{n+1}_{h}\right)^{*},
-%       \intout\ u^{n+1}_{h}\right)$
-%
-%\texttt{CALL ApplySlopeLimiter}
-%$\left(\intin\ g_{h},
-%       \intin\ u^{n+1}_{h},
-%       \intout\ \Lambda_{\textsc{sl}}\left(u^{n+1}_{h}\right)\right)$
-%
-%\texttt{CALL ApplyBoundEnforcingLimiter}
-%$\left(\intin\ g_{h},
-%       \intin\ \Lambda_{\textsc{sl}}\left(u^{n+1}_{h}\right),
-%       \intout\ \Lambda_{\textsc{bel}}\left(
-%                \Lambda_{\textsc{sl}}\left(
-%                u^{n+1}_{h}\right)\right)\right)$
-%
-%$\tilde{u}^{n+1}_{h}
-%  =\Lambda_{\textsc{bel}}\left(\Lambda_{\textsc{sl}}
-%   \left(u^{n+1}_{h}\right)\right)$
-%
-%\texttt{CALL MultiplyByPsi6}
-%$\left(\intin\ \psi^{n+1}_{h},
-%       \intin\ \tilde{u}^{n+1}_{h},
-%       \intout\ \left(\tilde{u}^{n+1}_{h}\right)^{*}\right)$
-%
-%\texttt{CALL ComputePressureTensorTrace}
-%$\left(\intin\ g_{h},
-%       \intin\ \left(\tilde{u}^{n+1}_{h}\right)^{*},
-%       \intout\ P^{*}_{h}\right)$
-%
-%\texttt{CALL ComputeLapseAndShift}
-%$\left(\intin\ g_{h},
-%       \intin\ P^{*}_{h},
-%       \intout\ \alpha_{h},
-%       \intout\ \beta^{i}_{h}\right)$
-%
-%\texttt{CALL DivideByPsi6}
-%$\left(\intin\ \psi^{n+1}_{h},
-%       \intin\ \left(\tilde{u}^{n+1}_{h}\right)^{*},
-%       \intout\ \tilde{u}^{n+1}_{h}\right)$
-%
-%$u^{n+1}_{h}=\tilde{u}^{n+1}_{h}$
-%
-%$g^{n+1}_{h}=g_{h}$
-%
-%\caption{Explicit solve for hydro with xCFC gravity solver}
-%\end{algorithm}
-
 \subsection{Primitive Variable Recovery}
 \label{ss.primitiveRecovery}
 
@@ -1362,7 +1177,7 @@ and where $\bs{k}_{\bj}$ is defined as
           \forall i\in\left\{1,\cdots,d\right\}\right\},
 \end{equation}
 with $x^{i}_{\textsc{l(h)},\left(j_{i}\right)}$ the lower (higher) boundaries
-of $\bs{k}_{\bj}$ in the $i$-th spatial dimension.
+of $\bs{k}_{\bj}$ in the $i$\myth\ spatial dimension.
 We define the coordinate volume, coordinate areas, element widths, and
 central values similarly as we have done for $\bs{K}$ (see \secref{sss.sldd}).
 
@@ -1406,8 +1221,8 @@ $\forall\bs{j}\in\bc{R}$,
   \bs{u}^{\bj}_{\bs{i}}\left(t\right)\,
   \ell^{\bj}_{\bs{i}}\left(\bs{x}\right),
 \end{equation}
-where $\ell^{\bj}_{\bs{i}}$ refers to the $\bs{i}$-th
-Lagrange polynomial defined with respect to the refined element
+where $\ell^{\bj}_{\bs{i}}$ refers to the $\bs{i}$\myth\ Lagrange
+polynomial defined with respect to the refined element
 $\bs{k}_{\bj}$.
 For simplicity, we suppress any time-dependence for the remainder
 of this section.
@@ -1437,9 +1252,6 @@ and, $\forall\bs{j}\in\bc{R}$,
   \ell^{\bj}_{\bs{i}}\left(\bs{x}\right).
   \label{eq.refSoln}
 \end{equation}
-We note that this definition puts us at risk of aliasing errors,
-but we hope for the best...
-\sd{Learn about aliasing, re-word this, and add citation}.
 
 If we collect the nodal values of the solution on the coarse element
 into the column vector $\myol{\wt{\bs{U}}}$ and the
@@ -1451,7 +1263,7 @@ then we can write
 \end{equation}
 We can do a similar re-writing of the solutions on the fine elements.
 
-\subsubsection{Coarse-to-Fine Interpolation}
+\subsubsection{Coarse-to-fine Interpolation}
 
 Following \citet{sbc2015}, we obtain the solution on a refined element
 in terms of the solution on the associated coarse element
@@ -1524,7 +1336,7 @@ we only divide \myeqref{eq.ref1} by the flat-space metric determinant;
 we then recover the densitized quantities afterwards by post-multiplying
 the resulting fields with the flat-space metric determinant.
 
-\subsubsection{Fine-to-Coarse Interpolation}
+\subsubsection{Fine-to-coarse Interpolation}
 
 Before discussing how we coarsen elements, we make the following definition,
 \begin{equation}
@@ -1647,7 +1459,7 @@ also share an interface with $\wt{\bs{K}}^{2}\big|_{x^{2}=x^{2}_{\textsc{l}}}$.
 The second line simply uses the fact that a coarse element interface
 is equal to the sum of $2^{d-1}$ fine element interfaces,
 and in the third line we replace the approximate solutions on the coarse
-element with the approximate solutions on the $\bs{j}$-th fine element.
+element with the approximate solutions on the $\bs{j}$\myth\ fine element.
 The terms $\wh{\alpha}_{h}^{\bj}$ and
 $\wh{\sqrt{\gamma_{h}}}^{\bj}$ are defined in the same way
 as in \myeqref{eq.weak1}, except they use the solutions on
@@ -1663,7 +1475,7 @@ satisfy the delta function property; i.e.,
 
 \begin{figure}[htb!]
   \centering
-  \includegraphics[width=0.5\textwidth]{fig.MeshRefinement_2D.png}
+  \includegraphics[width=0.5\textwidth]{fig.MeshRefinement_2D.pdf}
   \caption{Cartoon depicting a 2D mesh with two levels of refinement
   for a second-order DG method.
   The black lines mark the mesh element interfaces on the coarser level
@@ -1682,63 +1494,10 @@ satisfy the delta function property; i.e.,
 %------------------------------------------------------------------------------%
 \section{Results}
 
-\subsection{Scaling Studies}
+Here we present and discuss results from a suite of test problems designed to
+test different aspects and capabilities of our solver.
 
-In addition to offering tools for mesh refinement, coupling to \amrex\
-allows \thornado\ to run in parallel with MPI.
-Because CCSN simulations are very computationally expensive,
-any code aiming to simulate them must efficiently use all available
-resources.
-We present our results for both strong and weak scaling below.
-All scaling results are shown for a "Bergamo" node on the ISAAC-NG
-cluster at the University of Tennessee, Knoxville.
-
-\subsubsection{Strong-Scaling}
-
-Strong-scaling allows a code to solve a problem with a fixed size quicker when
-more processes are used.
-To examine the strong-scaling capability of \thornado, we run
-a problem having 256x512=131,072 elements with
-1, 2, 4, 8, 16, 32, 64, and 128 MPI processes.
-Our results are shown in \figref{fig.SS}.
-We see ideal scaling out to $\sim\mc{O}\left(10^{6}\right)$ degrees of freedom
-per process, and then good, but less than ideal scaling after that.
-(This is likely due to the cost of communication between MPI processes
-dominating over the cost of computation on a patch of data.)
-We use this number to inform our weak-scaling study, which is described next.
-\begin{figure}[htb!]
-  \centering
-  \includegraphics[width=0.8\textwidth]{fig.StrongScaling.pdf}
-  \caption{The walltime to complete a simulation with nProc
-processes, normalized to the walltime to complete the same simulation with one
-process, plotted as a function of nProc.
-Our data are shown as blue dots and the ideal scaling rate is shown as an
-orange line.
-The numbers reflect the approximate number of degrees of freedom per MPI
-process for each simulation.}
-  \label{fig.SS}
-\end{figure}
-
-\subsubsection{Weak-Scaling}
-
-Weak-scaling allows a code to run larger problems that would otherwise
-overwhelm the memory of a single processor.
-To examine the weak-scaling capability of \thornado, we keep the number
-of degrees of freedom per process fixed and increase the problem
-size.
-Given that we see ideal strong-scaling out to $\mc{O}\left(10^{6}\right)$
-degrees of freedom per MPI process, we use that value for our single-process
-weak-scaling reference.
-Our results are shown in \figref{fig.WS}.
-We see reasonable weak-scaling out to 32 MPI processes.
-\begin{figure}[htb!]
-  \centering
-  \includegraphics[width=0.8\textwidth]{fig.WeakScaling.pdf}
-  \caption{The walltime per timestep versus the number of MPI processes.}
-  \label{fig.WS}
-\end{figure}
-
-\subsection{Effects of Flux Corrections on Accuracy}
+\subsection{Sine Wave Advection}
 
 Our first test problem examines the effects of the flux corrections on the
 accuracy of our numerical method.
@@ -1755,20 +1514,23 @@ For these simulations, we apply neither the slope limiter nor the
 bound-enforcing limiter.
 By allowing the profile to advect until it returns to its original state,
 we can quantify the accuracy of our method via, e.g., the relative error of
-the density, $E_{\rho}$, which we define as
+the density, $E_{1}\left[\rho_{h}\right]$, which we define as
 \begin{equation}
-  E_{\rho}
+  E_{1}\left[\rho_{h}\right]
   :=\frac{\int_{\mc{D}}\left|\rho_{h}\left(L/v,x\right)
-          -\rho_{h}\left(0,x\right)\right|\,dx}
-         {\int_{\mc{D}}\left|\rho_{h}\left(0,x\right)\right|\,dx}.
+          -\rho\left(x\right)\right|\,dx}
+         {\int_{\mc{D}}\left|\rho\left(x\right)\right|\,dx}.
   \label{eq.Error}
 \end{equation}
+The integrals in \myeqref{eq.Error} are computed with Gaussian quadrature,
+using ten quadrature points per element.
 In order to assess the effect of the flux corrections, we perform eight
 simulations: four with a single-level mesh, two with a two-level mesh
 where flux corrections are not applied,
 and two with a two-level mesh where flux corrections are applied.
 For the two-level mesh simulations, we place the (stationary)
 refinement boundary at $L/2$.
+Each simulation has $N=\NSSPRK$.
 Our results are shown in \tabref{tab.CR}.
 \input{Tables/FluxCorrections_L1.tex}
 
@@ -1811,16 +1573,16 @@ Our results are shown in \figref{fig.Sod}.
 The single-level mesh simulation ($\NK=256$) captures all discontinuities well.
 The AMR simulation, which has $\NK=16$ on its coarsest level and $\NK=256$
 on its finest level, captures the discontinuities as well as the single-level
-mesh simulation and uses less degrees of freedom in the smooth regions; e.g.,
+mesh simulation and uses fewer degrees of freedom in the smooth regions; e.g.,
 outside of the Riemann fan and in the post-shock and post-contact flow regions.
 \begin{figure}[htb!]
   \centering
   \includegraphics[width=0.9\textwidth]{fig.Sod.pdf}
   \caption{
-Comoving baryon mass density (top-panel),
-velocity (middle-panel),
-and pressure (bottom-panel),
-plotted as functions of $x$ at $t=0.4$ for the Sod shock tube problem.
+Comoving baryon mass density (top panel),
+velocity (middle panel),
+and pressure (bottom panel),
+plotted as functions of space at $t=0.4$ for the Sod shock tube problem.
 Numerical results are shown as dots and
 analytical results are shown as solid lines.
 Single-level mesh results with $\NK=256$ are shown in blue
@@ -1892,7 +1654,7 @@ than they are in that of the single-level mesh.
     {fig.dZB2002_032x032_AMR_Mesh.pdf}
   \caption{Plots of the 2D blast wave from \citet{db2002}.
 The left panel shows the pressure from
-a single-level mesh simulation with $128^{2}$ elements,
+a single-level mesh simulation with $256^{2}$ elements,
 the middle panel shows the pressure from a four-level mesh
 simulation with $32^{2}$ elements on the coarsest level,
 and the right panel shows the density from the same four-level
@@ -1900,66 +1662,65 @@ mesh simulation, and also overplots the mesh.}
   \label{fig.dZB2002}
 \end{figure}
 
-\subsection{3D Kelvin--Helmholtz}
-\begin{itemize}
-  \item Pretty pictures
-  \item Turbulent energy cascade
-  \item Numerical dissipation scale
-  \item GPU speed-up?
-\end{itemize}
+\subsection{Scaling Studies}
 
-Our last test is a 3D Kelvin--Helmholtz instability problem,
-which tests the code's ability to resolve turbulent regions.
-Our setup follows \cite{rr2012}, with
-periodic boundary conditions in all three dimensions,
-$t\in\left[0,TBD\right]$, and
-$x\times y\times z\in\left[-0.5,+0.5\right]
-\times\left[-1,+1\right]\times\left[-0.5,+0.5\right]$.
-The shear velocity of the fluid at $t=0$ is given by
-\begin{equation}
-  v^{x}\left(x,y\right)
-  =\begin{cases}
-     +\Vshear\tanh\left[\left(y-y_{0}\right)/a\right] & y>0 \\
-     -\Vshear\tanh\left[\left(y+y_{0}\right)/a\right] & y\leq0
-   \end{cases},
-\end{equation}
-with $\Vshear=0.5$, $y_{0}=0.5$, and $a=0.01$;
-the density profile is given by
-\begin{equation}
-  \rho\left(y\right)
-  =\begin{cases}
-     \rho_{0}+\rho_{1}\tanh\left[\left(y-y_{0}\right)/a\right] & y>0 \\
-     \rho_{0}-\rho_{1}\tanh\left[\left(y+y_{0}\right)/a\right] & y\leq0
-   \end{cases},
-\end{equation}
-with $\rho_{0}=0.505$ and $\rho_{1}=0.495$;
-the pressure everywhere is set to unity and $\Gamma=4/3$.
-This steady-state is perturbed by imposing a velocity profile in the vertical
-direction of the form
-\begin{equation}
-  v^{y}\left(x,y\right)
-  =\begin{cases}
-     +A_{0}\,\Vshear\sin\left(2\pi x\right)
-     \exp\left[-\left(y-y_{0}\right)^{2}/\sigma^{2}\right] & y>0 \\
-     -A_{0}\,\Vshear\sin\left(2\pi x\right)
-     \exp\left[-\left(y+y_{0}\right)^{2}/\sigma^{2}\right] & y\leq0
-   \end{cases},
-\end{equation}
-with $A_{0}=0.1$ and $\sigma=0.1$.
-The velocity in the $z$-direction is a random number between
-$-0.01$ and $+0.01$, taken from a uniform distribution.
+In addition to offering tools for mesh refinement, coupling to \amrex\
+allows \thornado\ to run in parallel with MPI.
+Because CCSN simulations are very computationally expensive,
+any code aiming to simulate them must efficiently use all available
+resources.
+We present our results for both strong and weak scaling below.
+All scaling results are shown for a "Bergamo" node on the ISAAC-NG
+cluster at the University of Tennessee, Knoxville.
+
+\subsubsection{Strong-scaling}
+
+Strong-scaling allows a code to solve a problem with a fixed size quicker when
+more processes are used.
+To examine the strong-scaling capability of \thornado, we run
+a problem having $256 \times 512=131,072$ elements with
+1, 2, 4, 8, 16, 32, 64, and 128 MPI processes.
+Our results are shown in \figref{fig.SS}.
+We see ideal scaling out to $\sim\mc{O}\left(10^{6}\right)$ degrees of freedom
+per process, and then good, but less than ideal scaling after that.
+(This is likely due to the cost of communication between MPI processes
+dominating over the cost of computation on a patch of data.)
+We use this number to inform our weak-scaling study, which is described next.
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{fig.StrongScaling.pdf}
+  \caption{The walltime to complete a simulation with different numbers of
+processes, normalized to the walltime to complete the same simulation with one
+process, plotted as a function of the number of processes.
+Our data are shown as blue dots and the ideal scaling rate is shown as an
+orange line.
+The numbers reflect the approximate number of degrees of freedom per MPI
+process for each simulation.}
+  \label{fig.SS}
+\end{figure}
+
+\subsubsection{Weak-scaling}
+
+Weak-scaling allows a code to run larger problems that would otherwise
+overwhelm the memory of a single processor.
+To examine the weak-scaling capability of \thornado, we keep the number
+of degrees of freedom per process fixed and increase the problem
+size.
+Given that we see ideal strong-scaling out to $\mc{O}\left(10^{6}\right)$
+degrees of freedom per MPI process, we use that value for our single-process
+weak-scaling reference.
+Our results are shown in \figref{fig.WS}.
+We see reasonable weak-scaling out to 32 MPI processes.
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{fig.WeakScaling.pdf}
+  \caption{The walltime per timestep in seconds vs.
+the number of MPI processes.}
+  \label{fig.WS}
+\end{figure}
 
 %------------------------------------------------------------------------------%
 \section{Applications}
-
-\subsection{SASI with AMR}
-
-Our first application is the evolution of a 2D, general relativistic
-standing accretion shock instability \citep[SASI,][]{bmd2003}.
-A detailed description of the problem and our setup is described in
-\citet{dem2023} (in press).
-The only modifications we make are to setup the grid with multiple levels
-and to use AMR.
 
 \subsection{1D Adiabatic Collapse}
 
@@ -1986,14 +1747,14 @@ exactly the same times.
   \includegraphics[width=0.8\textwidth]%
     {fig.AdiabaticCollapse_Collapse_dr0.50km.pdf}
   \caption{%
-Mass density in $\g\,\cm^{-3}$ (top-left),
-fluid velocity normalized to the speed of light (top-right),
-conformal factor (top of bottom-left),
-lapse function (bottom of bottom-left),
-and temperature in $\K$ (bottom-right),
+Mass density in grams per cubic centimeter (top left),
+fluid velocity normalized to the speed of light (top right),
+conformal factor (top of bottom left),
+lapse function (bottom of bottom left),
+and temperature in Kelvin (bottom right),
 plotted as functions of radius in kilometers for a single-level mesh
 simulation (solid) and for a five-level mesh simulation (dashed).
-Each line corresponds to the central density reaching a new decade.}
+Each line corresponds to the density reaching a new decade.}
   \label{fig.Collapse_0.5km}
 \end{figure}
 
@@ -2012,35 +1773,50 @@ this issue.
   \includegraphics[width=0.8\textwidth]%
     {fig.AdiabaticCollapse_PostBounce_dr0.50km.pdf}
   \caption{%
-Mass density in $\g\,\cm^{-3}$ (top-left),
-temperature in $\K$ (top-right),
-electron fraction (bottom-left),
-and entropy, $S$, per baryon in units of $\kb$ (bottom-right),
-plotted as functions of radius for the same simulations as are shown in
+Mass density in grams per cubic centimeter (top left),
+temperature in Kelvin (top right),
+electron fraction (bottom left),
+and entropy per baryon in units of Boltzmann's constant (bottom right),
+plotted as functions of radius in kilometers
+for the same simulations as are shown in
 \figref{fig.Collapse_0.5km}.
 The snapshots are chosen such that the shock radius, $\rsh$, is,
 for each simulation,
-$\rsh/\left(10^{3}\,\km\right)=\left(0.1,0.5,1,2,4,7\right)$.}
+$\rsh/\left(10^{3}\,\km\right)=\left(0.1,0.5,1,2,4,7.5\right)$.}
   \label{fig.PostBounce_0.5km}
 \end{figure}
 
 \subsection{Resolution Study}
 
-\sd{Compare amr runs with different numbers of levels.
-During collapse, look at central quantities versus central density
-and post-bounce, look at central quantities versus $t-t_{\mathrm{b}}$}
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[width=0.8\textwidth]%
+    {fig.CentralValues.pdf}
+  \caption{Change in central entropy per baryon (top) and central
+electron fraction (bottom) relative to their values at the beginning of
+the simulations, plotted vs. central density in grams per cubic centimeter
+(left) and vs. post-bounce time in milliseconds (right).
+All runs use AMR and have 512 elements on the coarsest level.
+The blue line corresponds to a seven-level run,
+the orange line to a six-level run,
+and the green line to a five-level run.
+The vertical axis for the electron fraction plots has been scaled by $10^{5}$
+in order to make the behavior of the the variables more clear.}
+  \label{fig.CentralValues}
+\end{figure}
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[width=0.8\textwidth]%
+  {fig.CentralDensityVersusPostBounceTime.pdf}
+  \caption{Central density in grams per cubic centimeter
+vs. post-bounce time in milliseconds, offset by $0.6\,\ms$.
+The lines corresponds to the same simulations as those in
+\figref{fig.CentralValues}.}
+  \label{fig.CentralDensity}
+\end{figure}
 
 %------------------------------------------------------------------------------%
-\section{Conclusions}
-
-%------------------------------------------------------------------------------%
-\section{Data Availability}
-
-The data underlying this paper will be shared on reasonable request to the
-corresponding author.
-
-%------------------------------------------------------------------------------%
-
 \section{Software}
 
 \href{https://amrex-codes.github.io/}{AMReX}
