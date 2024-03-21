@@ -172,7 +172,7 @@ This is one motivation for using discontinuous Galerkin (DG) methods
 (see Chapter~\ref{ch.mp} for details on the DG method):
 DG methods achieve high-order accuracy on a compact (nearest-neighbors only)
 stencil.
-This make them appealing for executing massively parallel simulations on
+This makes them appealing for executing massively parallel simulations on
 supercomputing clusters.
 Additionally, it can be argued that DG methods are favored for
 modeling neutrino transport,
@@ -227,13 +227,13 @@ leads to an explosion.
 Another appealing aspect of the \xcfc\ over the effective potential
 is as that the \xcfc\ is based on a self-consistent theory of gravity.
 Additionally, a recent paper investigated the role of GR on the SASI
-using \thornado\ \citep{dem2023} (in press).
+using \thornado\ \citep{dem2024}.
 They concluded that GR may have a significant impact on the SASI by drastically
 lowering the rate at which the instability grows.
 For these reasons, we advocate the field move to performing simulations
 in full GR.
 
-Contributions I have made to the field of CCSN simulations
+Contributions we have made to the field of CCSN simulations
 include investigating the role of GR
 on the SASI (see Chapter~\ref{ch.sasi}) and developing the first DG solver
 for the GR hydrodynamics (GRHD) equations under the xCFC
@@ -257,7 +257,9 @@ It will be the first code to do so.
 A slightly further outlook is that \thornado\ has the potential to perform
 simulations of the post-merger phase of binary neutron star mergers
 using spectral methods.
-\ee{Add some discussion of possible scientific investigations that can be performed with such a tool.  This will speak to possible impacts of your thesis work.}
+As it is, the code may be used to extend the study described in Chapter 2
+to three spatial dimensions and investigate the impact of GRHD on the
+full SASI, including the spiral mode.
 
 This dissertation is structured as follows: Chapter~\ref{ch.sasi} is an adaptation
 of article that has been accepted for publication in the Astrophysical Journal (ApJ)

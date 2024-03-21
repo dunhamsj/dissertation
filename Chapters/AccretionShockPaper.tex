@@ -3,17 +3,18 @@
 
 This chapter is adapted from
 ``A Parametric Study of the SASI Comparing General Relativistic
-and Non-Relativistic Treatments" in the Astrophysical Journal and has been
+and Nonrelativistic Treatments" in the Astrophysical Journal and has been
 reproduced with the permission of the publisher and my co-authors
 Eirik Endeve, Anthony Mezzacappa, John M. Blondin, Jesse Buffaloe, and Kelly
 Holley-Bockelmann.
+Full citation: \citet{dem2024}.
 
 %------------------------------------------------------------------------------%
 \section{Abstract}
 We present numerical results from a parameter study of the standing accretion
 shock instability (SASI), investigating the impact of general relativity (GR)
 on the dynamics. Using GR hydrodynamics with GR gravity,
-and non-relativistic (NR) hydrodynamics with Newtonian gravity,
+and nonrelativistic (NR) hydrodynamics with Newtonian gravity,
 in an idealized model setting, we vary the initial radius of the shock and,
 by varying its mass and radius in concert, the proto-neutron star (PNS)
 compactness.
@@ -155,7 +156,7 @@ Some of these studies included sophisticated microphysics, such as
 realistic equations of state (\eos s) and neutrino transport;
 however, with the exception of \citet{kkt2017},
 none of these studies solved the general relativistic hydrodynamics (GRHD)
-equations, instead solving their non-relativistic (NRHD) counterparts,
+equations, instead solving their nonrelativistic (NRHD) counterparts,
 some with an approximate relativistic gravitational potential.
 It has been demonstrated that GR effects are crucial to include in CCSN
 simulations \citep{bdm2001,mjm2012,lmm2012,oc2018a}, yet the SASI itself
@@ -192,7 +193,7 @@ This leads to our main science question:
 affect the oscillation period and growth rate
 of the SASI?}
 To begin to address this, we
-present the first comparison of the SASI in both a non-relativistic
+present the first comparison of the SASI in both a nonrelativistic
 and a general relativistic framework, using an idealized model
 with four compactnesses, meant to span the range of conditions
 expected in CCSN simulations.
@@ -231,7 +232,7 @@ We further specialize to the conformally-flat condition
 \citep[\cfc{},][]{wmm1996},
 effectively neglecting the impact of gravitational waves on
 the dynamics.
-This is a valid approximation when the CCSN progenitor is non-rotating
+This is a valid approximation when the CCSN progenitor is nonrotating
 \citep{dnf2005}, as is the case for our simulations.
 The \cfc{} forces the components of the
 spatial three-metric, $\gamma_{ij}\left(x\right)$,
@@ -383,7 +384,7 @@ shock, in accordance with physically admissible solutions.
 \myeqref{eq.AP.polytrope} is consistent with \myeqref{eq.AP.idealEOS}
 through the first law of thermodynamics for an isentropic fluid.
 
-\subsection{Non-Relativistic Hydrodynamics}
+\subsection{Nonrelativistic Hydrodynamics}
 
 Under the 3+1 formalism of GR and the CFC,
 the effect of gravity is encoded in the metric via the lapse function,
@@ -512,9 +513,9 @@ with \myeqref{eq.AP.polytrope}
 and the same system of equations is solved for
 the state of the fluid everywhere below the shock.
 
-\subsection{Non-Relativistic Steady-State Solutions}
+\subsection{Nonrelativistic Steady-State Solutions}
 
-The steady-state solution method for the non-relativistic case
+The steady-state solution method for the nonrelativistic case
 (taken from \citet{bmd2003}) follows a similar procedure
 as the relativistic case,
 except we begin from the NR equations for mass density and energy density,
@@ -536,12 +537,12 @@ $\rho$, $v\equiv v^{r}$, and $p$,
   \label{eq.AP.BernoulliNR}
 \end{align}
 with $h_{\nr}=h-1=\left(e+p\right)/\rho$
-the non-relativistic specific enthalpy and $\mc{B}_{\nr}$
-the non-relativistic Bernoulli constant.
+the nonrelativistic specific enthalpy and $\mc{B}_{\nr}$
+the nonrelativistic Bernoulli constant.
 Following \citet{bmd2003}, we set $\mc{B}_{\nr}=0$.
 As in the GR case, we close this system with \myeqref{eq.AP.polytrope}.
 
-In the non-relativistic limit,
+In the nonrelativistic limit,
 $\alpha\approx1+\Phi$ and $W\approx1+\frac{1}{2}\,v^{i}\,v_{i}$;
 substituting these into \myeqref{IC.eq2} yields, to leading order,
 $1+\mc{B}_{\nr}$,
@@ -658,7 +659,7 @@ We modify that formula to include the effects of GR
 by including the metric factor, which involves the conformal factor
 and which converts the radial coordinate increment to the proper radial
 distance increment,
-and by replacing the non-relativistic signal-speeds with their relativistic
+and by replacing the nonrelativistic signal-speeds with their relativistic
 counterparts,
 \begin{equation}
   T_{\mathrm{aa}}\approx\tauad+\tauac
@@ -679,7 +680,7 @@ Using our metric, the signal-speeds are \citep{rz2013}
   &&\stackrel{\nr}{=}v^{r}+c_{s},\label{eq.AP.lambda+}
 \end{alignat}
 where $c_{s}$ is the sound-speed
-and where the second equality in each expression is the non-relativistic limit.
+and where the second equality in each expression is the nonrelativistic limit.
 For 1D problems,
 this expression depends only on the steady-state values of $c_{s}$ and $v^{r}$.
 We also compare our results with an estimate based on the assumption that
@@ -746,7 +747,7 @@ The growth rate of the SASI depends on the
 steady-state conditions below the shock; however, obtaining an analytic estimate
 for this is difficult,
 and although there have been efforts to explain the physics governing the
-growth rate assuming non-relativistic models
+growth rate assuming nonrelativistic models
 \citep[e.g.,][]{bm2006,fgs2007,l2007,l2008,f2009,gf2012},
 an analytic estimate remains an open question
 and no estimate exists for a GR model.
@@ -769,7 +770,7 @@ aiming to simulate CCSNe.
 \thornado{} uses high-order discontinuous Galerkin (DG) methods
 to discretize space and strong-stability-preserving Runge--Kutta
 (SSP-RK) methods to evolve in time.
-For details on the implementation in the non-relativistic case,
+For details on the implementation in the nonrelativistic case,
 see \citet{ebd2019} and \citet{pbe2021};
 for the relativistic case, see \citet{dem2020} and
 Dunham et al. (2024) (in prep.).
@@ -880,7 +881,7 @@ We leave the outer radial boundary values
 fixed to their initial values for all fields.
 In the polar direction,
 we use reflecting boundary conditions at both poles.
-For the inner-boundary conditions in the non-relativistic case, we
+For the inner-boundary conditions in the nonrelativistic case, we
 assume $\rho\left(r\right)\propto r^{-3}$ and
 $E\left(r\right)\propto r^{-4}$,
 the latter of which follows from our assumption of $\rho\propto r^{-3}$,
